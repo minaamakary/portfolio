@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Copywriting Portfolio</title>
+<style>
+/* ─────────────────────────────────────────────────────
+   APPLE TV DARK THEME
+   bg: #000  |  surface: #161616  |  border: #2a2a2a
+   text: #f5f5f7  |  secondary: #6e6e73
+   accent: #fff  |  link: #2997ff (Apple TV blue)
+───────────────────────────────────────────────────── */
+:root {
+  --bg:       #000;
+  --surface:  #161616;
+  --surface2: #1c1c1e;
+  --border:   #2a2a2a;
+  --text:     #f5f5f7;
+  --secondary:#98989d;
+  --accent:   #fff;
+  --link:     #2997ff;
+  --max:      980px;
+  --r:        12px;
+  --font: -apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+
+/* ── GLOBAL NAV ── Apple TV exact: black, no border, centered items */
+.gnav{
+  background:rgba(0,0,0,.8);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  height:52px;
+  position:sticky;top:0;z-index:9999;
+  border-bottom:1px solid var(--border);
+}
+.gnav-inner{
+  max-width:var(--max);margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;height:52px;
+  justify-content:space-between;
+}
+.gnav-logo{
+  font-size:18px;font-weight:600;
+  color:var(--text);text-decoration:none;letter-spacing:-.3px;
+}
+.gnav-links{display:flex;list-style:none;height:52px}
+.gnav-links a{
+  font-size:12px;color:var(--secondary);text-decoration:none;
+  padding:0 12px;line-height:52px;display:block;
+  transition:color .15s;white-space:nowrap;
+}
+.gnav-links a:hover{color:var(--text)}
+.gnav-links a.active{color:var(--text);font-weight:500}
+
+/* ── LOCAL NAV ── Apple TV style: slightly lighter, category tabs */
+.lnav{
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  height:50px;
+}
+.lnav-inner{
+  max-width:var(--max);margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;height:50px;
+  justify-content:space-between;
+}
+.lnav-title{
+  font-size:20px;font-weight:600;letter-spacing:-.4px;
+  color:var(--text);text-decoration:none;
+}
+.lnav-links{display:flex;list-style:none;height:50px}
+.lnav-links a{
+  font-size:12px;color:var(--secondary);text-decoration:none;
+  padding:0 14px;line-height:50px;display:block;
+  transition:color .15s;position:relative;white-space:nowrap;
+}
+.lnav-links a:hover{color:var(--text)}
+.lnav-links a.active{color:var(--text)}
+.lnav-links a.active::after{
+  content:'';position:absolute;bottom:0;left:14px;right:14px;
+  height:2px;background:var(--text);border-radius:1px;
+}
+
+/* ── WRAPPER ── */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.wrap > *:last-child{margin-bottom:80px}
+.page{display:none}
+.page.active{display:block}
+
+/* ── PAGE HERO (Apple TV big text, black bg) ── */
+.page-hero{
+  padding:56px 20px 44px;
+  max-width:var(--max);margin:0 auto;
+}
+.page-hero h1{
+  font-size:52px;font-weight:700;letter-spacing:-.8px;
+  line-height:1.04;color:var(--text);
+}
+.page-hero p{
+  margin-top:10px;font-size:17px;color:var(--secondary);
+  line-height:1.5;max-width:520px;
+}
+
+/* ── SECTION LABEL ── */
+.sec-label{
+  font-size:22px;font-weight:600;letter-spacing:-.3px;
+  color:var(--text);padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:0;
+}
+
+/* ── FEATURED BLOCK ── Apple TV: image fills left, list right */
+.featured{
+  display:grid;grid-template-columns:2fr 1fr;
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;margin-bottom:0;
+}
+.feat-visual{
+  position:relative;min-height:400px;
+  display:flex;align-items:flex-end;
+  overflow:hidden;cursor:pointer;background:var(--surface);
+}
+.feat-visual:hover .feat-scale{transform:scale(1.025)}
+.feat-scale{
+  position:absolute;inset:0;
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.feat-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.1) 55%,transparent 100%);
+}
+.feat-body{position:relative;z-index:2;padding:24px 28px 30px}
+.feat-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:7px;
+}
+.feat-title{
+  font-size:24px;font-weight:600;letter-spacing:-.3px;
+  line-height:1.2;color:#fff;
+}
+.feat-list{
+  background:var(--surface);
+  border-left:1px solid var(--border);
+  display:flex;flex-direction:column;
+}
+.feat-item{
+  flex:1;padding:18px 20px;border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:center;
+  cursor:pointer;transition:background .15s;text-decoration:none;color:inherit;
+}
+.feat-item:last-child{border-bottom:none}
+.feat-item:hover{background:var(--surface2)}
+.feat-item-eye{
+  font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:5px;
+}
+.feat-item-title{
+  font-size:14px;font-weight:600;line-height:1.35;
+  color:var(--text);letter-spacing:-.1px;
+}
+.feat-item-date{font-size:11px;color:var(--secondary);margin-top:4px}
+
+/* ── STORY GRID (Apple TV shelves style) ── */
+.sgrid{
+  display:grid;gap:1px;background:var(--border);
+  border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--border);
+  grid-template-columns:repeat(3,1fr);
+}
+.sgrid.cols-2{grid-template-columns:repeat(2,1fr)}
+.sgrid.cols-4{grid-template-columns:repeat(4,1fr)}
+
+/* ── STORY CARD ── */
+.scard{
+  background:var(--surface);display:flex;flex-direction:column;
+  cursor:pointer;text-decoration:none;color:inherit;
+  transition:background .18s;
+}
+.scard:hover{background:var(--surface2)}
+.scard-vis{
+  aspect-ratio:16/9;overflow:hidden;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface2);flex-shrink:0;
+}
+.scard-vis-sq{aspect-ratio:1/1}
+.scard-body{padding:16px 18px 22px;flex:1;display:flex;flex-direction:column}
+.scard-eye{
+  font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:6px;
+}
+.scard-title{
+  font-size:15px;font-weight:600;letter-spacing:-.1px;
+  line-height:1.3;color:var(--text);margin-bottom:5px;
+}
+.scard-desc{font-size:12px;line-height:1.6;color:var(--secondary);flex:1}
+.scard-date{font-size:11px;color:var(--secondary);margin-top:8px;line-height:1.5}
+
+/* ── STORIES LEAD (big left + sidebar) ── */
+.stories-lead{
+  display:grid;grid-template-columns:2fr 1fr;
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;margin-bottom:0;
+}
+.sl-main{
+  background:var(--surface);cursor:pointer;
+  text-decoration:none;color:inherit;transition:background .15s;
+}
+.sl-main:hover{background:var(--surface2)}
+.sl-vis{
+  aspect-ratio:16/9;overflow:hidden;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface2);
+}
+.sl-body{padding:22px 26px 28px}
+.sl-eye{
+  font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:8px;display:block;
+}
+.sl-title{
+  font-size:26px;font-weight:600;letter-spacing:-.4px;
+  line-height:1.15;color:var(--text);margin-bottom:8px;
+}
+.sl-desc{font-size:14px;line-height:1.6;color:var(--secondary)}
+.sl-sidebar{
+  border-left:1px solid var(--border);
+  background:var(--surface);display:flex;flex-direction:column;
+}
+.sl-item{
+  flex:1;padding:16px 20px;border-bottom:1px solid var(--border);
+  cursor:pointer;text-decoration:none;color:inherit;
+  transition:background .15s;display:flex;flex-direction:column;justify-content:center;
+}
+.sl-item:last-child{border-bottom:none}
+.sl-item:hover{background:var(--surface2)}
+.sl-item-eye{
+  font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:5px;
+}
+.sl-item-title{font-size:13px;font-weight:600;line-height:1.35;color:var(--text)}
+.sl-item-date{font-size:11px;color:var(--secondary);margin-top:3px}
+
+/* ── PULL QUOTE ── Apple TV dark: even darker panel */
+.pullquote{
+  background:#0a0a0a;border:1px solid var(--border);
+  border-radius:var(--r);padding:52px 24px;margin:16px 0;
+}
+.pq-inner{max-width:580px;margin:0 auto;text-align:center}
+.pq-eye{
+  font-size:10px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:16px;
+}
+.pq-q{
+  font-size:22px;font-weight:300;line-height:1.55;
+  color:var(--text);font-style:italic;letter-spacing:-.1px;
+}
+.pq-cite{
+  display:block;margin-top:14px;font-size:12px;
+  font-style:normal;color:var(--secondary);
+}
+
+/* ── CAMPAIGN INTRO ── */
+.camp-intro{
+  display:grid;grid-template-columns:1fr 260px;
+  gap:44px;align-items:start;padding:40px 0 36px;
+  border-bottom:1px solid var(--border);
+}
+.camp-eye{
+  font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:10px;
+}
+.camp-h2{
+  font-size:42px;font-weight:700;letter-spacing:-.8px;
+  line-height:1.06;color:var(--text);margin-bottom:12px;
+}
+.camp-desc{font-size:16px;line-height:1.65;color:var(--secondary)}
+.meta-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:20px 20px 22px;
+}
+.meta-card-hd{
+  font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--secondary);
+  padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.meta-row{
+  display:flex;justify-content:space-between;
+  padding:9px 0;border-bottom:1px solid var(--border);font-size:12px;
+}
+.meta-row:last-child{border-bottom:none}
+.meta-l{color:var(--secondary)}
+.meta-v{color:var(--text);font-weight:500}
+
+/* ── IG MOCK ── */
+.ig-mock{width:100%;height:100%;display:flex;flex-direction:column}
+.ig-hd{
+  display:flex;align-items:center;gap:7px;padding:8px 10px;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);flex-shrink:0;
+}
+.ig-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.ig-handle{font-size:11px;font-weight:600;color:#fff}
+.ig-dots{font-size:9px;color:rgba(255,255,255,.4);margin-left:auto}
+.ig-cap-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:14px}
+.ig-cap{font-size:12px;line-height:1.65;color:#fff;text-align:center;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.ig-ft{padding:7px 10px 8px;background:rgba(0,0,0,.45);display:flex;gap:10px;flex-shrink:0}
+.ig-act{font-size:15px}
+
+/* ── BRAND VISUALS ── */
+.vox-bg{background:linear-gradient(145deg,#080812 0%,#14000c 100%)}
+.maf-bg{background:linear-gradient(145deg,#080810 0%,#100c00 100%)}
+.vox-mark{font-size:48px;font-weight:800;letter-spacing:-3px;color:#fff;font-style:italic;line-height:1;position:relative;z-index:2}
+.vox-mark span{color:#e6001e}
+.maf-mark{font-size:22px;font-weight:700;letter-spacing:.04em;color:#c9a84c;position:relative;z-index:2;text-align:center}
+.maf-sub{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,168,76,.45);margin-top:4px;position:relative;z-index:2;text-align:center}
+.glow{position:absolute;border-radius:50%;filter:blur(44px);pointer-events:none}
+.gr{background:rgba(230,0,30,.22)}
+.gg{background:rgba(201,168,76,.2)}
+.gb{background:rgba(0,80,200,.18)}
+.stars-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:0;animation:tw var(--d,3s) var(--dl,0s) infinite}
+@keyframes tw{0%,100%{opacity:0}50%{opacity:var(--op,.5)}}
+.film{position:absolute;bottom:0;left:0;right:0;height:36px;display:flex;gap:3px;opacity:.06;pointer-events:none}
+.ff{flex:1;background:#fff;border-radius:2px}
+.gridlines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(201,168,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,74,.04) 1px,transparent 1px);background-size:36px 36px}
+
+/* ── ABOUT PAGE ── */
+.about-bio{
+  display:grid;grid-template-columns:1fr 220px;gap:48px;
+  align-items:start;padding:44px 0 40px;border-bottom:1px solid var(--border);
+}
+.about-eye{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--secondary);margin-bottom:12px}
+.about-name{font-size:46px;font-weight:700;letter-spacing:-.8px;line-height:1.04;color:var(--text);margin-bottom:8px}
+.about-role{font-size:19px;font-weight:400;color:var(--secondary);margin-bottom:18px}
+.about-desc{font-size:16px;line-height:1.65;color:var(--secondary)}
+.about-avatar{
+  width:180px;height:180px;border-radius:50%;
+  background:var(--surface);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:56px;color:var(--border);
+  overflow:hidden;flex-shrink:0;
+}
+.skills-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--border);
+}
+.skill-card{background:var(--surface);padding:24px 20px}
+.skill-icon{font-size:24px;margin-bottom:10px}
+.skill-name{font-size:15px;font-weight:600;letter-spacing:-.1px;color:var(--text);margin-bottom:5px}
+.skill-desc{font-size:12px;line-height:1.6;color:var(--secondary)}
+.exp-list{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.exp-item{padding:18px 22px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:80px 1fr;gap:16px}
+.exp-item:last-child{border-bottom:none}
+.exp-yr{font-size:11px;color:var(--secondary);padding-top:3px}
+.exp-role{font-size:15px;font-weight:600;color:var(--text);margin-bottom:2px;letter-spacing:-.1px}
+.exp-co{font-size:12px;color:var(--secondary)}
+
+/* ── PLACEHOLDER VISUALS ── */
+.ph-vis{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;opacity:.3}
+.ph-icon{font-size:34px}
+.ph-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--secondary)}
+
+/* ── CHAIWALA PORTRAIT POST LAYOUT ── */
+.chai-post{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:1px;background:var(--border);
+  border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--border);
+}
+.chai-visual{
+  /* Portrait: 4:5 Instagram format */
+  aspect-ratio:4/5;
+  position:relative;overflow:hidden;
+  background:var(--surface2);
+  flex-shrink:0;
+}
+.chai-visual .carousel{position:absolute;inset:0}
+.chai-visual .carousel-track{
+  display:flex;height:100%;
+  transition:transform .35s cubic-bezier(.25,.46,.45,.94);
+}
+.chai-slide{
+  flex-shrink:0;width:100%;height:100%;
+  overflow:hidden;
+}
+.chai-body{
+  background:var(--surface);
+  padding:28px 28px 32px;
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+}
+/* Thumbnail strip */
+.chai-thumb{
+  width:44px;height:44px;border-radius:6px;
+  overflow:hidden;background:var(--surface2);
+  border:2px solid transparent;cursor:pointer;
+  flex-shrink:0;transition:border-color .15s;
+}
+.chai-thumb.active{border-color:var(--link)}
+.chai-thumb:hover{border-color:var(--secondary)}
+@media(max-width:860px){
+  .chai-post{grid-template-columns:1fr}
+  .chai-visual{aspect-ratio:4/5;max-height:420px}
+}
+@media(max-width:500px){
+  .chai-thumb{width:36px;height:36px}
+}
+.carousel{position:relative;width:100%;height:100%;overflow:hidden}
+.carousel-track{display:flex;width:100%;height:100%;transition:transform .35s cubic-bezier(.25,.46,.45,.94)}
+.carousel-track img{flex-shrink:0;width:100%;height:100%;object-fit:cover}
+.carousel-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,.45);border:none;color:#fff;
+  font-size:22px;width:32px;height:32px;border-radius:50%;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  z-index:3;transition:background .2s;line-height:1;padding:0;
+}
+.carousel-btn:hover{background:rgba(0,0,0,.7)}
+.carousel-prev{left:8px}
+.carousel-next{right:8px}
+.carousel-dots{
+  position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  display:flex;gap:5px;z-index:3;
+}
+.carousel-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.45);transition:background .2s;
+}
+.carousel-dot.active{background:#fff}
+
+/* ── IV CAMPAIGN PILLARS ── */
+.iv-pillar-label{
+  padding:36px 0 20px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:0;
+}
+.iv-pillar-title{
+  font-size:28px;font-weight:700;letter-spacing:-.4px;
+  color:var(--text);margin-bottom:8px;
+}
+.iv-pillar-title span{
+  color:#c9a06a; /* Irish Village gold */
+}
+.iv-pillar-desc{
+  font-size:14px;line-height:1.65;color:var(--secondary);
+  max-width:640px;
+}
+/* Grid variants for IV pillars */
+.iv-grid-4{grid-template-columns:repeat(4,1fr)}
+.iv-grid-5{grid-template-columns:repeat(5,1fr)}
+.iv-grid-3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){
+  .iv-grid-4{grid-template-columns:repeat(2,1fr)}
+  .iv-grid-5{grid-template-columns:repeat(3,1fr)}
+  .iv-grid-3{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:500px){
+  .iv-grid-4,.iv-grid-5,.iv-grid-3{grid-template-columns:repeat(2,1fr)}
+}
+.brands-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.brand-logo-card{background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 16px 22px;gap:14px;transition:background .15s;cursor:default}
+.brand-logo-card:hover{background:var(--surface2)}
+.brand-logo-card img{width:100%;max-width:110px;max-height:56px;object-fit:contain}
+.brand-logo-card span{font-size:10px;font-weight:500;letter-spacing:.04em;color:var(--secondary);text-align:center;line-height:1.4}
+@media(max-width:860px){.brands-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.brands-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── READ MORE LINK ── */
+.read-more{
+  font-size:12px;color:var(--link);text-decoration:none;
+  display:inline-flex;align-items:center;gap:3px;margin-top:10px;
+  transition:gap .2s;
+}
+.read-more:hover{gap:6px}
+.read-more::after{content:'›';font-size:14px;line-height:1}
+
+/* ── FOOTER ── */
+.footer{
+  border-top:1px solid var(--border);
+  padding:24px 20px 40px;background:var(--bg);margin-top:80px;
+}
+.footer-inner{max-width:var(--max);margin:0 auto}
+.footer-copy{font-size:11px;color:var(--secondary);line-height:1.7}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px}
+.footer-links a{font-size:11px;color:var(--secondary);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--text)}
+
+/* ── VIDEO CARD — Instagram reel style ── */
+.vcard{background:var(--surface);display:flex;flex-direction:column;cursor:pointer}
+.vcard-vis{position:relative;overflow:hidden;background:#111;flex-shrink:0;aspect-ratio:9/16}
+.vcard-vis video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.vcard:hover .vcard-vis video{transform:scale(1.03)}
+.vcard-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
+.vcard-hd{display:flex;align-items:center;gap:7px;padding:10px 11px;background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,transparent 100%)}
+.vcard-av{width:26px;height:26px;border-radius:50%;background:#c9a84c;color:#08080f;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.vcard-handle{font-size:11px;font-weight:600;color:#fff}
+.vcard-ft{padding:8px 11px 10px;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%);display:flex;gap:11px}
+.vcard-act{font-size:14px}
+/* Play/pause pill — always visible, shows state */
+.vcard-play{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.5);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#fff;
+  transition:opacity .25s, background .2s;
+  pointer-events:none;
+}
+.vcard-play.hidden{opacity:0}
+.vcard-body{padding:13px 15px 18px;flex:1;display:flex;flex-direction:column}
+.vcard-eye{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px}
+.vcard-title{font-size:13px;font-weight:600;letter-spacing:-.1px;line-height:1.3;color:var(--text);margin-bottom:4px}
+.vcard-caption{font-size:11.5px;line-height:1.6;color:var(--secondary);flex:1}
+.vcard-tags{font-size:10.5px;color:#2997ff;margin-top:7px;line-height:1.7}
+.vcard-date{font-size:10px;color:var(--secondary);margin-top:5px}
+.vgrid{display:grid;gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── SPACERS ── */
+.mt-2{margin-top:16px}
+.mt-36{margin-top:36px}
+.mt-48{margin-top:48px}
+.pb-20{padding-bottom:20px}
+/* First sec-label on a page needs top breathing room */
+.sec-label:not(.mt-48){margin-top:0}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .featured,.stories-lead{grid-template-columns:1fr}
+  .feat-list,.sl-sidebar{border-left:none;border-top:1px solid var(--border)}
+  .sgrid{grid-template-columns:1fr 1fr}
+  .about-bio{grid-template-columns:1fr}
+  .about-avatar{display:none}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .camp-intro{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:580px){
+  .gnav-links{display:none}
+  .lnav-links{display:none}
+  .sgrid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .page-hero h1{font-size:36px}
+  .camp-h2{font-size:30px}
+  .about-name{font-size:34px}
+  .feat-title{font-size:19px}
+  .sl-title{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ GLOBAL NAV ══════════════ -->
+<nav class="gnav">
+  <div class="gnav-inner">
+    <a class="gnav-logo" href="#" onclick="return show('home')">✦ Portfolio</a>
+    <ul class="gnav-links">
+      <li><a href="#" onclick="return show('home')"         id="gn-home"          class="active">Home</a></li>
+      <li><a href="#" onclick="return show('entertainment')" id="gn-entertainment">Entertainment</a></li>
+      <li><a href="#" onclick="return show('campaigns')"     id="gn-campaigns">Campaigns</a></li>
+      <li><a href="#" onclick="return show('fnb')"           id="gn-fnb">F&amp;B</a></li>
+      <li><a href="#" onclick="return show('retail')"        id="gn-retail">Retail &amp; Lifestyle</a></li>
+      <li><a href="#" onclick="return show('about')"         id="gn-about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══════════════ LOCAL NAV ══════════════ -->
+<nav class="lnav">
+  <div class="lnav-inner">
+    <a class="lnav-title" href="#" onclick="return show('home')">Copywriting Portfolio</a>
+    <ul class="lnav-links">
+      <li><a href="#" onclick="return show('entertainment')" id="ln-entertainment">Entertainment</a></li>
+      <li><a href="#" onclick="return show('campaigns')"     id="ln-campaigns">Campaigns</a></li>
+      <li><a href="#" onclick="return show('fnb')"           id="ln-fnb">F&amp;B</a></li>
+      <li><a href="#" onclick="return show('retail')"        id="ln-retail">Retail &amp; Lifestyle</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ████████████████████████████████████████████
+     HOME PAGE
+     Apple TV layout: big heading + featured block
+     + section label + 3-col grid
+████████████████████████████████████████████ -->
+<div class="page active" id="page-home">
+  <div class="page-hero">
+    <h1>Newsroom</h1>
+    <p>Brand copy, social campaigns, and activation writing for the region's most iconic names.</p>
+  </div>
+
+  <div class="wrap">
+    <!-- Featured -->
+    <div class="featured">
+      <div class="feat-visual vox-bg" onclick="show('entertainment')">
+        <div class="feat-scale">
+          <div class="stars-wrap" id="h-stars"></div>
+          <div class="glow gr" style="width:240px;height:240px;top:5%;left:5%"></div>
+          <div class="glow gb" style="width:180px;height:180px;bottom:15%;right:8%"></div>
+          <div class="film"><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div></div>
+        </div>
+        <div class="feat-grad"></div>
+        <div class="feat-body">
+          <div class="feat-eyebrow">Entertainment · VOX Cinemas</div>
+          <div class="feat-title">Every word sells a seat.<br>Copy crafted for the biggest screen in the region.</div>
+        </div>
+      </div>
+      <div class="feat-list">
+        <a class="feat-item" href="#" onclick="return show('entertainment')">
+          <div class="feat-item-eye">Now Showing</div>
+          <div class="feat-item-title">The Journey — Saudi-Japanese Anime Debut in Theatres</div>
+          <div class="feat-item-date">2021</div>
+        </a>
+        <a class="feat-item" href="#" onclick="return show('entertainment')">
+          <div class="feat-item-eye">Re-Release</div>
+          <div class="feat-item-title">Shrek Is Back — 25 Years of Far, Far Away</div>
+          <div class="feat-item-date">2021</div>
+        </a>
+        <a class="feat-item" href="#" onclick="return show('campaigns')">
+          <div class="feat-item-eye">Retail Campaign</div>
+          <div class="feat-item-title">Cosmotel 2021 — Majid Al Futtaim, City Centre Mirdif</div>
+          <div class="feat-item-date">2021</div>
+        </a>
+        <a class="feat-item" href="#" onclick="return show('about')">
+          <div class="feat-item-eye">About</div>
+          <div class="feat-item-title">Copywriter based in the UAE — brand copy across MENA</div>
+          <div class="feat-item-date"></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Latest Work -->
+    <div class="sec-label mt-48 pb-20">Latest Work</div>
+    <div class="sgrid mt-2">
+      <a class="scard" href="#" onclick="return show('entertainment')">
+        <div class="scard-vis vox-bg">
+          <div class="stars-wrap" id="h-s1"></div>
+          <div class="glow gr" style="width:90px;height:90px;top:20%;left:15%"></div>
+          <div class="vox-mark" style="font-size:36px"><span>V</span>OX</div>
+          <div class="film"><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div></div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Entertainment</div>
+          <div class="scard-title">VOX Cinemas — Social Copy</div>
+          <div class="scard-desc">Five posts crafted to sell seats — from anime debuts to 25th anniversary re-releases.</div>
+          <div class="scard-date">2021</div>
+        </div>
+      </a>
+      <a class="scard" href="#" onclick="return show('campaigns')">
+        <div class="scard-vis" style="overflow:hidden">
+          <img src="cosmotel2021.jpg" alt="Cosmotel 2021" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Campaign</div>
+          <div class="scard-title">Cosmotel 2021 — Majid Al Futtaim</div>
+          <div class="scard-desc">10-post Instagram campaign for a tech activation at City Centre Mirdif.</div>
+          <div class="scard-date">2021</div>
+        </div>
+      </a>
+      <a class="scard" href="#" onclick="return show('about')">
+        <div class="scard-vis" style="background:var(--surface2)">
+          <div style="font-size:48px;opacity:.25">✦</div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">About</div>
+          <div class="scard-title">Copywriter · UAE</div>
+          <div class="scard-desc">Brand voice, social copy, and campaign writing for the region's biggest names.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ████████████████████████████████████████████
+     ENTERTAINMENT PAGE
+████████████████████████████████████████████ -->
+<div class="page" id="page-entertainment">
+  <div class="page-hero">
+    <h1>Entertainment</h1>
+    <p>Copy crafted for the region's biggest cinema brand — where every word sells a seat.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="sec-label pb-20">VOX Cinemas</div>
+
+    <!-- Stories lead -->
+    <div class="stories-lead">
+      <a class="sl-main" href="https://www.instagram.com/voxcinemas/" target="_blank">
+        <div class="sl-vis vox-bg" style="min-height:260px">
+          <div class="stars-wrap" id="e-hero"></div>
+          <div class="glow gr" style="width:200px;height:200px;top:10%;left:5%"></div>
+          <div class="glow gb" style="width:150px;height:150px;bottom:10%;right:8%"></div>
+          <div style="text-align:center;z-index:2;position:relative">
+            <div class="vox-mark"><span>V</span>OX</div>
+            <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:5px">Cinemas</div>
+          </div>
+          <div class="film"><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div></div>
+        </div>
+        <div class="sl-body">
+          <span class="sl-eye">Now Showing · 2021</span>
+          <div class="sl-title">An Epic Tale, Now on the Biggest Screen</div>
+          <div class="sl-desc">Based on a legend from the Arabian Peninsula, the Japanese-Saudi anime film <em>The Journey</em> makes its theatrical debut at VOX Cinemas. Copy designed to drive bookings and celebrate a regional first.</div>
+        </div>
+      </a>
+      <div class="sl-sidebar">
+        <a class="sl-item" href="https://www.instagram.com/p/CXgEFvPs0Fc/" target="_blank">
+          <div class="sl-item-eye">Re-Release</div>
+          <div class="sl-item-title">Shrek (2001) — 25th Anniversary Re-Release</div>
+          <div class="sl-item-date">2021</div>
+        </a>
+        <a class="sl-item" href="https://www.instagram.com/p/CUuqrBEhaY_/" target="_blank">
+          <div class="sl-item-eye">Brand</div>
+          <div class="sl-item-title">Lights Dim. Screen Lights Up. World Disappears.</div>
+          <div class="sl-item-date">2021</div>
+        </a>
+        <a class="sl-item" href="https://www.instagram.com/p/CXSxvcuBRId/" target="_blank">
+          <div class="sl-item-eye">CTA</div>
+          <div class="sl-item-title">The Popcorn Is Ready. Now All We Need Is You.</div>
+          <div class="sl-item-date">2021</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pullquote -->
+    <div class="pullquote">
+      <div class="pq-inner">
+        <div class="pq-eye">VOX Cinemas · Copy Direction</div>
+        <div class="pq-q">"Cinema copy that makes you feel the dark, smell the popcorn, and reach for your phone to book — before the post even ends."</div>
+        <cite class="pq-cite">— VOX Cinemas Social Campaign, 2021</cite>
+      </div>
+    </div>
+
+    <div class="sec-label mt-48 pb-20">All Posts</div>
+    <div class="sgrid mt-2">
+
+      <div class="scard">
+        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#080812,#14000c)">
+          <div class="stars-wrap" id="e1"></div>
+          <div class="glow gr" style="width:90px;height:90px;top:20%;left:15%"></div>
+          <div class="ig-mock">
+            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
+            <div class="ig-cap-wrap"><p class="ig-cap">Based on an epic tale from the Arabian Peninsula, the new Japanese-Saudi anime film "The Journey" has made its debut in theatres. 😍 Book your tickets online and watch it at VOX. 🍿</p></div>
+            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Now Showing</div>
+          <div class="scard-title">The Journey — Anime Debut</div>
+          <div class="scard-desc">Regional pride meets cinematic excitement to drive ticket bookings.</div>
+          <div class="scard-date">2021</div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#0c000c,#180a00)">
+          <div class="glow" style="width:80px;height:80px;top:25%;right:20%;background:rgba(80,180,60,.2);filter:blur(38px)"></div>
+          <div class="ig-mock">
+            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
+            <div class="ig-cap-wrap"><p class="ig-cap">Shrek (2001) is re-releasing at VOX Cinemas to celebrate the film's 25th anniversary. 🎉<br><br>It's time to get the gang back together. Stay tuned for tickets on the VOX app.</p></div>
+            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Re-Release</div>
+          <div class="scard-title">Shrek — 25th Anniversary</div>
+          <div class="scard-desc">Nostalgia-driven copy built to reunite audiences with a classic.</div>
+          <div class="scard-date">2021</div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#00080f,#080f08)">
+          <div class="stars-wrap" id="e3"></div>
+          <div class="glow gb" style="width:90px;height:90px;top:20%;left:20%"></div>
+          <div class="ig-mock">
+            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
+            <div class="ig-cap-wrap"><p class="ig-cap">Every great movie starts the same way — lights dim, screen lights up, and the world disappears. 🎬<br><br>That's the VOX experience. Book now. 🍿</p></div>
+            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
+          </div>
+          <div class="film"><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div></div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Brand</div>
+          <div class="scard-title">Lights Dim. Screen Lights Up.</div>
+          <div class="scard-desc">Brand essence copy — sensory, immersive, unmistakably VOX.</div>
+          <div class="scard-date">2021</div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#0f0800,#080010)">
+          <div class="glow gr" style="width:90px;height:90px;bottom:15%;right:12%"></div>
+          <div class="ig-mock">
+            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
+            <div class="ig-cap-wrap"><p class="ig-cap">The popcorn is ready. The screen is set. Now all we need is you. 🍿✨<br><br>Tickets available now — link in bio or on the VOX app.</p></div>
+            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">CTA</div>
+          <div class="scard-title">The Popcorn Is Ready.</div>
+          <div class="scard-desc">Invitation copy — warm, personal, impossible to scroll past.</div>
+          <div class="scard-date">2021</div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#000a10,#100005)">
+          <div class="stars-wrap" id="e5"></div>
+          <div class="glow gr" style="width:80px;height:80px;top:15%;right:15%"></div>
+          <div class="ig-mock">
+            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
+            <div class="ig-cap-wrap"><p class="ig-cap">Some stories deserve the biggest screen. ✨<br><br>Book your tickets now and make it a night to remember at VOX Cinemas. 🍿</p></div>
+            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Feature</div>
+          <div class="scard-title">Some Stories Deserve the Biggest Screen</div>
+          <div class="scard-desc">Aspirational copy positioning cinema as an event, not just a film.</div>
+          <div class="scard-date">2021</div>
+        </div>
+      </div>
+
+      <div class="scard" style="opacity:.3;cursor:default">
+        <div class="scard-vis scard-vis-sq" style="background:var(--surface2)"><div style="font-size:32px;opacity:.3">＋</div></div>
+        <div class="scard-body"><div class="scard-eye">Coming Soon</div><div class="scard-title" style="color:var(--secondary)">More Posts</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ████████████████████████████████████████████
+     CAMPAIGNS PAGE
+████████████████████████████████████████████ -->
+<div class="page" id="page-campaigns">
+  <div class="page-hero">
+    <h1>Campaigns</h1>
+    <p>Real-world copy crafted for iconic brands across the region.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="camp-intro">
+      <div>
+        <div class="camp-eye">Majid Al Futtaim · Retail &amp; Lifestyle</div>
+        <div class="camp-h2">Cosmotel 2021</div>
+        <div class="camp-desc">When Cosmotel 2021 took over Dubai's City Centre Mirdif, it brought the pages of Cosmopolitan to life as a high-energy, pastel-hued "beauty hotel." It wasn't just a retail event — it was a full-blown experiential wonderland.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-hd">Campaign Details</div>
+        <div class="meta-row"><span class="meta-l">Client</span><span class="meta-v">Majid Al Futtaim</span></div>
+        <div class="meta-row"><span class="meta-l">Campaign</span><span class="meta-v">Cosmotel 2021</span></div>
+        <div class="meta-row"><span class="meta-l">Venue</span><span class="meta-v">City Centre Mirdif</span></div>
+        <div class="meta-row"><span class="meta-l">Year</span><span class="meta-v">2021</span></div>
+        <div class="meta-row"><span class="meta-l">Channel</span><span class="meta-v">Instagram</span></div>
+        <div class="meta-row"><span class="meta-l">Posts</span><span class="meta-v">10 Posts + Reel</span></div>
+      </div>
+    </div>
+
+    <div class="sec-label mt-48 pb-20">Featured Post</div>
+    <div class="stories-lead">
+      <div class="sl-main">
+        <div class="sl-vis" style="min-height:240px;overflow:hidden;position:relative">
+          <img src="cosmotel2021.jpg" alt="Cosmotel 2021" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        </div>
+        <div class="sl-body">
+          <span class="sl-eye">Campaign Launch</span>
+          <div class="sl-title">Welcome to the Cosmotel Experience</div>
+          <div class="sl-desc">The anchor post setting the tone for the full activation. Copy designed to spark curiosity and drive in-mall visits from the very first scroll.</div>
+        </div>
+      </div>
+      <div class="sl-sidebar">
+        <div class="sl-item"><div class="sl-item-eye">Launch Day</div><div class="sl-item-title">Cosmotel Opens Today at City Centre Mirdif</div><div class="sl-item-date">Apr 2021</div></div>
+        <div class="sl-item"><div class="sl-item-eye">Awareness</div><div class="sl-item-title">The Future Is Calling — Come See Cosmotel</div><div class="sl-item-date">Apr 2021</div></div>
+        <div class="sl-item"><div class="sl-item-eye">Community</div><div class="sl-item-title">Tag a Friend You'd Bring to Cosmotel</div><div class="sl-item-date">Apr 2021</div></div>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <div class="pq-inner">
+        <div class="pq-eye">Cosmotel 2021 · Copy Direction</div>
+        <div class="pq-q">"Copy that meets people where they scroll and gives them one good reason to show up in person."</div>
+        <cite class="pq-cite">— Cosmotel Campaign, City Centre Mirdif 2021</cite>
+      </div>
+    </div>
+
+    <div class="sec-label mt-48 pb-20">All 11 Posts</div>
+    <div class="vgrid mt-2">
+
+      <!-- POST 1 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v1.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Launch · Day 1</div>
+          <div class="vcard-title">Cosmotel Has Officially Opened Its Doors</div>
+          <div class="vcard-caption">Cosmotel has officially opened its doors today and we are beaming with joy! We can't wait to welcome you lovely beauties to our Candy Motel popup for exciting beauty & fashion programs, events, meet & greets, talks and more 💄♥️</div>
+          <div class="vcard-tags">@cosmomiddleeast<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 2 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v2.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Lifestyle</div>
+          <div class="vcard-title">What I Mean When I Say I'm Going to Cosmotel</div>
+          <div class="vcard-caption">What I mean when I say I am going to Cosmotel in City Centre Mirdif</div>
+          <div class="vcard-tags">@cosmomiddleeast<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 3 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v3.mp4" loop muted playsinline preload="metadata" data-seek="5"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Engagement · Day 2</div>
+          <div class="vcard-title">Buzzing With Exciting Talks & Meet & Greets</div>
+          <div class="vcard-caption">Today, Cosmotel has been buzzing with exciting talks, meet & greets and there's more to come... Stay tuned and watch this space 😍</div>
+          <div class="vcard-tags">@narsissist @cosmomiddleeast<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 4 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v4.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Highlights · Day 3</div>
+          <div class="vcard-title">It's That Time of the Day!</div>
+          <div class="vcard-caption">Its that time of the day! Here are some of the best moments from Cosmotel day 3!</div>
+          <div class="vcard-tags">@cosmomiddleeast @littleexplorersme @letocaffe.ae<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 5 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v5.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Highlights · Day 4</div>
+          <div class="vcard-title">Best Moments From Cosmotel Day 4</div>
+          <div class="vcard-caption">Its that time of the day! Here are some of the best moments from Cosmotel day 4!</div>
+          <div class="vcard-tags">@cosmomiddleeast @littleexplorersme @letocaffe.ae<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 6 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v6.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Hype · Day 5</div>
+          <div class="vcard-title">Are You Excited for Day 5 of Cosmotel?</div>
+          <div class="vcard-caption">Are you excited for day 5 of Cosmotel? Check out the schedule to see what we prepared for you!</div>
+          <div class="vcard-tags">@cosmomiddleeast<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 7 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v7.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Community</div>
+          <div class="vcard-title">Thank You for Joining Us Yesterday</div>
+          <div class="vcard-caption">Thank you all for joining us yesterday! See you all again today for another exciting day!</div>
+          <div class="vcard-tags">@cosmomiddleeast @clarinsmiddleeast @letocaffe.ae<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 8 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v8.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Highlights + CTA</div>
+          <div class="vcard-title">Today's Best Moments — Charlotte Tilbury Masterclass</div>
+          <div class="vcard-caption">Here are some of today's best moments! You can still join us for Charlotte Tilbury's Masterclass at Cosmotel by City Centre Mirdif!</div>
+          <div class="vcard-tags">@cosmomiddleeast @kromadrama @letocaffe.ae<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 9 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v9.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Urgency · Final Day</div>
+          <div class="vcard-title">Tomorrow Marks the Last Day of Cosmotel 2021</div>
+          <div class="vcard-caption">Tomorrow marks the last day of Cosmotel 2021. Make sure not to miss it! Here is the schedule for the day!</div>
+          <div class="vcard-tags">@cosmomiddleeast @kiehlsmiddleeast @nohanabilbeauty @dyson_arabia<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 10 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v10.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Wrap-Up</div>
+          <div class="vcard-title">It's Almost a Wrap!</div>
+          <div class="vcard-caption">It's almost a wrap! Here's a highlight of yesterday. Make sure not to miss the last day of Cosmotel!</div>
+          <div class="vcard-tags">@cosmomiddleeast @ctilburymakeuparabia @lauramercier @dyson_arabia<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+      <!-- POST 11 -->
+      <div class="vcard">
+        <div class="vcard-vis">
+          <video src="v11.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="vcard-overlay">
+            <div class="vcard-hd">
+              <div class="vcard-av">M</div>
+              <span class="vcard-handle">@citycentremirdif</span>
+            </div>
+            <div class="vcard-ft">
+              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
+            </div>
+          </div>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="vcard-body">
+          <div class="vcard-eye">Closing · Final Day</div>
+          <div class="vcard-title">Our Last Mid-Day Highlights!</div>
+          <div class="vcard-caption">Our last mid-day highlights! Make sure to pass by Cosmotel for the final masterclass with @nohanabilbeauty 💕</div>
+          <div class="vcard-tags">@cosmomiddleeast @kiehlsmiddleeast<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
+          <div class="vcard-date">Apr 2021</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         IRISH VILLAGE CAMPAIGN
+    ══════════════════════════════════════════ -->
+
+    <!-- Campaign divider -->
+    <div style="border-top:1px solid var(--border);margin:64px 0 0"></div>
+
+    <!-- Irish Village intro -->
+    <div class="camp-intro" style="margin-top:0">
+      <div>
+        <div class="camp-eye">The Irish Village · Al Garhoud, Dubai</div>
+        <div class="camp-h2">The IV Campaign</div>
+        <div class="camp-desc">To drive engagement for Dubai's iconic The Irish Village, this campaign turned the venue's shorthand initials — IV — into a clever linguistic hook across social media. By embedding "IV" into everyday copy, we created a playful, typographic signature that gave the brand a distinct visual voice. From highlighting the menu (TraditIoVnal, dIVine) to driving community interaction (TrIVia, VIbes), the concept seamlessly unified food photography and user-generated content under one memorable, witty, and cohesive theme.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-hd">Campaign Details</div>
+        <div class="meta-row"><span class="meta-l">Client</span><span class="meta-v">The Irish Village</span></div>
+        <div class="meta-row"><span class="meta-l">Location</span><span class="meta-v">Al Garhoud, Dubai</span></div>
+        <div class="meta-row"><span class="meta-l">Concept</span><span class="meta-v">IV Wordplay</span></div>
+        <div class="meta-row"><span class="meta-l">Channel</span><span class="meta-v">Instagram</span></div>
+        <div class="meta-row"><span class="meta-l">Pillars</span><span class="meta-v">5 Content Types</span></div>
+      </div>
+    </div>
+
+    <!-- ── PILLAR 1: FOOD & BEVERAGE ── -->
+    <div class="iv-pillar-label">
+      <div class="iv-pillar-title">Food <span>&</span> Beverage</div>
+      <div class="iv-pillar-desc">TraditIOVnal. RefreshIVG. dIVine. The IV wordplay wove seamlessly into menu-led content — turning dishes and drinks into copy that was as flavourful as the food itself.</div>
+    </div>
+    <div class="sgrid iv-grid-3 mt-2">
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_16.png" alt="TraditIOVnal Irish Stew" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Food</div><div class="scard-title">TraditIOVnal Irish Stew</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a3.png" alt="dIVine Meal" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Food</div><div class="scard-title">dIVine Meal — Breakfast</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a10.png" alt="ActIVate Your Mornings" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Food</div><div class="scard-title">ActIVate Your Mornings</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_20.png" alt="Saturday Brunch" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Food</div><div class="scard-title">LIVely Saturdays — Brunch</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_10.png" alt="RefreshIVG Summer" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Beverage</div><div class="scard-title">RefreshIVG Summer Drinks</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_05.png" alt="Par-Tee-TIVe" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Beverage</div><div class="scard-title">Par-Tee-TIVe — Stella Artois</div></div>
+      </div>
+    </div>
+
+    <!-- ── PILLAR 2: REVIEWS ── -->
+    <div class="iv-pillar-label" style="margin-top:48px">
+      <div class="iv-pillar-title">Re<span>VI</span>ews</div>
+      <div class="iv-pillar-desc">#ReVIew of the Week turned real guest reviews into branded content — amplifying the community's voice while keeping the IV signature front and centre.</div>
+    </div>
+    <div class="sgrid iv-grid-3 mt-2">
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_01.png" alt="Review of the Week" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Review</div><div class="scard-title">#ReVIew of the Week</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_09.png" alt="Review Shikhani" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Review</div><div class="scard-title">#ReVIew of the Week</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_12.png" alt="Review Watch_a_makulit" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Review</div><div class="scard-title">#ReVIew of the Week</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_13.png" alt="Review Zinia" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Review</div><div class="scard-title">#ReVIew of the Week</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_15.png" alt="Review Pink Mio Soul" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Review</div><div class="scard-title">#ReVIew of the Week</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a9.jpg" alt="A Mini VacatION" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">UGC</div><div class="scard-title">A Mini VacatION</div></div>
+      </div>
+    </div>
+
+    <!-- ── PILLAR 3: TRIVIA ── -->
+    <div class="iv-pillar-label" style="margin-top:48px">
+      <div class="iv-pillar-title">Tr<span>IV</span>ia</div>
+      <div class="iv-pillar-desc">Fun TrIVia and beer facts turned idle scrolling into active engagement — giving the audience something to think about (and share) between sips.</div>
+    </div>
+    <div class="sgrid iv-grid-3 mt-2">
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_03.png" alt="Guess the IngrediEVts" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Trivia</div><div class="scard-title">Guess the IngrediEVts</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_08.png" alt="Beer Trivia" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Trivia</div><div class="scard-title">Beer TrIVia — Did You Know?</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1">
+          <video src="iv_17.mp4" loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="scard-body"><div class="scard-eye">Trivia · Video</div><div class="scard-title">Fun TrIVia — Irish Coffee</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a1.png" alt="My FaVORITE Exercise" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Humour</div><div class="scard-title">My FaVORITE Exercise</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a6.png" alt="I LIVT Beer" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Humour</div><div class="scard-title">I LIVT Beer All The Time</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a11.png" alt="Tell Us Your VIEw" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Engagement</div><div class="scard-title">Tell Us Your VIEw</div></div>
+      </div>
+    </div>
+
+    <!-- ── PILLAR 4: COMPETITIONS ── -->
+    <div class="iv-pillar-label" style="margin-top:48px">
+      <div class="iv-pillar-title">Competit<span>IV</span>e</div>
+      <div class="iv-pillar-desc">Live sport moments, giveaways, and challenges — copy that tapped into the energy of the crowd and brought it inside the venue.</div>
+    </div>
+    <div class="sgrid iv-grid-3 mt-2">
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_02.png" alt="The Ashes" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Competition</div><div class="scard-title">The Ultimate RIValry — The Ashes</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_04.jpg" alt="GAA Hurling" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Competition</div><div class="scard-title">Get INVolved — GAA Hurling</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_07.png" alt="F1 French Grand Prix" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Competition</div><div class="scard-title">Catch the Race LIVE — F1</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a2.png" alt="SportIVe Mood" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Sport</div><div class="scard-title">SportIVe Mood — Live Fixtures</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a8.png" alt="DisCOVer The Missing Piece" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Interactive</div><div class="scard-title">DisCOVer The Missing Piece</div></div>
+      </div>
+    </div>
+
+    <!-- ── PILLAR 5: EVENTS ── -->
+    <div class="iv-pillar-label" style="margin-top:48px">
+      <div class="iv-pillar-title">E<span>V</span>ents</div>
+      <div class="iv-pillar-desc">From Earth Hour to Saturday Brunches, event-led content kept the IV community informed, excited, and showing up.</div>
+    </div>
+    <div class="sgrid iv-grid-4 mt-2">
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a4.png" alt="An EVening — Busted" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Live Event</div><div class="scard-title">An EVening Full of Energy — Busted</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a7.png" alt="All InclusIVe" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Offer</div><div class="scard-title">Evening All InclusIVe</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1">
+          <video src="iv_a5.mp4" loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="scard-body"><div class="scard-eye">Video</div><div class="scard-title">Event Highlights</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_14.png" alt="IV May 12" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Event</div><div class="scard-title">May Event</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_16.png" alt="IV May 21" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Event</div><div class="scard-title">May Event</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_18.png" alt="IV Apr 16" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Event</div><div class="scard-title">April Event</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_19.png" alt="Earth Hour UAE" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Event</div><div class="scard-title">Earth Hour UAE</div></div>
+      </div>
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_06.png" alt="Great VIBes" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Event</div><div class="scard-title">Great VIBes</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ████████████████████████████████████████████
+     F&B PAGE
+████████████████████████████████████████████ -->
+<div class="page" id="page-fnb">
+  <div class="page-hero">
+    <h1>Food &amp; Beverage</h1>
+    <p>Copy for restaurants, cafés, and F&amp;B brands across City Centre Malls — UAE &amp; Oman.</p>
+  </div>
+  <div class="wrap">
+    <div class="sec-label pb-20">City Centre Retail Malls · UAE &amp; Oman</div>
+
+    <!-- Featured: Chaiwala hero -->
+    <div class="featured">
+      <div class="feat-visual" style="cursor:default;overflow:hidden">
+        <div class="feat-scale">
+          <img src="fnb_chai6.jpg" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        </div>
+        <div class="feat-grad"></div>
+        <div class="feat-body">
+          <div class="feat-eyebrow">F&amp;B · Project Chaiwala</div>
+          <div class="feat-title">A whole world of flavours — iced chais, sandwiches, and mouthwatering desserts.</div>
+        </div>
+      </div>
+      <div class="feat-list">
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Dessert</div>
+          <div class="feat-item-title">Matcha Soft Serve — Project Chaiwala</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Drink</div>
+          <div class="feat-item-title">Homebrewed Lemon Iced Tea</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Drink</div>
+          <div class="feat-item-title">Iced Karak — the signature in a cup</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Food</div>
+          <div class="feat-item-title">Tikki Burger &amp; Grilled Cheese — comfort chai-side bites</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Patisserie · Ladurée</div>
+          <div class="feat-item-title">A weekend delight — Ladurée's strawberry tart</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Bakery · Paul</div>
+          <div class="feat-item-title">Macaroons a world apart — 25% off on the Paul app</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pullquote -->
+    <div class="pullquote">
+      <div class="pq-inner">
+        <div class="pq-eye">F&amp;B · Copy Direction</div>
+        <div class="pq-q">"Copy that makes you taste the dish before it arrives and walk in before you've finished reading."</div>
+        <cite class="pq-cite">— Project Chaiwala · City Centre Malls</cite>
+      </div>
+    </div>
+
+    <!-- Chaiwala — portrait carousel + caption side by side -->
+    <div class="chai-post mt-2">
+
+      <!-- Left: portrait carousel -->
+      <div class="chai-visual">
+        <div class="carousel" id="chai-carousel">
+          <div class="carousel-track" id="chai-track">
+            <div class="chai-slide"><img src="fnb_chai1.jpg" alt="Matcha Soft Serve" style="width:100%;height:100%;object-fit:contain;display:block;background:#c8d8b0"/></div>
+            <div class="chai-slide"><img src="fnb_chai2.jpg" alt="Grilled Cheese" style="width:100%;height:100%;object-fit:contain;display:block;background:#e8e0d8"/></div>
+            <div class="chai-slide"><img src="fnb_chai3.jpg" alt="Tikki Burger" style="width:100%;height:100%;object-fit:contain;display:block;background:#ede8e0"/></div>
+            <div class="chai-slide" style="position:relative">
+              <video src="fnb_chai4.mp4" loop muted playsinline preload="metadata" id="chai-v4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+              <div class="vcard-play" id="chai-v4-btn">▶</div>
+            </div>
+            <div class="chai-slide" style="position:relative">
+              <video src="fnb_chai5.mp4" loop muted playsinline preload="metadata" id="chai-v5" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+              <div class="vcard-play" id="chai-v5-btn">▶</div>
+            </div>
+            <div class="chai-slide"><img src="fnb_chai6.jpg" alt="Lemon Iced Tea" style="width:100%;height:100%;object-fit:contain;display:block;background:#f5e8c0"/></div>
+            <div class="chai-slide"><img src="fnb_chai7.jpg" alt="Iced Karak" style="width:100%;height:100%;object-fit:contain;display:block;background:#ede8e0"/></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselPrev('chai')">‹</button>
+          <button class="carousel-btn carousel-next" onclick="carouselNext('chai')">›</button>
+          <div class="carousel-dots" id="chai-dots">
+            <span class="carousel-dot active"></span><span class="carousel-dot"></span>
+            <span class="carousel-dot"></span><span class="carousel-dot"></span>
+            <span class="carousel-dot"></span><span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+          </div>
+          <div id="chai-counter" style="position:absolute;top:10px;right:12px;background:rgba(0,0,0,.5);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;z-index:4;font-family:inherit">1 / 7</div>
+        </div>
+      </div>
+
+      <!-- Right: caption panel -->
+      <div class="chai-body">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--text);flex-shrink:0">PC</div>
+          <span style="font-size:13px;font-weight:600;color:var(--text)">@projectchaiwala</span>
+        </div>
+        <div class="scard-eye" style="margin-bottom:8px">F&amp;B · Carousel · 7 Posts</div>
+        <div class="scard-title" style="font-size:20px;margin-bottom:14px">Project Chaiwala — A Whole World of Flavours</div>
+        <div class="scard-desc" style="font-size:14px;line-height:1.75">
+          Guess what's brewing at Project Chaiwala? A whole world of flavours! From iced chais to sandwiches to mouthwatering desserts, every moment is a celebration of amazing food. Drop in to experience the authentic tastes.
+        </div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+          <div style="font-size:11px;color:var(--secondary);line-height:1.8">
+            City Centre Malls · UAE &amp; Oman
+          </div>
+        </div>
+        <!-- Slide thumbnails row -->
+        <div style="display:flex;gap:6px;margin-top:20px;flex-wrap:wrap" id="chai-thumbs">
+          <div class="chai-thumb active" onclick="chaiJump(0)"><img src="fnb_chai1.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="chaiJump(1)"><img src="fnb_chai2.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="chaiJump(2)"><img src="fnb_chai3.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="chaiJump(3)" style="background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.6)">▶</div>
+          <div class="chai-thumb" onclick="chaiJump(4)" style="background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.6)">▶</div>
+          <div class="chai-thumb" onclick="chaiJump(5)"><img src="fnb_chai6.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="chaiJump(6)"><img src="fnb_chai7.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- More F&B brands -->
+    <div class="sgrid mt-2">
+
+      <!-- Ladurée -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="fnb_laduree.jpg" alt="Ladurée Strawberry Tart" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Patisserie · UAE</div>
+          <div class="scard-title">Ladurée — A Weekend Delight</div>
+          <div class="scard-desc">Ladurée's interpretation of a weekend delight.</div>
+          <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
+        </div>
+      </div>
+
+      <!-- Paul -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="fnb_paul.jpg" alt="Paul Macaroons" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Bakery · UAE</div>
+          <div class="scard-title">Paul — Little Treats a World Apart</div>
+          <div class="scard-desc">A big fan of macaroons? These little treats at Paul are a world apart and shouldn't be missed. Order on the Paul app and enjoy 25% off. When are you ordering?</div>
+          <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sgrid" style="margin-top:36px">
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="fnb_zaatar.jpg" alt="Zaatar W Zait Mega Breakfast" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Breakfast · UAE</div>
+          <div class="scard-title">Zaatar W Zait — The Mega Breakfast</div>
+          <div class="scard-desc">Love a filling Middle Eastern breakfast? The Mega Breakfast at Zaatar w Zait is just what you need! Indulge in a range of authentic Lebanese dishes at just AED 35. Sounds tempting?</div>
+          <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
+        </div>
+      </div>
+
+      <!-- Shake Shack -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="fnb_shack.jpg" alt="Shake Shack BBQ Menu" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Burgers · UAE</div>
+          <div class="scard-title">Shake Shack — BBQ Is Back</div>
+          <div class="scard-desc">BBQ is back! Order Shake Shack's saucy new menu additions: BBQ ShackMeister Burger, BBQ Chick'n Shack and BBQ Veal Bacon &amp; Cheese Fries.</div>
+          <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
+        </div>
+      </div>
+
+      <!-- Pinkberry -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="fnb_pinkberry.jpg" alt="Pinkberry Bundle" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Dessert · UAE</div>
+          <div class="scard-title">Pinkberry — The Perfect Quadruple</div>
+          <div class="scard-desc">The perfect quadruple! Visit Pinkberry's link and enjoy their bundle of 4 cups for a special price!</div>
+          <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Multi-brand summer carousel -->
+    <div class="sec-label mt-48 pb-20">Summer Menus — City Centre Al Zahia</div>
+    <div class="chai-post mt-2" id="multi-post">
+
+      <!-- Left: portrait carousel -->
+      <div class="chai-visual">
+        <div class="carousel" id="multi-carousel">
+          <div class="carousel-track" id="multi-track">
+            <div class="chai-slide"><img src="fnb_multi1.jpg" alt="Kava Cafe" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+            <div class="chai-slide"><img src="fnb_multi2.jpg" alt="Papa Rotti" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+            <div class="chai-slide"><img src="fnb_multi3.jpg" alt="Pop City" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+            <div class="chai-slide"><img src="fnb_multi4.jpg" alt="The Frozen Factory" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+            <div class="chai-slide"><img src="fnb_multi5.jpg" alt="Filli Select" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+            <div class="chai-slide"><img src="fnb_multi6.jpg" alt="Mara" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselPrev('multi')">‹</button>
+          <button class="carousel-btn carousel-next" onclick="carouselNext('multi')">›</button>
+          <div class="carousel-dots" id="multi-dots">
+            <span class="carousel-dot active"></span><span class="carousel-dot"></span>
+            <span class="carousel-dot"></span><span class="carousel-dot"></span>
+            <span class="carousel-dot"></span><span class="carousel-dot"></span>
+          </div>
+          <div id="multi-counter" style="position:absolute;top:10px;right:12px;background:rgba(0,0,0,.5);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;z-index:4;font-family:inherit">1 / 6</div>
+        </div>
+      </div>
+
+      <!-- Right: caption panel -->
+      <div class="chai-body">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--text);flex-shrink:0">CCZ</div>
+          <span style="font-size:13px;font-weight:600;color:var(--text)">@citycentreazahia</span>
+        </div>
+        <div class="scard-eye" style="margin-bottom:8px">F&amp;B · Carousel · 6 Posts</div>
+        <div class="scard-title" style="font-size:20px;margin-bottom:14px">Summer Menus — Kava, Papa Rotti, Pop City, The Frozen Factory, Mara &amp; Filli Select</div>
+        <div class="scard-desc" style="font-size:14px;line-height:1.75">
+          The summer calls for delicious new ways to melt away the blues. Check out the summer menu of frozen desserts, ice creams and drinks at the restaurants and cafes at City Centre Al Zahia. Which of these are your favourites? Let us know.
+        </div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+          <div style="font-size:11px;color:var(--secondary);line-height:1.8">City Centre Al Zahia · UAE</div>
+        </div>
+        <!-- Thumbnail strip -->
+        <div style="display:flex;gap:6px;margin-top:20px;flex-wrap:wrap" id="multi-thumbs">
+          <div class="chai-thumb active" onclick="multiJump(0)"><img src="fnb_multi1.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="multiJump(1)"><img src="fnb_multi2.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="multiJump(2)"><img src="fnb_multi3.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="multiJump(3)"><img src="fnb_multi4.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="multiJump(4)"><img src="fnb_multi5.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" onclick="multiJump(5)"><img src="fnb_multi6.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ████████████████████████████████████████████
+     RETAIL & LIFESTYLE PAGE
+████████████████████████████████████████████ -->
+<div class="page" id="page-retail">
+  <div class="page-hero">
+    <h1>Retail &amp; Lifestyle</h1>
+    <p>Copy for fashion, beauty, and lifestyle brands across City Centre Malls — UAE &amp; Oman.</p>
+  </div>
+  <div class="wrap">
+
+    <!-- Sub-heading -->
+    <div class="sec-label pb-20">City Centre Retail Malls · UAE &amp; Oman</div>
+
+    <!-- Featured: Flormar as hero -->
+    <div class="featured">
+      <div class="feat-visual" style="cursor:default;overflow:hidden">
+        <div class="feat-scale">
+          <img src="ret_flormar.jpg" alt="Flormar Oman" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        </div>
+        <div class="feat-grad"></div>
+        <div class="feat-body">
+          <div class="feat-eyebrow">Beauty · Flormar Oman</div>
+          <div class="feat-title">The perfect companion for your day — soft textures, trendy colours.</div>
+        </div>
+      </div>
+      <div class="feat-list">
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Beauty · Flormar Oman</div>
+          <div class="feat-item-title">A tempting choice — soft, lightweight texture meets trendy colour.</div>
+          <div class="feat-item-date">#GreatMoments #MCCSur</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Eyewear · Rivoli EyeZone</div>
+          <div class="feat-item-title">Better vision for every outdoor moment — inxt Sports lenses.</div>
+          <div class="feat-item-date">#GreatMoments #CCMuscat</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Watches · Jovial</div>
+          <div class="feat-item-title">Symbolize individuality with authenticity. 50% off at City Centre Al Zahia.</div>
+          <div class="feat-item-date">#CCAlZahia</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Fashion · UAE</div>
+          <div class="feat-item-title">Mango, Pull &amp; Bear, Bershka &amp; Lefties — Now Open at the Mall</div>
+          <div class="feat-item-date">City Centre Malls · UAE</div>
+        </div>
+        <div class="feat-item" style="cursor:default">
+          <div class="feat-item-eye">Home &amp; Lifestyle · 2XL</div>
+          <div class="feat-item-title">Lighten up your space with the Soleil Buffet</div>
+          <div class="feat-item-date">@2xlfurniture · City Centre Malls</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pullquote -->
+    <div class="pullquote">
+      <div class="pq-inner">
+        <div class="pq-eye">Retail &amp; Lifestyle · Copy Direction</div>
+        <div class="pq-q">"Copy that turns browsing into buying and window-shoppers into loyal customers — across every City Centre in the region."</div>
+        <cite class="pq-cite">— City Centre Retail Portfolio</cite>
+      </div>
+    </div>
+
+    <!-- All Posts -->
+    <div class="sec-label mt-48 pb-20">All Posts</div>
+    <div class="sgrid mt-2">
+
+      <!-- Flormar Oman -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="ret_flormar.jpg" alt="Flormar Oman" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Beauty · Oman</div>
+          <div class="scard-title">Flormar Oman</div>
+          <div class="scard-desc">A combination of soft, lightweight texture with trendy colors makes for a tempting choice. Come to Flormar to find the perfect companion for your day.</div>
+          <div class="scard-date">@flormar_om · #GreatMoments #MCCSur</div>
+        </div>
+      </div>
+
+      <!-- Rivoli EyeZone — video -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden;position:relative">
+          <video src="ret_rivoli.mp4" loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Eyewear · Oman</div>
+          <div class="scard-title">Rivoli EyeZone — inxt Sports Lenses</div>
+          <div class="scard-desc">As the weather gets cooler, embrace the outdoors and experience better vision — anytime, anywhere. From cycling to jogging, stay protected and enhanced for all your outdoor needs.</div>
+          <div class="scard-date">@RivoliEyeZone · #GreatMoments #CCMuscat</div>
+        </div>
+      </div>
+
+      <!-- Jovial -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="ret_jovial.jpg" alt="Jovial Watches" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Watches · UAE</div>
+          <div class="scard-title">Jovial — Symbolize Individuality</div>
+          <div class="scard-desc">Symbolize individuality with authenticity. MODEL #6702G — 50% off at City Centre Al Zahia.</div>
+          <div class="scard-date">#CCAlZahia #GreatMoments</div>
+        </div>
+      </div>
+
+      <!-- Undiz Carousel -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden;position:relative">
+          <!-- Carousel: two images with prev/next dots -->
+          <div class="carousel" id="undiz-carousel">
+            <div class="carousel-track" id="undiz-track">
+              <img src="ret_undiz1.jpg" alt="Undiz Now Open 1" style="width:100%;height:100%;object-fit:cover;display:block;flex-shrink:0"/>
+              <img src="ret_undiz2.jpg" alt="Undiz Now Open 2" style="width:100%;height:100%;object-fit:cover;display:block;flex-shrink:0"/>
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="carouselPrev('undiz')">‹</button>
+            <button class="carousel-btn carousel-next" onclick="carouselNext('undiz')">›</button>
+            <div class="carousel-dots" id="undiz-dots">
+              <span class="carousel-dot active"></span>
+              <span class="carousel-dot"></span>
+            </div>
+          </div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Fashion · UAE · Carousel</div>
+          <div class="scard-title">Undiz — NOW OPEN at City Centre Al Zahia</div>
+          <div class="scard-desc">Undiz now open on the 2nd Floor! Shop the crazy collection of lingerie, nightwear and more. Visit us now.</div>
+          <div class="scard-date">City Centre Al Zahia · 2nd Floor</div>
+        </div>
+      </div>
+
+      <!-- Magic Planet — video -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden;position:relative">
+          <video src="ret_magic.mp4" loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Entertainment · UAE</div>
+          <div class="scard-title">Magic Planet — Double the Fun</div>
+          <div class="scard-desc">DOUBLE THE FUN AT MAGIC PLANET. DOUBLE THE CREDIT! 👯‍♀️ Top up online for AED 200 or more and enjoy 2X the credit back. What are you waiting for?</div>
+          <div class="scard-date">#GreatMoments #CityCentreAlZahia</div>
+        </div>
+      </div>
+
+      <!-- Fashion Brands — video -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden;position:relative">
+          <video src="ret_fashion.mp4" loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Fashion · UAE</div>
+          <div class="scard-title">Mango, Pull &amp; Bear, Bershka, Lefties — Now Open</div>
+          <div class="scard-desc">It's what fashion enthusiasts have been waiting for! Officially open and ready for you at the mall — your favourite stores and a host of others. Come over to see and shop for the latest trends. When are you coming?</div>
+          <div class="scard-date">City Centre Malls · UAE</div>
+        </div>
+      </div>
+
+      <!-- 2XL Furniture -->
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="ret_2xl.jpg" alt="2XL Furniture Soleil Buffet" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Home &amp; Lifestyle · UAE</div>
+          <div class="scard-title">2XL — Lighten Up Your Space</div>
+          <div class="scard-desc">Beauty has been brought up to a whole new level! Lighten up your space with @2xlfurniture Soleil Buffet that will perfectly blend in.</div>
+          <div class="scard-date">City Centre Malls · UAE</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ████████████████████████████████████████████
+     ABOUT PAGE
+████████████████████████████████████████████ -->
+<div class="page" id="page-about">
+  <div class="page-hero">
+    <h1>About</h1>
+    <p>The person behind the copy — background, skills, and the brands I've worked with.</p>
+  </div>
+  <div class="wrap">
+
+    <!-- Bio -->
+    <div class="about-bio">
+      <div>
+        <div class="about-eye">Copywriter & Digital Strategist · UAE</div>
+        <div class="about-name">Mina<br>Makary</div>
+        <div class="about-role">Brand Copy · Social Strategy · Campaign Management</div>
+        <div class="about-desc">I turn complex ideas into copy that moves people — and product launches into stories that sell. With a background spanning digital marketing, influencer strategy, and technical expertise at Apple, I bring a rare blend of creative instinct and analytical rigour to every brief.<br><br>From managing 200+ creators across a Dubai Shopping Festival campaign to crafting social-first content for some of the region's most recognised brands, I specialise in copy that's culturally fluent, commercially sharp, and built for the scroll.</div>
+      </div>
+      <div class="about-avatar"><img src="mina_photo.jpg" alt="Mina Makary" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;"/></div>
+    </div>
+
+    <!-- Skills -->
+    <div class="sec-label mt-48 pb-20">What I Do</div>
+    <div class="skills-grid mt-2">
+      <div class="skill-card">
+        <div class="skill-icon">✏️</div>
+        <div class="skill-name">Social Copy</div>
+        <div class="skill-desc">Instagram, TikTok, YouTube — copy engineered to stop the scroll, spark engagement, and convert in under three seconds.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📣</div>
+        <div class="skill-name">Campaign Management</div>
+        <div class="skill-desc">End-to-end campaign execution from brief to publish — content calendars, paid social, influencer coordination, and real-time live coverage.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎬</div>
+        <div class="skill-name">Influencer Strategy</div>
+        <div class="skill-desc">Managed 200+ creators across Instagram, TikTok, and YouTube for large-scale regional activations including Dubai Shopping Festival.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🏷️</div>
+        <div class="skill-name">Brand Voice</div>
+        <div class="skill-desc">Developing consistent tone across channels and markets — translating complex products and experiences into clear, compelling consumer stories.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Data-Driven Strategy</div>
+        <div class="skill-desc">Sprinklr, social listening, and predictive analytics to refine messaging, track performance, and report meaningful results to stakeholders.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌍</div>
+        <div class="skill-name">Regional Fluency</div>
+        <div class="skill-desc">Native Arabic and English — culturally fluent across the UAE and wider GCC market, with deep understanding of regional consumer behaviour.</div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="sec-label mt-48 pb-20">Experience</div>
+    <div class="exp-list mt-2">
+      <div class="exp-item">
+        <div class="exp-yr">2025–Present</div>
+        <div>
+          <div class="exp-role">Technical Expert</div>
+          <div class="exp-co">Apple · Abu Dhabi, UAE</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-yr">2022–2025</div>
+        <div>
+          <div class="exp-role">Technical Specialist</div>
+          <div class="exp-co">Apple · Abu Dhabi, UAE</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-yr">2018–2022</div>
+        <div>
+          <div class="exp-role">Account & Influencer Manager</div>
+          <div class="exp-co">Mullenlowe MENA / Impact Proximity / FLC Group · Dubai, UAE</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-yr">2017–2018</div>
+        <div>
+          <div class="exp-role">System Analyst</div>
+          <div class="exp-co">Accenture · Dubai, UAE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="sec-label mt-48 pb-20">Education</div>
+    <div class="exp-list mt-2">
+      <div class="exp-item">
+        <div class="exp-yr">2024</div>
+        <div>
+          <div class="exp-role">MSc Robotics — First Class (Distinction)</div>
+          <div class="exp-co">Middlesex University · Dubai, UAE</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-yr">2016</div>
+        <div>
+          <div class="exp-role">BSc Computer Engineering</div>
+          <div class="exp-co">University of Wollongong · Dubai, UAE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brands -->
+    <div class="sec-label mt-48 pb-20">Brands</div>
+    <div class="brands-grid mt-2">
+
+      <div class="brand-logo-card">
+        <img src="logo_vox.png" alt="VOX Cinemas"/>
+        <span>VOX Cinemas</span>
+      </div>
+      <div class="brand-logo-card">
+        <img src="logo_maf.png" alt="Majid Al Futtaim"/>
+        <span>Majid Al Futtaim</span>
+      </div>
+      <div class="brand-logo-card">
+        <img src="logo_dubai_tourism.png" alt="Dubai Tourism"/>
+        <span>Dubai Tourism</span>
+      </div>
+      <div class="brand-logo-card">
+        <img src="logo_hisense.webp" alt="Hisense Middle East" style="background:#fff"/>
+        <span>Hisense Middle East</span>
+      </div>
+      <div class="brand-logo-card">
+        <img src="logo_irish_village.png" alt="The Irish Village"/>
+        <span>The Irish Village</span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-copy">Copyright © 2026 Copywriting Portfolio. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#" onclick="return show('home')">Home</a>
+      <a href="#" onclick="return show('entertainment')">Entertainment</a>
+      <a href="#" onclick="return show('campaigns')">Campaigns</a>
+      <a href="#" onclick="return show('fnb')">F&amp;B</a>
+      <a href="#" onclick="return show('retail')">Retail &amp; Lifestyle</a>
+      <a href="#" onclick="return show('about')">About</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// ── Router ──────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) pg.classList.add('active');
+  document.querySelectorAll('.gnav-links a').forEach(a => a.classList.remove('active'));
+  const gn = document.getElementById('gn-' + id);
+  if (gn) gn.classList.add('active');
+  document.querySelectorAll('.lnav-links a').forEach(a => a.classList.remove('active'));
+  const ln = document.getElementById('ln-' + id);
+  if (ln) ln.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  return false;
+}
+
+// ── Carousel (Undiz + Chaiwala mixed media) ────────────────
+const carousels = {};
+
+function carouselInit(id, total) {
+  carousels[id] = { idx: 0, total };
+}
+
+function carouselGo(id, dir) {
+  const c = carousels[id];
+  if (!c) return;
+
+  // Pause any video on the current slide before leaving
+  pauseCarouselVideo(id, c.idx);
+
+  c.idx = (c.idx + dir + c.total) % c.total;
+
+  const track = document.getElementById(id + '-track');
+  if (track) track.style.transform = `translateX(-${c.idx * 100}%)`;
+
+  // Update dots
+  const dots = document.querySelectorAll(`#${id}-dots .carousel-dot`);
+  dots.forEach((d, i) => d.classList.toggle('active', i === c.idx));
+
+  // Update counter if present
+  const counter = document.getElementById(id + '-counter');
+  if (counter) counter.textContent = `${c.idx + 1} / ${c.total}`;
+
+  // Sync thumbnails if chai or multi
+  if (id === 'chai') {
+    document.querySelectorAll('.chai-thumb').forEach((t, i) => t.classList.toggle('active', i === c.idx));
+  }
+  if (id === 'multi') {
+    document.querySelectorAll('#multi-thumbs .chai-thumb').forEach((t, i) => t.classList.toggle('active', i === c.idx));
+  }
+
+  // Auto-play video on new slide if it's a video slide
+  playCarouselVideo(id, c.idx);
+}
+
+function pauseCarouselVideo(id, idx) {
+  const v = document.getElementById(id + '-v' + (idx + 1));
+  if (v) { v.pause(); v.currentTime = 0; }
+  const btn = document.getElementById(id + '-v' + (idx + 1) + '-btn');
+  if (btn) btn.classList.remove('hidden');
+}
+
+function playCarouselVideo(id, idx) {
+  const v = document.getElementById(id + '-v' + (idx + 1));
+  if (v) {
+    v.play().catch(() => {});
+    const btn = document.getElementById(id + '-v' + (idx + 1) + '-btn');
+    if (btn) btn.classList.add('hidden');
+  }
+}
+
+function carouselPrev(id) { carouselGo(id, -1); }
+function carouselNext(id) { carouselGo(id,  1); }
+
+// Jump directly to a slide (used by Chaiwala thumbs)
+function chaiJump(idx) {
+  const c = carousels['chai'];
+  if (!c) return;
+  pauseCarouselVideo('chai', c.idx);
+  c.idx = idx;
+  const track = document.getElementById('chai-track');
+  if (track) track.style.transform = `translateX(-${idx * 100}%)`;
+  const dots = document.querySelectorAll('#chai-dots .carousel-dot');
+  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  const counter = document.getElementById('chai-counter');
+  if (counter) counter.textContent = `${idx + 1} / ${c.total}`;
+  // Update thumb active state
+  document.querySelectorAll('.chai-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+  playCarouselVideo('chai', idx);
+}
+
+carouselInit('undiz', 2);
+carouselInit('chai', 7);
+carouselInit('multi', 6);
+
+// Jump for multi-brand carousel
+function multiJump(idx) {
+  const c = carousels['multi'];
+  if (!c) return;
+  c.idx = idx;
+  const track = document.getElementById('multi-track');
+  if (track) track.style.transform = `translateX(-${idx * 100}%)`;
+  const dots = document.querySelectorAll('#multi-dots .carousel-dot');
+  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  const counter = document.getElementById('multi-counter');
+  if (counter) counter.textContent = `${idx + 1} / ${c.total}`;
+  document.querySelectorAll('#multi-thumbs .chai-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+}
+
+// preload carousel videos so thumbnails show
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#chai-track video').forEach(v => {
+    v.load();
+    v.addEventListener('loadedmetadata', () => {
+      if (v.duration && isFinite(v.duration)) v.currentTime = v.duration * 0.4;
+    });
+  });
+});
+function makeStars(id, n) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  for (let i = 0; i < n; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top  = Math.random() * 100 + '%';
+    s.style.setProperty('--d',  (2 + Math.random() * 3) + 's');
+    s.style.setProperty('--dl', (Math.random() * 4) + 's');
+    s.style.setProperty('--op', (0.3 + Math.random() * 0.7).toFixed(2));
+    el.appendChild(s);
+  }
+}
+makeStars('h-stars', 70);
+makeStars('h-s1', 20);
+makeStars('e-hero', 60);
+makeStars('e1', 20);
+makeStars('e3', 20);
+makeStars('e5', 20);
+
+// ── Video cards: seek to midpoint for thumbnail, hover/tap to play ──────
+(function initVideos() {
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  document.querySelectorAll('.vcard').forEach(card => {
+    const video = card.querySelector('video');
+    const btn   = card.querySelector('.vcard-play');
+    if (!video) return;
+
+    let playing = false;
+    let seeked  = false;
+
+    // Once metadata loads we know duration — seek to 40% through for a vibrant frame
+    video.addEventListener('loadedmetadata', () => {
+      if (!seeked && video.duration && isFinite(video.duration)) {
+        const customSeek = video.getAttribute('data-seek');
+        video.currentTime = customSeek ? parseFloat(customSeek) : video.duration * 0.4;
+        seeked = true;
+      }
+    });
+
+    // Also catch seeked event to ensure the frame renders
+    video.addEventListener('seeked', () => {
+      seeked = true;
+    });
+
+    video.load();
+
+    function play() {
+      video.currentTime = 0; // restart from beginning when playing
+      const p = video.play();
+      if (p !== undefined) {
+        p.then(() => {
+          playing = true;
+          if (btn) btn.classList.add('hidden');
+        }).catch(() => {});
+      }
+    }
+
+    function pause() {
+      video.pause();
+      // Return to custom seek point or midpoint thumbnail after pausing
+      const customSeek = video.getAttribute('data-seek');
+      if (customSeek) {
+        video.currentTime = parseFloat(customSeek);
+      } else if (video.duration && isFinite(video.duration)) {
+        video.currentTime = video.duration * 0.4;
+      }
+      playing = false;
+      if (btn) {
+        btn.classList.remove('hidden');
+        btn.textContent = '▶';
+      }
+    }
+
+    if (isTouch) {
+      card.addEventListener('click', e => {
+        e.preventDefault();
+        playing ? pause() : play();
+      });
+    } else {
+      card.addEventListener('mouseenter', play);
+      card.addEventListener('mouseleave', pause);
+    }
+  });
+// ── Also handle non-vcard videos (IV trivia video) ──────
+  document.querySelectorAll('.scard video').forEach(video => {
+    const btn = video.parentElement.querySelector('.vcard-play');
+    video.load();
+    let playing = false;
+
+    video.addEventListener('loadedmetadata', () => {
+      if (video.duration && isFinite(video.duration)) {
+        video.currentTime = video.duration * 0.4;
+      }
+    });
+
+    const card = video.closest('.scard');
+    if (!card) return;
+
+    if (isTouch) {
+      card.addEventListener('click', e => {
+        e.preventDefault();
+        if (playing) {
+          video.pause();
+          playing = false;
+          if (btn) btn.classList.remove('hidden');
+        } else {
+          video.currentTime = 0;
+          video.play().then(() => {
+            playing = true;
+            if (btn) btn.classList.add('hidden');
+          }).catch(() => {});
+        }
+      });
+    } else {
+      card.addEventListener('mouseenter', () => {
+        video.currentTime = 0;
+        video.play().then(() => { playing = true; if (btn) btn.classList.add('hidden'); }).catch(() => {});
+      });
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        playing = false;
+        if (btn) btn.classList.remove('hidden');
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>
