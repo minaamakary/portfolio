@@ -335,7 +335,7 @@ body{
   overflow:hidden;border:1px solid var(--border);margin-bottom:0;
 }
 .nr-carousel{
-  position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;
+  position:relative;aspect-ratio:16/9;min-height:300px;background:#000;overflow:hidden;
 }
 .nr-slide{
   position:absolute;inset:0;opacity:0;
@@ -575,6 +575,7 @@ body{
 .highlights-stage{
   position:relative;
   width:100%;
+  min-height:300px; /* fallback for Safari <15 */
   aspect-ratio:16/9;
   overflow:hidden;
   isolation:isolate;
@@ -2181,7 +2182,7 @@ body{
         <span>Dubai Tourism</span>
       </div>
       <div class="brand-logo-card">
-        <img src="logo_hisense.webp" alt="Hisense Middle East" style="background:#fff"/>
+        <img src="logo_hisense.png" alt="Hisense Middle East" style="background:#fff"/>
         <span>Hisense Middle East</span>
       </div>
       <div class="brand-logo-card">
