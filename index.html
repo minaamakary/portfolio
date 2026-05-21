@@ -34,9 +34,9 @@ body{
   min-height:100vh;
 }
 
-/* ── GLOBAL NAV ── Apple TV exact: black, no border, centered items */
+/* ── UNIFIED NAV — single sticky bar ── */
 .gnav{
-  background:rgba(0,0,0,.8);
+  background:rgba(0,0,0,.85);
   backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
   height:52px;
@@ -49,45 +49,61 @@ body{
   justify-content:space-between;
 }
 .gnav-logo{
-  font-size:18px;font-weight:600;
-  color:var(--text);text-decoration:none;letter-spacing:-.3px;
+  font-size:15px;font-weight:600;
+  color:var(--text);text-decoration:none;letter-spacing:-.2px;
+  flex-shrink:0;
 }
-.gnav-links{display:flex;list-style:none;height:52px}
+.gnav-links{
+  display:flex;list-style:none;height:52px;
+  align-items:center;gap:0;
+}
 .gnav-links a{
   font-size:12px;color:var(--secondary);text-decoration:none;
   padding:0 12px;line-height:52px;display:block;
-  transition:color .15s;white-space:nowrap;
+  transition:color .15s;white-space:nowrap;position:relative;
 }
 .gnav-links a:hover{color:var(--text)}
 .gnav-links a.active{color:var(--text);font-weight:500}
-
-/* ── LOCAL NAV ── Apple TV style: slightly lighter, category tabs */
-.lnav{
-  background:var(--bg);
-  border-bottom:1px solid var(--border);
-  height:50px;
-}
-.lnav-inner{
-  max-width:var(--max);margin:0 auto;padding:0 20px;
-  display:flex;align-items:center;height:50px;
-  justify-content:space-between;
-}
-.lnav-title{
-  font-size:20px;font-weight:600;letter-spacing:-.4px;
-  color:var(--text);text-decoration:none;
-}
-.lnav-links{display:flex;list-style:none;height:50px}
-.lnav-links a{
-  font-size:12px;color:var(--secondary);text-decoration:none;
-  padding:0 14px;line-height:50px;display:block;
-  transition:color .15s;position:relative;white-space:nowrap;
-}
-.lnav-links a:hover{color:var(--text)}
-.lnav-links a.active{color:var(--text)}
-.lnav-links a.active::after{
-  content:'';position:absolute;bottom:0;left:14px;right:14px;
+.gnav-links a.active::after{
+  content:'';position:absolute;bottom:0;left:12px;right:12px;
   height:2px;background:var(--text);border-radius:1px;
 }
+/* Hamburger — hidden on desktop */
+.gnav-burger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;background:none;border:none;cursor:pointer;
+  padding:8px;width:36px;height:36px;
+}
+.gnav-burger span{
+  display:block;width:20px;height:1.5px;
+  background:var(--text);border-radius:2px;
+  transition:transform .25s,opacity .25s;
+}
+/* Burger → X when open */
+.gnav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.gnav-burger.open span:nth-child(2){opacity:0}
+.gnav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+/* Mobile dropdown */
+.gnav-mobile-menu{
+  display:none;
+  background:rgba(0,0,0,.96);
+  border-top:1px solid var(--border);
+}
+.gnav-mobile-menu.open{display:block}
+.gnav-mobile-menu ul{
+  list-style:none;
+  max-width:var(--max);margin:0 auto;padding:8px 20px 16px;
+}
+.gnav-mobile-menu li{border-bottom:1px solid var(--border)}
+.gnav-mobile-menu li:last-child{border-bottom:none}
+.gnav-mobile-menu a{
+  display:block;padding:14px 0;
+  font-size:16px;font-weight:500;
+  color:var(--text);text-decoration:none;
+  transition:color .15s;
+}
+.gnav-mobile-menu a:hover{color:var(--secondary)}
 
 /* ── WRAPPER ── */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
@@ -634,7 +650,7 @@ body{
 .hl-tab.active .hl-tab-title{color:#fff}
 /* Anchor offset */
 .camp-section-anchor{
-  display:block;height:0;margin-top:56px;
+  display:block;height:0;margin-top:20px;
   visibility:hidden;pointer-events:none;
 }
 @media(max-width:680px){
@@ -729,34 +745,10 @@ body{
 ══════════════════════════════════════════ */
 @media(max-width:580px){
 
-  /* ── Nav: hide desktop gnav links, make lnav full-width scrollable strip ── */
+  /* ── Mobile nav: show hamburger, hide desktop links ── */
   .gnav-links{display:none}
-  .lnav{height:auto;position:sticky;top:52px;z-index:9998}
-  .lnav-inner{height:auto;padding:0;justify-content:flex-start;flex-direction:column;align-items:stretch}
-  .lnav-title{display:none}
-  .lnav-links{
-    display:flex !important;
-    height:44px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    scrollbar-width:none;
-    padding:0 12px;
-    gap:0;
-    border-bottom:none;
-  }
-  .lnav-links::-webkit-scrollbar{display:none}
-  .lnav-links a{
-    font-size:13px;
-    padding:0 14px;
-    line-height:44px;
-    flex-shrink:0;
-    white-space:nowrap;
-  }
-  .lnav-links a.active::after{
-    left:14px;right:14px;
-  }
-  /* Show Home and About on mobile only */
-  .mob-only{display:list-item}
+  .gnav-burger{display:flex}
+  .gnav-logo{font-size:14px}
 
   /* ── Wrap & page hero ── */
   .wrap{padding:0 16px}
@@ -862,28 +854,29 @@ body{
 <nav class="gnav">
   <div class="gnav-inner">
     <a class="gnav-logo" href="#" onclick="return show('home')">✦ Portfolio</a>
+    <!-- Desktop links -->
     <ul class="gnav-links">
-      <li><a href="#" onclick="return show('home')"         id="gn-home"          class="active">Home</a></li>
+      <li><a href="#" onclick="return show('home')"          id="gn-home"          class="active">Home</a></li>
       <li><a href="#" onclick="return show('entertainment')" id="gn-entertainment">Entertainment</a></li>
       <li><a href="#" onclick="return show('campaigns')"     id="gn-campaigns">Campaigns</a></li>
       <li><a href="#" onclick="return show('fnb')"           id="gn-fnb">F&amp;B</a></li>
       <li><a href="#" onclick="return show('retail')"        id="gn-retail">Retail &amp; Lifestyle</a></li>
       <li><a href="#" onclick="return show('about')"         id="gn-about">About</a></li>
     </ul>
+    <!-- Mobile hamburger -->
+    <button class="gnav-burger" id="gnav-burger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-</nav>
-
-<!-- ══════════════ LOCAL NAV ══════════════ -->
-<nav class="lnav">
-  <div class="lnav-inner">
-    <a class="lnav-title" href="#" onclick="return show('home')">Copywriting Portfolio</a>
-    <ul class="lnav-links">
-      <li class="mob-only"><a href="#" onclick="return show('home')"          id="ln-home">Home</a></li>
-      <li><a href="#" onclick="return show('entertainment')" id="ln-entertainment">Entertainment</a></li>
-      <li><a href="#" onclick="return show('campaigns')"     id="ln-campaigns">Campaigns</a></li>
-      <li><a href="#" onclick="return show('fnb')"           id="ln-fnb">F&amp;B</a></li>
-      <li><a href="#" onclick="return show('retail')"        id="ln-retail">Retail &amp; Lifestyle</a></li>
-      <li class="mob-only"><a href="#" onclick="return show('about')"         id="ln-about">About</a></li>
+  <!-- Mobile dropdown -->
+  <div class="gnav-mobile-menu" id="gnav-mobile-menu">
+    <ul>
+      <li><a href="#" onclick="return mobileShow('home')">Home</a></li>
+      <li><a href="#" onclick="return mobileShow('entertainment')">Entertainment</a></li>
+      <li><a href="#" onclick="return mobileShow('campaigns')">Campaigns</a></li>
+      <li><a href="#" onclick="return mobileShow('fnb')">F&amp;B</a></li>
+      <li><a href="#" onclick="return mobileShow('retail')">Retail &amp; Lifestyle</a></li>
+      <li><a href="#" onclick="return mobileShow('about')">About</a></li>
     </ul>
   </div>
 </nav>
@@ -2321,22 +2314,35 @@ function hlSwitch(idx) {
 function campScrollTo(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  // Account for sticky nav (gnav 52px + lnav 50px = 102px) + small breathing room
-  const top = el.getBoundingClientRect().top + window.scrollY - 116;
+  const top = el.getBoundingClientRect().top + window.scrollY - 68;
   window.scrollTo({ top, behavior: 'smooth' });
 }
+// ── Router ──────────────────────────────────────
 function show(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pg = document.getElementById('page-' + id);
   if (pg) pg.classList.add('active');
-  // Sync all nav links (gnav + lnav including mobile-only items)
-  document.querySelectorAll('.gnav-links a, .lnav-links a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.gnav-links a').forEach(a => a.classList.remove('active'));
   const gn = document.getElementById('gn-' + id);
   if (gn) gn.classList.add('active');
-  const ln = document.getElementById('ln-' + id);
-  if (ln) ln.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (id === 'campaigns') setTimeout(hlInit, 100);
+  return false;
+}
+
+// ── Mobile menu ─────────────────────────────────
+function toggleMenu() {
+  const burger = document.getElementById('gnav-burger');
+  const menu   = document.getElementById('gnav-mobile-menu');
+  burger.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+
+function mobileShow(id) {
+  show(id);
+  // Close menu after navigation
+  document.getElementById('gnav-burger').classList.remove('open');
+  document.getElementById('gnav-mobile-menu').classList.remove('open');
   return false;
 }
 
