@@ -170,7 +170,7 @@ body{
 
 /* ── STORY GRID (Apple TV shelves style) ── */
 .sgrid{
-  display:grid;gap:1px;background:var(--border);
+  display:grid;gap:1px;background:var(--bg);
   border-radius:var(--r);overflow:hidden;
   border:1px solid var(--border);
   grid-template-columns:repeat(3,1fr);
@@ -312,6 +312,66 @@ body{
 .ig-cap{font-size:12px;line-height:1.65;color:#fff;text-align:center;text-shadow:0 1px 6px rgba(0,0,0,.8)}
 .ig-ft{padding:7px 10px 8px;background:rgba(0,0,0,.45);display:flex;gap:10px;flex-shrink:0}
 .ig-act{font-size:15px}
+
+/* ── NEWSROOM CAROUSEL ── */
+.nr-carousel-wrap{
+  position:relative;border-radius:var(--r);
+  overflow:hidden;border:1px solid var(--border);margin-bottom:0;
+}
+.nr-carousel{
+  position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;
+}
+.nr-slide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity .6s cubic-bezier(.25,.46,.45,.94);pointer-events:none;
+}
+.nr-slide.active{opacity:1;pointer-events:auto}
+.nr-img{width:100%;height:100%;object-fit:cover;display:block}
+.nr-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.72) 0%,rgba(0,0,0,.1) 55%,transparent 100%);
+}
+.nr-body{position:absolute;bottom:0;left:0;right:0;padding:20px 24px 60px}
+.nr-eye{
+  font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px;
+}
+.nr-title{font-size:22px;font-weight:600;letter-spacing:-.3px;color:#fff;line-height:1.2}
+.nr-prev,.nr-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.15);
+  color:#fff;font-size:22px;width:40px;height:40px;border-radius:50%;
+  cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;line-height:1;padding:0;font-family:inherit;
+}
+.nr-prev:hover,.nr-next:hover{background:rgba(255,255,255,.18)}
+.nr-prev{left:14px}.nr-next{right:14px}
+.nr-dots{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;gap:7px;z-index:5;
+}
+.nr-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.35);cursor:pointer;
+  transition:background .2s,transform .2s;
+}
+.nr-dot.active{background:#fff;transform:scale(1.25)}
+.nr-progress{
+  position:absolute;bottom:0;left:0;right:0;
+  height:2px;background:rgba(255,255,255,.1);z-index:5;
+}
+.nr-progress-bar{height:100%;width:0%;background:rgba(255,255,255,.7);transition:width linear}
+.nr-feat-list{
+  border:1px solid var(--border);border-top:none;
+  border-radius:0 0 var(--r) var(--r);overflow:hidden;
+}
+.nr-feat-list .feat-item{border-bottom:1px solid var(--border)}
+.nr-feat-list .feat-item:last-child{border-bottom:none}
+@media(max-width:580px){
+  .nr-title{font-size:16px}
+  .nr-body{padding:16px 16px 50px}
+  .nr-prev,.nr-next{width:32px;height:32px;font-size:18px}
+}
 
 /* ── BRAND VISUALS ── */
 .vox-bg{background:linear-gradient(145deg,#080812 0%,#14000c 100%)}
@@ -474,7 +534,119 @@ body{
 @media(max-width:860px){.brands-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:500px){.brands-grid{grid-template-columns:repeat(2,1fr)}}
 
-/* ── READ MORE LINK ── */
+/* ── GET THE HIGHLIGHTS — unified with newsroom carousel ── */
+.highlights-section{
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  padding:0 20px 0;
+}
+.highlights-label{
+  max-width:var(--max);margin:0 auto;
+  padding:36px 0 20px;
+  font-size:28px;font-weight:600;letter-spacing:-.4px;
+  color:var(--text);
+}
+/* Stage — same width/radius as newsroom carousel */
+.highlights-stage-wrap{
+  max-width:var(--max);
+  margin:0 auto;
+  border-radius:var(--r) var(--r) 0 0;
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-bottom:none;
+  background:#000;
+}
+.highlights-stage{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hl-slide{
+  position:absolute;inset:0;
+  opacity:0;visibility:hidden;
+  transition:opacity .5s ease,visibility 0s linear .5s;
+  pointer-events:none;overflow:hidden;
+}
+.hl-slide.active{
+  opacity:1;visibility:visible;
+  transition:opacity .5s ease,visibility 0s linear 0s;
+  pointer-events:auto;
+}
+.hl-media{width:100%;height:100%;object-fit:cover;display:block}
+.hl-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 24px 64px;
+  background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 100%);
+  pointer-events:none;
+}
+.hl-badge{
+  display:inline-block;
+  font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:6px;
+}
+.hl-caption{
+  font-size:20px;font-weight:600;letter-spacing:-.3px;
+  color:#fff;line-height:1.25;max-width:560px;
+}
+.hl-cta{
+  position:absolute;bottom:20px;right:20px;
+  font-size:12px;font-weight:600;font-family:inherit;
+  color:#fff;background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  padding:7px 16px;border-radius:980px;cursor:pointer;
+  transition:background .2s,transform .15s;letter-spacing:.01em;
+}
+.hl-cta:hover{background:rgba(255,255,255,.25);transform:scale(1.03)}
+/* Tab strip — same treatment as feat-list below newsroom carousel */
+.highlights-tabs{
+  display:flex;
+  max-width:var(--max);margin:0 auto;
+  border:1px solid var(--border);
+  border-radius:0 0 var(--r) var(--r);
+  overflow:hidden;
+  margin-bottom:28px;
+}
+.hl-tab{
+  flex:1;padding:18px 20px 20px;
+  border:none;background:transparent;cursor:pointer;
+  text-align:left;font-family:inherit;
+  border-right:1px solid var(--border);
+  position:relative;overflow:hidden;
+  transition:background .15s;
+}
+.hl-tab:last-child{border-right:none}
+.hl-tab:hover{background:var(--surface)}
+.hl-tab-progress{
+  position:absolute;top:0;left:0;height:2px;
+  background:var(--text);width:0%;transition:width linear;
+}
+.hl-tab-eye{
+  display:block;font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:4px;
+}
+.hl-tab-title{
+  display:block;font-size:14px;font-weight:600;
+  letter-spacing:-.1px;color:var(--text);
+}
+.hl-tab.active .hl-tab-title{color:#fff}
+/* Anchor offset */
+.camp-section-anchor{
+  display:block;height:0;margin-top:56px;
+  visibility:hidden;pointer-events:none;
+}
+@media(max-width:680px){
+  .highlights-section{padding:0 16px 0}
+  .highlights-label{font-size:22px;padding:28px 0 16px}
+  .hl-caption{font-size:16px}
+  .hl-cta{font-size:11px;padding:6px 12px;bottom:12px;right:12px}
+  .hl-overlay{padding:16px 16px 52px}
+  .hl-tab{padding:14px 14px 16px}
+  .hl-tab-title{font-size:12px}
+}
+
 .read-more{
   font-size:12px;color:var(--link);text-decoration:none;
   display:inline-flex;align-items:center;gap:3px;margin-top:10px;
@@ -524,7 +696,7 @@ body{
 .vcard-caption{font-size:11.5px;line-height:1.6;color:var(--secondary);flex:1}
 .vcard-tags{font-size:10.5px;color:#2997ff;margin-top:7px;line-height:1.7}
 .vcard-date{font-size:10px;color:var(--secondary);margin-top:5px}
-.vgrid{display:grid;gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);grid-template-columns:repeat(4,1fr)}
+.vgrid{display:grid;gap:1px;background:var(--bg);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);grid-template-columns:repeat(4,1fr)}
 @media(max-width:860px){.vgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:420px){.vgrid{grid-template-columns:repeat(2,1fr)}}
 
@@ -536,7 +708,9 @@ body{
 /* First sec-label on a page needs top breathing room */
 .sec-label:not(.mt-48){margin-top:0}
 
-/* ── RESPONSIVE ── */
+/* ══════════════════════════════════════════
+   MOBILE — 860px and below
+══════════════════════════════════════════ */
 @media(max-width:860px){
   .featured,.stories-lead{grid-template-columns:1fr}
   .feat-list,.sl-sidebar{border-left:none;border-top:1px solid var(--border)}
@@ -545,18 +719,141 @@ body{
   .about-avatar{display:none}
   .skills-grid{grid-template-columns:1fr 1fr}
   .camp-intro{grid-template-columns:1fr;gap:24px}
+  .highlights-tabs{flex-direction:column}
+  .hl-tab{border-right:none;border-bottom:1px solid var(--border)}
+  .hl-tab:last-child{border-bottom:none}
 }
+
+/* ══════════════════════════════════════════
+   MOBILE — 580px and below (phones)
+══════════════════════════════════════════ */
 @media(max-width:580px){
+
+  /* ── Nav: hide desktop gnav links, make lnav full-width scrollable strip ── */
   .gnav-links{display:none}
-  .lnav-links{display:none}
-  .sgrid{grid-template-columns:1fr}
-  .skills-grid{grid-template-columns:1fr}
-  .page-hero h1{font-size:36px}
-  .camp-h2{font-size:30px}
-  .about-name{font-size:34px}
-  .feat-title{font-size:19px}
-  .sl-title{font-size:20px}
+  .lnav{height:auto;position:sticky;top:52px;z-index:9998}
+  .lnav-inner{height:auto;padding:0;justify-content:flex-start;flex-direction:column;align-items:stretch}
+  .lnav-title{display:none}
+  .lnav-links{
+    display:flex !important;
+    height:44px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:none;
+    padding:0 12px;
+    gap:0;
+    border-bottom:none;
+  }
+  .lnav-links::-webkit-scrollbar{display:none}
+  .lnav-links a{
+    font-size:13px;
+    padding:0 14px;
+    line-height:44px;
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+  .lnav-links a.active::after{
+    left:14px;right:14px;
+  }
+  /* Show Home and About on mobile only */
+  .mob-only{display:list-item}
+
+  /* ── Wrap & page hero ── */
+  .wrap{padding:0 16px}
+  .page-hero{padding:28px 16px 24px}
+  .page-hero h1{font-size:32px;letter-spacing:-.6px}
+  .page-hero p{font-size:15px}
+
+  /* ── Featured blocks ── */
+  .feat-visual{min-height:240px}
+  .feat-title{font-size:18px}
+  .feat-eyebrow{font-size:10px}
+  .feat-body{padding:20px}
+  .feat-item{padding:14px 16px}
+  .feat-item-eye{font-size:10px}
+  .feat-item-title{font-size:14px}
+  .feat-item-date{font-size:10px}
+
+  /* ── Stories lead ── */
+  .sl-vis{min-height:200px}
+  .sl-title{font-size:18px}
+  .sl-body{padding:18px 16px}
+
+  /* ── Pull quote ── */
+  .pullquote{padding:32px 16px}
+  .pq-q{font-size:17px;line-height:1.5}
+
+  /* ── Campaign intro ── */
+  .camp-h2{font-size:26px}
+  .camp-desc{font-size:14px;line-height:1.65}
+  .meta-card{padding:18px 16px}
+
+  /* ── Cards grid: 2 cols on phone ── */
+  .sgrid{grid-template-columns:1fr 1fr}
+  .scard-title{font-size:14px}
+  .scard-desc{font-size:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .scard-body{padding:12px 12px 16px}
+  .scard-eye{font-size:9px}
+
+  /* ── Cosmotel vgrid: 2 col stays, captions clip ── */
+  .vgrid{grid-template-columns:1fr 1fr}
+  .vcard-title{font-size:13px}
+  .vcard-caption{font-size:11px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .vcard-body{padding:10px 12px 14px}
+  .vcard-tags{font-size:9px}
+
+  /* ── Section labels ── */
+  .sec-label{font-size:10px;letter-spacing:.1em}
+
+  /* ── Highlights ── */
+  .highlights-label{font-size:22px;padding:24px 16px 14px}
+  .highlights-stage{aspect-ratio:4/3}
+  .hl-caption{font-size:15px;max-width:100%}
+  .hl-overlay{padding:16px 16px 52px}
+  .hl-badge{font-size:9px}
+  .hl-cta{font-size:11px;padding:6px 14px;bottom:12px;right:12px}
+  .hl-tab{padding:14px 16px 16px}
+  .hl-tab-eye{font-size:9px}
+  .hl-tab-title{font-size:13px}
+
+  /* ── Chaiwala / multi carousel portrait ── */
+  .chai-post{grid-template-columns:1fr}
+  .chai-visual{aspect-ratio:4/5;max-height:420px}
+  .chai-body{padding:20px 16px 24px}
+  .chai-thumb{width:38px;height:38px}
+
+  /* ── IV pillar labels ── */
+  .iv-pillar-title{font-size:22px}
+  .iv-pillar-desc{font-size:13px}
+  .iv-grid-4,.iv-grid-5,.iv-grid-3{grid-template-columns:repeat(2,1fr)}
+
+  /* ── About ── */
+  .about-name{font-size:30px}
+  .about-role{font-size:15px}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .brands-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* ── Retail ── */
+  .camp-shelf-wrap{padding:0 12px 20px}
+  .camp-shelf-card{width:260px}
+  .camp-shelf-title{font-size:15px}
 }
+
+/* ══════════════════════════════════════════
+   MOBILE — 390px and below (small phones)
+══════════════════════════════════════════ */
+@media(max-width:390px){
+  .page-hero h1{font-size:28px}
+  .sgrid{grid-template-columns:1fr}
+  .scard-desc{display:none}
+  .chai-thumb{width:32px;height:32px}
+  .feat-title{font-size:16px}
+  .camp-h2{font-size:22px}
+  .hl-caption{font-size:13px}
+}
+
+/* Hide mob-only items on desktop */
+.mob-only{display:none}
 </style>
 </head>
 <body>
@@ -581,10 +878,12 @@ body{
   <div class="lnav-inner">
     <a class="lnav-title" href="#" onclick="return show('home')">Copywriting Portfolio</a>
     <ul class="lnav-links">
+      <li class="mob-only"><a href="#" onclick="return show('home')"          id="ln-home">Home</a></li>
       <li><a href="#" onclick="return show('entertainment')" id="ln-entertainment">Entertainment</a></li>
       <li><a href="#" onclick="return show('campaigns')"     id="ln-campaigns">Campaigns</a></li>
       <li><a href="#" onclick="return show('fnb')"           id="ln-fnb">F&amp;B</a></li>
       <li><a href="#" onclick="return show('retail')"        id="ln-retail">Retail &amp; Lifestyle</a></li>
+      <li class="mob-only"><a href="#" onclick="return show('about')"         id="ln-about">About</a></li>
     </ul>
   </div>
 </nav>
@@ -602,54 +901,120 @@ body{
   </div>
 
   <div class="wrap">
-    <!-- Featured -->
-    <div class="featured">
-      <div class="feat-visual vox-bg" onclick="show('entertainment')">
-        <div class="feat-scale">
-          <div class="stars-wrap" id="h-stars"></div>
-          <div class="glow gr" style="width:240px;height:240px;top:5%;left:5%"></div>
-          <div class="glow gb" style="width:180px;height:180px;bottom:15%;right:8%"></div>
-          <div class="film"><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div></div>
+    <!-- Newsroom Carousel -->
+    <div class="nr-carousel-wrap">
+      <div class="nr-carousel" id="nr-carousel">
+
+        <!-- Slide 1: Cosmotel — Campaigns -->
+        <div class="nr-slide active" id="nr-slide-0" onclick="show('campaigns')" style="cursor:pointer">
+          <img src="cosmotel2021.jpg" class="nr-img" alt="Cosmotel 2021"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">Campaign · Majid Al Futtaim</div>
+            <div class="nr-title">Cosmotel 2021 — City Centre Mirdif</div>
+          </div>
         </div>
-        <div class="feat-grad"></div>
-        <div class="feat-body">
-          <div class="feat-eyebrow">Entertainment · VOX Cinemas</div>
-          <div class="feat-title">Every word sells a seat.<br>Copy crafted for the biggest screen in the region.</div>
+
+        <!-- Slide 2: Ladurée — F&B -->
+        <div class="nr-slide" id="nr-slide-1" onclick="show('fnb')" style="cursor:pointer">
+          <img src="fnb_laduree.jpg" class="nr-img" alt="Ladurée"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">F&amp;B · Ladurée</div>
+            <div class="nr-title">A Weekend Delight — City Centre Malls</div>
+          </div>
         </div>
+
+        <!-- Slide 3: Jovial Watch — Retail -->
+        <div class="nr-slide" id="nr-slide-2" onclick="show('retail')" style="cursor:pointer">
+          <img src="ret_jovial.jpg" class="nr-img" alt="Jovial Watches"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">Retail &amp; Lifestyle · Jovial</div>
+            <div class="nr-title">Symbolize Individuality — City Centre Al Zahia</div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Shake Shack — F&B -->
+        <div class="nr-slide" id="nr-slide-3" onclick="show('fnb')" style="cursor:pointer">
+          <img src="fnb_shack.jpg" class="nr-img" alt="Shake Shack"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">F&amp;B · Shake Shack</div>
+            <div class="nr-title">BBQ Is Back — Saucy New Menu Additions</div>
+          </div>
+        </div>
+
+        <!-- Slide 5: VOX Competition — Entertainment -->
+        <div class="nr-slide" id="nr-slide-4" onclick="show('entertainment')" style="cursor:pointer">
+          <img src="ent_vox1.jpg" class="nr-img" alt="VOX Cinemas"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">Entertainment · VOX Cinemas</div>
+            <div class="nr-title">Competition Alert — Win Movie Tickets</div>
+          </div>
+        </div>
+
+        <!-- Slide 6: 2XL — Retail -->
+        <div class="nr-slide" id="nr-slide-5" onclick="show('retail')" style="cursor:pointer">
+          <img src="ret_2xl.jpg" class="nr-img" alt="2XL Furniture"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">Retail &amp; Lifestyle · 2XL</div>
+            <div class="nr-title">Lighten Up Your Space — Soleil Buffet</div>
+          </div>
+        </div>
+
       </div>
-      <div class="feat-list">
-        <a class="feat-item" href="#" onclick="return show('entertainment')">
-          <div class="feat-item-eye">Now Showing</div>
-          <div class="feat-item-title">The Journey — Saudi-Japanese Anime Debut in Theatres</div>
-          <div class="feat-item-date">2021</div>
-        </a>
-        <a class="feat-item" href="#" onclick="return show('entertainment')">
-          <div class="feat-item-eye">Re-Release</div>
-          <div class="feat-item-title">Shrek Is Back — 25 Years of Far, Far Away</div>
-          <div class="feat-item-date">2021</div>
-        </a>
-        <a class="feat-item" href="#" onclick="return show('campaigns')">
-          <div class="feat-item-eye">Retail Campaign</div>
-          <div class="feat-item-title">Cosmotel 2021 — Majid Al Futtaim, City Centre Mirdif</div>
-          <div class="feat-item-date">2021</div>
-        </a>
-        <a class="feat-item" href="#" onclick="return show('about')">
-          <div class="feat-item-eye">About</div>
-          <div class="feat-item-title">Copywriter based in the UAE — brand copy across MENA</div>
-          <div class="feat-item-date"></div>
-        </a>
+
+      <!-- Arrow buttons -->
+      <button class="nr-prev" onclick="nrGo(-1);event.stopPropagation()">‹</button>
+      <button class="nr-next" onclick="nrGo(1);event.stopPropagation()">›</button>
+
+      <!-- Dot indicators -->
+      <div class="nr-dots">
+        <span class="nr-dot active" onclick="nrJump(0);event.stopPropagation()"></span>
+        <span class="nr-dot" onclick="nrJump(1);event.stopPropagation()"></span>
+        <span class="nr-dot" onclick="nrJump(2);event.stopPropagation()"></span>
+        <span class="nr-dot" onclick="nrJump(3);event.stopPropagation()"></span>
+        <span class="nr-dot" onclick="nrJump(4);event.stopPropagation()"></span>
+        <span class="nr-dot" onclick="nrJump(5);event.stopPropagation()"></span>
       </div>
+
+      <!-- Progress bar -->
+      <div class="nr-progress"><div class="nr-progress-bar" id="nr-bar"></div></div>
+    </div>
+
+    <!-- Featured list stays below -->
+    <div class="feat-list nr-feat-list">
+      <a class="feat-item" href="#" onclick="return show('entertainment')">
+        <div class="feat-item-eye">Competition · VOX Cinemas Oman</div>
+        <div class="feat-item-title">Competition Alert — Win TWO Movie Tickets</div>
+        <div class="feat-item-date">@voxcinemasoman</div>
+      </a>
+      <a class="feat-item" href="#" onclick="return show('campaigns')">
+        <div class="feat-item-eye">Retail Campaign</div>
+        <div class="feat-item-title">Cosmotel 2021 — Majid Al Futtaim, City Centre Mirdif</div>
+        <div class="feat-item-date">2021</div>
+      </a>
+      <a class="feat-item" href="#" onclick="return show('fnb')">
+        <div class="feat-item-eye">F&amp;B · Project Chaiwala</div>
+        <div class="feat-item-title">A Whole World of Flavours — Iced Chais to Mouthwatering Desserts</div>
+        <div class="feat-item-date">City Centre Malls · UAE &amp; Oman</div>
+      </a>
+      <a class="feat-item" href="#" onclick="return show('retail')">
+        <div class="feat-item-eye">Retail &amp; Lifestyle · 2XL</div>
+        <div class="feat-item-title">Lighten Up Your Space with the Soleil Buffet</div>
+        <div class="feat-item-date">@2xlfurniture · City Centre Malls</div>
+      </a>
     </div>
 
     <!-- Latest Work -->
     <div class="sec-label mt-48 pb-20">Latest Work</div>
     <div class="sgrid mt-2">
       <a class="scard" href="#" onclick="return show('entertainment')">
-        <div class="scard-vis vox-bg">
-          <div class="stars-wrap" id="h-s1"></div>
-          <div class="glow gr" style="width:90px;height:90px;top:20%;left:15%"></div>
-          <div class="vox-mark" style="font-size:36px"><span>V</span>OX</div>
-          <div class="film"><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div></div>
+        <div class="scard-vis" style="overflow:hidden;position:relative">
+          <img src="ent_vox1.jpg" alt="VOX Cinemas" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
         </div>
         <div class="scard-body">
           <div class="scard-eye">Entertainment</div>
@@ -669,14 +1034,24 @@ body{
           <div class="scard-date">2021</div>
         </div>
       </a>
-      <a class="scard" href="#" onclick="return show('about')">
-        <div class="scard-vis" style="background:var(--surface2)">
-          <div style="font-size:48px;opacity:.25">✦</div>
+      <a class="scard" href="#" onclick="return show('fnb')">
+        <div class="scard-vis" style="overflow:hidden;position:relative">
+          <img src="fnb_chai6.jpg" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
         </div>
         <div class="scard-body">
-          <div class="scard-eye">About</div>
-          <div class="scard-title">Copywriter · UAE</div>
-          <div class="scard-desc">Brand voice, social copy, and campaign writing for the region's biggest names.</div>
+          <div class="scard-eye">F&amp;B</div>
+          <div class="scard-title">Project Chaiwala — City Centre Malls</div>
+          <div class="scard-desc">A whole world of flavours — from iced chais to mouthwatering desserts.</div>
+        </div>
+      </a>
+      <a class="scard" href="#" onclick="return show('retail')">
+        <div class="scard-vis" style="overflow:hidden;position:relative">
+          <img src="ret_2xl.jpg" alt="2XL Furniture" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Retail &amp; Lifestyle</div>
+          <div class="scard-title">2XL — Lighten Up Your Space</div>
+          <div class="scard-desc">Beauty brought to a whole new level with the Soleil Buffet.</div>
         </div>
       </a>
     </div>
@@ -694,150 +1069,64 @@ body{
   </div>
 
   <div class="wrap">
-    <div class="sec-label pb-20">VOX Cinemas</div>
+    <div class="sec-label pb-20">VOX Cinemas · Oman</div>
 
-    <!-- Stories lead -->
-    <div class="stories-lead">
-      <a class="sl-main" href="https://www.instagram.com/voxcinemas/" target="_blank">
-        <div class="sl-vis vox-bg" style="min-height:260px">
-          <div class="stars-wrap" id="e-hero"></div>
-          <div class="glow gr" style="width:200px;height:200px;top:10%;left:5%"></div>
-          <div class="glow gb" style="width:150px;height:150px;bottom:10%;right:8%"></div>
-          <div style="text-align:center;z-index:2;position:relative">
-            <div class="vox-mark"><span>V</span>OX</div>
-            <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:5px">Cinemas</div>
-          </div>
-          <div class="film"><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div></div>
-        </div>
-        <div class="sl-body">
-          <span class="sl-eye">Now Showing · 2021</span>
-          <div class="sl-title">An Epic Tale, Now on the Biggest Screen</div>
-          <div class="sl-desc">Based on a legend from the Arabian Peninsula, the Japanese-Saudi anime film <em>The Journey</em> makes its theatrical debut at VOX Cinemas. Copy designed to drive bookings and celebrate a regional first.</div>
-        </div>
-      </a>
-      <div class="sl-sidebar">
-        <a class="sl-item" href="https://www.instagram.com/p/CXgEFvPs0Fc/" target="_blank">
-          <div class="sl-item-eye">Re-Release</div>
-          <div class="sl-item-title">Shrek (2001) — 25th Anniversary Re-Release</div>
-          <div class="sl-item-date">2021</div>
-        </a>
-        <a class="sl-item" href="https://www.instagram.com/p/CUuqrBEhaY_/" target="_blank">
-          <div class="sl-item-eye">Brand</div>
-          <div class="sl-item-title">Lights Dim. Screen Lights Up. World Disappears.</div>
-          <div class="sl-item-date">2021</div>
-        </a>
-        <a class="sl-item" href="https://www.instagram.com/p/CXSxvcuBRId/" target="_blank">
-          <div class="sl-item-eye">CTA</div>
-          <div class="sl-item-title">The Popcorn Is Ready. Now All We Need Is You.</div>
-          <div class="sl-item-date">2021</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- Pullquote -->
-    <div class="pullquote">
-      <div class="pq-inner">
-        <div class="pq-eye">VOX Cinemas · Copy Direction</div>
-        <div class="pq-q">"Cinema copy that makes you feel the dark, smell the popcorn, and reach for your phone to book — before the post even ends."</div>
-        <cite class="pq-cite">— VOX Cinemas Social Campaign, 2021</cite>
-      </div>
-    </div>
-
-    <div class="sec-label mt-48 pb-20">All Posts</div>
     <div class="sgrid mt-2">
 
+      <!-- VOX Oman — Competition Alert -->
       <div class="scard">
-        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#080812,#14000c)">
-          <div class="stars-wrap" id="e1"></div>
-          <div class="glow gr" style="width:90px;height:90px;top:20%;left:15%"></div>
-          <div class="ig-mock">
-            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
-            <div class="ig-cap-wrap"><p class="ig-cap">Based on an epic tale from the Arabian Peninsula, the new Japanese-Saudi anime film "The Journey" has made its debut in theatres. 😍 Book your tickets online and watch it at VOX. 🍿</p></div>
-            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
-          </div>
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="ent_vox1.jpg" alt="VOX Competition Alert" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
-          <div class="scard-eye">Now Showing</div>
-          <div class="scard-title">The Journey — Anime Debut</div>
-          <div class="scard-desc">Regional pride meets cinematic excitement to drive ticket bookings.</div>
-          <div class="scard-date">2021</div>
+          <div class="scard-eye">Competition · VOX Cinemas Oman</div>
+          <div class="scard-title">Competition Alert 🚨</div>
+          <div class="scard-desc">Win TWO movie tickets to any movie of your choice at VOX Cinemas. Name the 3 actors who play the Spider-Men to enter.</div>
+          <div class="scard-date">@voxcinemasoman · #GreatMoments #CCQurum</div>
         </div>
       </div>
 
+      <!-- VOX Oman — Kickstart Your Weekend -->
       <div class="scard">
-        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#0c000c,#180a00)">
-          <div class="glow" style="width:80px;height:80px;top:25%;right:20%;background:rgba(80,180,60,.2);filter:blur(38px)"></div>
-          <div class="ig-mock">
-            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
-            <div class="ig-cap-wrap"><p class="ig-cap">Shrek (2001) is re-releasing at VOX Cinemas to celebrate the film's 25th anniversary. 🎉<br><br>It's time to get the gang back together. Stay tuned for tickets on the VOX app.</p></div>
-            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
-          </div>
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img src="ent_vox2.jpg" alt="Kickstart Your Weekend at VOX" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
-          <div class="scard-eye">Re-Release</div>
-          <div class="scard-title">Shrek — 25th Anniversary</div>
-          <div class="scard-desc">Nostalgia-driven copy built to reunite audiences with a classic.</div>
-          <div class="scard-date">2021</div>
+          <div class="scard-eye">Lifestyle · VOX Cinemas Oman</div>
+          <div class="scard-title">Kickstart Your Weekend</div>
+          <div class="scard-desc">Kickstart your weekend with a whole line-up of great blockbusters at VOX Cinemas. Grab your popcorn with your little ones and let the show begin!</div>
+          <div class="scard-date">@voxcinemasoman · #GreatMoments #CCQurum</div>
         </div>
       </div>
 
+      <!-- VOX Oman — Bitten by the Movie Bug (carousel) -->
       <div class="scard">
-        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#00080f,#080f08)">
-          <div class="stars-wrap" id="e3"></div>
-          <div class="glow gb" style="width:90px;height:90px;top:20%;left:20%"></div>
-          <div class="ig-mock">
-            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
-            <div class="ig-cap-wrap"><p class="ig-cap">Every great movie starts the same way — lights dim, screen lights up, and the world disappears. 🎬<br><br>That's the VOX experience. Book now. 🍿</p></div>
-            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
-          </div>
-          <div class="film"><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div><div class="ff"></div></div>
-        </div>
-        <div class="scard-body">
-          <div class="scard-eye">Brand</div>
-          <div class="scard-title">Lights Dim. Screen Lights Up.</div>
-          <div class="scard-desc">Brand essence copy — sensory, immersive, unmistakably VOX.</div>
-          <div class="scard-date">2021</div>
-        </div>
-      </div>
-
-      <div class="scard">
-        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#0f0800,#080010)">
-          <div class="glow gr" style="width:90px;height:90px;bottom:15%;right:12%"></div>
-          <div class="ig-mock">
-            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
-            <div class="ig-cap-wrap"><p class="ig-cap">The popcorn is ready. The screen is set. Now all we need is you. 🍿✨<br><br>Tickets available now — link in bio or on the VOX app.</p></div>
-            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden;position:relative">
+          <div class="carousel" id="vox-carousel">
+            <div class="carousel-track" id="vox-track">
+              <div style="flex-shrink:0;width:100%;height:100%"><img src="ent_vox3_1.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img src="ent_vox3_2.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img src="ent_vox3_3.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img src="ent_vox3_4.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img src="ent_vox3_5.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img src="ent_vox3_6.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="carouselPrev('vox')">‹</button>
+            <button class="carousel-btn carousel-next" onclick="carouselNext('vox')">›</button>
+            <div class="carousel-dots" id="vox-dots">
+              <span class="carousel-dot active"></span><span class="carousel-dot"></span>
+              <span class="carousel-dot"></span><span class="carousel-dot"></span>
+              <span class="carousel-dot"></span><span class="carousel-dot"></span>
+            </div>
+            <div style="position:absolute;top:8px;right:10px;background:rgba(0,0,0,.5);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;z-index:4" id="vox-counter">1 / 6</div>
           </div>
         </div>
         <div class="scard-body">
-          <div class="scard-eye">CTA</div>
-          <div class="scard-title">The Popcorn Is Ready.</div>
-          <div class="scard-desc">Invitation copy — warm, personal, impossible to scroll past.</div>
-          <div class="scard-date">2021</div>
+          <div class="scard-eye">Carousel · 6 slides · VOX Cinemas Oman</div>
+          <div class="scard-title">Bitten by the Movie Bug?</div>
+          <div class="scard-desc">Catch the latest blockbuster hits in ultimate comfort at VOX Cinemas.</div>
+          <div class="scard-date">@voxcinemasoman · #GreatMoments #CityCentreQurum</div>
         </div>
-      </div>
-
-      <div class="scard">
-        <div class="scard-vis scard-vis-sq" style="background:linear-gradient(145deg,#000a10,#100005)">
-          <div class="stars-wrap" id="e5"></div>
-          <div class="glow gr" style="width:80px;height:80px;top:15%;right:15%"></div>
-          <div class="ig-mock">
-            <div class="ig-hd"><div class="ig-av" style="background:#fff;color:#e6001e;font-style:italic">V</div><span class="ig-handle">@voxcinemas</span><span class="ig-dots">•••</span></div>
-            <div class="ig-cap-wrap"><p class="ig-cap">Some stories deserve the biggest screen. ✨<br><br>Book your tickets now and make it a night to remember at VOX Cinemas. 🍿</p></div>
-            <div class="ig-ft"><span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">📤</span></div>
-          </div>
-        </div>
-        <div class="scard-body">
-          <div class="scard-eye">Feature</div>
-          <div class="scard-title">Some Stories Deserve the Biggest Screen</div>
-          <div class="scard-desc">Aspirational copy positioning cinema as an event, not just a film.</div>
-          <div class="scard-date">2021</div>
-        </div>
-      </div>
-
-      <div class="scard" style="opacity:.3;cursor:default">
-        <div class="scard-vis scard-vis-sq" style="background:var(--surface2)"><div style="font-size:32px;opacity:.3">＋</div></div>
-        <div class="scard-body"><div class="scard-eye">Coming Soon</div><div class="scard-title" style="color:var(--secondary)">More Posts</div></div>
       </div>
 
     </div>
@@ -854,7 +1143,57 @@ body{
     <p>Real-world copy crafted for iconic brands across the region.</p>
   </div>
 
+  <!-- ── CAMPAIGN HERO SHELF ── -->
+  <!-- ── GET THE HIGHLIGHTS ── Apple MacBook Pro style ── -->
+  <div class="highlights-section">
+    <div class="highlights-label">Get the highlights.</div>
+
+    <!-- Full-bleed slide area -->
+    <div class="highlights-stage-wrap">
+      <div class="highlights-stage">
+
+      <!-- Slide 1: Cosmotel -->
+      <div class="hl-slide active" id="hl-slide-0">
+        <img src="cosmotel2021.jpg" class="hl-media" alt="Cosmotel 2021" style="object-fit:cover"/>
+        <div class="hl-overlay">
+          <div class="hl-badge">Cosmotel 2021</div>
+          <div class="hl-caption">A beauty wonderland at City Centre Mirdif</div>
+        </div>
+        <button class="hl-cta" onclick="campScrollTo('cosmotel')">View campaign ↓</button>
+      </div>
+
+      <!-- Slide 2: Irish Village -->
+      <div class="hl-slide" id="hl-slide-1">
+        <video src="iv_17.mp4" class="hl-media" loop muted playsinline preload="metadata" id="hl-v1"></video>
+        <div class="hl-overlay">
+          <div class="hl-badge">The IV Campaign</div>
+          <div class="hl-caption">The Irish Village, Al Garhoud — Social-First Brand Campaign</div>
+        </div>
+        <button class="hl-cta" onclick="campScrollTo('iv')">View campaign ↓</button>
+      </div>
+
+    </div>
+    </div><!-- /highlights-stage-wrap -->
+
+    <!-- Tab strip below — Apple style -->
+    <div class="highlights-tabs">
+      <button class="hl-tab active" onclick="hlSwitch(0)">
+        <span class="hl-tab-progress" id="hl-prog-0"></span>
+        <span class="hl-tab-eye">Majid Al Futtaim · 2021</span>
+        <span class="hl-tab-title">Cosmotel 2021</span>
+      </button>
+      <button class="hl-tab" onclick="hlSwitch(1)">
+        <span class="hl-tab-progress" id="hl-prog-1"></span>
+        <span class="hl-tab-eye">The Irish Village · Dubai</span>
+        <span class="hl-tab-title">The IV Campaign</span>
+      </button>
+    </div>
+  </div>
+
   <div class="wrap">
+
+    <!-- COSMOTEL SECTION -->
+    <div id="cosmotel" class="camp-section-anchor"></div>
     <div class="camp-intro">
       <div>
         <div class="camp-eye">Majid Al Futtaim · Retail &amp; Lifestyle</div>
@@ -899,7 +1238,7 @@ body{
       </div>
     </div>
 
-    <div class="sec-label mt-48 pb-20">All 11 Posts</div>
+    <div class="sec-label mt-48 pb-20">All 8 Posts</div>
     <div class="vgrid mt-2">
 
       <!-- POST 1 -->
@@ -977,30 +1316,6 @@ body{
       <!-- POST 4 -->
       <div class="vcard">
         <div class="vcard-vis">
-          <video src="v4.mp4" loop muted playsinline preload="metadata"></video>
-          <div class="vcard-overlay">
-            <div class="vcard-hd">
-              <div class="vcard-av">M</div>
-              <span class="vcard-handle">@citycentremirdif</span>
-            </div>
-            <div class="vcard-ft">
-              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
-            </div>
-          </div>
-          <div class="vcard-play">▶</div>
-        </div>
-        <div class="vcard-body">
-          <div class="vcard-eye">Highlights · Day 3</div>
-          <div class="vcard-title">It's That Time of the Day!</div>
-          <div class="vcard-caption">Its that time of the day! Here are some of the best moments from Cosmotel day 3!</div>
-          <div class="vcard-tags">@cosmomiddleeast @littleexplorersme @letocaffe.ae<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
-          <div class="vcard-date">Apr 2021</div>
-        </div>
-      </div>
-
-      <!-- POST 5 -->
-      <div class="vcard">
-        <div class="vcard-vis">
           <video src="v5.mp4" loop muted playsinline preload="metadata"></video>
           <div class="vcard-overlay">
             <div class="vcard-hd">
@@ -1022,31 +1337,7 @@ body{
         </div>
       </div>
 
-      <!-- POST 6 -->
-      <div class="vcard">
-        <div class="vcard-vis">
-          <video src="v6.mp4" loop muted playsinline preload="metadata"></video>
-          <div class="vcard-overlay">
-            <div class="vcard-hd">
-              <div class="vcard-av">M</div>
-              <span class="vcard-handle">@citycentremirdif</span>
-            </div>
-            <div class="vcard-ft">
-              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
-            </div>
-          </div>
-          <div class="vcard-play">▶</div>
-        </div>
-        <div class="vcard-body">
-          <div class="vcard-eye">Hype · Day 5</div>
-          <div class="vcard-title">Are You Excited for Day 5 of Cosmotel?</div>
-          <div class="vcard-caption">Are you excited for day 5 of Cosmotel? Check out the schedule to see what we prepared for you!</div>
-          <div class="vcard-tags">@cosmomiddleeast<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
-          <div class="vcard-date">Apr 2021</div>
-        </div>
-      </div>
-
-      <!-- POST 7 -->
+      <!-- POST 5 -->
       <div class="vcard">
         <div class="vcard-vis">
           <video src="v7.mp4" loop muted playsinline preload="metadata"></video>
@@ -1070,7 +1361,7 @@ body{
         </div>
       </div>
 
-      <!-- POST 8 -->
+      <!-- POST 6 -->
       <div class="vcard">
         <div class="vcard-vis">
           <video src="v8.mp4" loop muted playsinline preload="metadata"></video>
@@ -1094,31 +1385,7 @@ body{
         </div>
       </div>
 
-      <!-- POST 9 -->
-      <div class="vcard">
-        <div class="vcard-vis">
-          <video src="v9.mp4" loop muted playsinline preload="metadata"></video>
-          <div class="vcard-overlay">
-            <div class="vcard-hd">
-              <div class="vcard-av">M</div>
-              <span class="vcard-handle">@citycentremirdif</span>
-            </div>
-            <div class="vcard-ft">
-              <span class="vcard-act">🤍</span><span class="vcard-act">💬</span><span class="vcard-act">📤</span>
-            </div>
-          </div>
-          <div class="vcard-play">▶</div>
-        </div>
-        <div class="vcard-body">
-          <div class="vcard-eye">Urgency · Final Day</div>
-          <div class="vcard-title">Tomorrow Marks the Last Day of Cosmotel 2021</div>
-          <div class="vcard-caption">Tomorrow marks the last day of Cosmotel 2021. Make sure not to miss it! Here is the schedule for the day!</div>
-          <div class="vcard-tags">@cosmomiddleeast @kiehlsmiddleeast @nohanabilbeauty @dyson_arabia<br>#Cosmotel2021 #GreatMoments #CityCentreMirdif</div>
-          <div class="vcard-date">Apr 2021</div>
-        </div>
-      </div>
-
-      <!-- POST 10 -->
+      <!-- POST 7 -->
       <div class="vcard">
         <div class="vcard-vis">
           <video src="v10.mp4" loop muted playsinline preload="metadata"></video>
@@ -1142,7 +1409,7 @@ body{
         </div>
       </div>
 
-      <!-- POST 11 -->
+      <!-- POST 8 -->
       <div class="vcard">
         <div class="vcard-vis">
           <video src="v11.mp4" loop muted playsinline preload="metadata"></video>
@@ -1176,6 +1443,7 @@ body{
     <div style="border-top:1px solid var(--border);margin:64px 0 0"></div>
 
     <!-- Irish Village intro -->
+    <div id="iv" class="camp-section-anchor"></div>
     <div class="camp-intro" style="margin-top:0">
       <div>
         <div class="camp-eye">The Irish Village · Al Garhoud, Dubai</div>
@@ -1314,8 +1582,8 @@ body{
         <div class="scard-body"><div class="scard-eye">Sport</div><div class="scard-title">SportIVe Mood — Live Fixtures</div></div>
       </div>
       <div class="scard" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a8.png" alt="DisCOVer The Missing Piece" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-        <div class="scard-body"><div class="scard-eye">Interactive</div><div class="scard-title">DisCOVer The Missing Piece</div></div>
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a8.png" alt="Evening All InclusIVe" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Offer</div><div class="scard-title">Evening All InclusIVe</div></div>
       </div>
     </div>
 
@@ -1330,8 +1598,8 @@ body{
         <div class="scard-body"><div class="scard-eye">Live Event</div><div class="scard-title">An EVening Full of Energy — Busted</div></div>
       </div>
       <div class="scard" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a7.png" alt="All InclusIVe" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-        <div class="scard-body"><div class="scard-eye">Offer</div><div class="scard-title">Evening All InclusIVe</div></div>
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_a7.png" alt="DisCOVer The Missing Piece" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-body"><div class="scard-eye">Interactive</div><div class="scard-title">DisCOVer The Missing Piece</div></div>
       </div>
       <div class="scard" style="cursor:default">
         <div class="scard-vis" style="aspect-ratio:1/1">
@@ -1357,7 +1625,7 @@ body{
         <div class="scard-body"><div class="scard-eye">Event</div><div class="scard-title">Earth Hour UAE</div></div>
       </div>
       <div class="scard" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_06.png" alt="Great VIBes" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div class="scard-vis" style="aspect-ratio:1/1"><img src="iv_11.png" alt="Great VIBes" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
         <div class="scard-body"><div class="scard-eye">Event</div><div class="scard-title">Great VIBes</div></div>
       </div>
     </div>
@@ -1951,18 +2219,124 @@ body{
 
 
 <script>
-// ── Router ──────────────────────────────────────
+// ── Newsroom Carousel ──────────────────────────────────
+const NR_TOTAL = 6;
+const NR_DURATION = 5000;
+let nrCurrent = 0;
+let nrTimer = null;
+
+function nrGo(dir) {
+  nrJump((nrCurrent + dir + NR_TOTAL) % NR_TOTAL);
+}
+
+function nrJump(idx) {
+  if (nrTimer) clearTimeout(nrTimer);
+  document.querySelectorAll('.nr-slide').forEach((s,i) => s.classList.toggle('active', i === idx));
+  document.querySelectorAll('.nr-dot').forEach((d,i) => d.classList.toggle('active', i === idx));
+  nrCurrent = idx;
+  // Reset and animate progress bar
+  const bar = document.getElementById('nr-bar');
+  if (bar) {
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      bar.style.transition = `width ${NR_DURATION}ms linear`;
+      bar.style.width = '100%';
+    }));
+  }
+  nrTimer = setTimeout(() => nrGo(1), NR_DURATION);
+}
+
+// Start on page load
+document.addEventListener('DOMContentLoaded', () => nrJump(0));
+const HL_DURATION = 8000; // ms per slide before auto-advancing
+let hlCurrent = 0;
+let hlTotal = 0;
+let hlTimer = null;
+let hlProgTimer = null;
+
+function hlInit() {
+  const slides = document.querySelectorAll('.hl-slide');
+  hlTotal = slides.length;
+  if (hlTotal === 0) return;
+
+  // Preload video elements only
+  document.querySelectorAll('.hl-media').forEach(m => {
+    if (m.tagName === 'VIDEO') {
+      m.load();
+      m.addEventListener('loadedmetadata', () => {
+        if (m.duration && isFinite(m.duration)) {
+          m.currentTime = m.duration * 0.35;
+        }
+      });
+    }
+  });
+
+  hlSwitch(0);
+}
+
+function hlSwitch(idx) {
+  if (hlTimer) clearInterval(hlTimer);
+  if (hlProgTimer) clearInterval(hlProgTimer);
+
+  const slides = document.querySelectorAll('.hl-slide');
+  const tabs   = document.querySelectorAll('.hl-tab');
+  const progs  = document.querySelectorAll('.hl-tab-progress');
+
+  // Pause old video (skip if slide has an image)
+  const oldVid = document.querySelector(`#hl-slide-${hlCurrent} .hl-media`);
+  if (oldVid && oldVid.tagName === 'VIDEO') { oldVid.pause(); oldVid.currentTime = 0; }
+
+  hlCurrent = idx;
+
+  // Update slides
+  slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+  tabs.forEach((t, i)   => t.classList.toggle('active', i === idx));
+
+  // Reset all progress bars
+  progs.forEach(p => { p.style.width = '0%'; p.style.transition = 'none'; });
+
+  // Play active video (skip if slide has an image)
+  const vid = document.querySelector(`#hl-slide-${idx} .hl-media`);
+  if (vid && vid.tagName === 'VIDEO') vid.play().catch(() => {});
+
+  // Animate active progress bar
+  const activeBar = progs[idx];
+  if (activeBar) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        activeBar.style.transition = `width ${HL_DURATION}ms linear`;
+        activeBar.style.width = '100%';
+      });
+    });
+  }
+
+  // Auto-advance
+  hlTimer = setTimeout(() => {
+    hlSwitch((hlCurrent + 1) % hlTotal);
+  }, HL_DURATION);
+}
+
+// ── Campaign section scroll ──────────────────────────────
+function campScrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  // Account for sticky nav (gnav 52px + lnav 50px = 102px) + small breathing room
+  const top = el.getBoundingClientRect().top + window.scrollY - 116;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
 function show(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pg = document.getElementById('page-' + id);
   if (pg) pg.classList.add('active');
-  document.querySelectorAll('.gnav-links a').forEach(a => a.classList.remove('active'));
+  // Sync all nav links (gnav + lnav including mobile-only items)
+  document.querySelectorAll('.gnav-links a, .lnav-links a').forEach(a => a.classList.remove('active'));
   const gn = document.getElementById('gn-' + id);
   if (gn) gn.classList.add('active');
-  document.querySelectorAll('.lnav-links a').forEach(a => a.classList.remove('active'));
   const ln = document.getElementById('ln-' + id);
   if (ln) ln.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'campaigns') setTimeout(hlInit, 100);
   return false;
 }
 
@@ -1999,6 +2373,11 @@ function carouselGo(id, dir) {
   }
   if (id === 'multi') {
     document.querySelectorAll('#multi-thumbs .chai-thumb').forEach((t, i) => t.classList.toggle('active', i === c.idx));
+  }
+  // Update vox counter
+  if (id === 'vox') {
+    const vc = document.getElementById('vox-counter');
+    if (vc) vc.textContent = `${c.idx + 1} / ${c.total}`;
   }
 
   // Auto-play video on new slide if it's a video slide
@@ -2044,6 +2423,7 @@ function chaiJump(idx) {
 carouselInit('undiz', 2);
 carouselInit('chai', 7);
 carouselInit('multi', 6);
+carouselInit('vox', 6);
 
 // Jump for multi-brand carousel
 function multiJump(idx) {
