@@ -3309,7 +3309,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (isTouch) {
-      // Touch: tap to play/pause
+      // iOS Safari requires cursor:pointer to register taps on non-anchor elements
+      wrapper.style.cursor = 'pointer';
       wrapper.addEventListener('click', e => {
         if (muteBtn && (e.target === muteBtn || muteBtn.contains(e.target))) return;
         e.stopPropagation();
@@ -3317,6 +3318,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } else {
       // Desktop: hover to play muted, mouse-leave to pause
+      wrapper.style.cursor = 'pointer';
       wrapper.addEventListener('mouseenter', startPlay);
       wrapper.addEventListener('mouseleave', stopPlay);
     }
