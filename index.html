@@ -259,6 +259,34 @@ body{
   margin-bottom:0;
 }
 
+/* ── HOME SECTION ROWS ── */
+.home-rows{padding-top:48px}
+.home-section-row{margin-bottom:52px}
+.home-row-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:18px;
+}
+.home-row-eye{
+  font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:5px;
+}
+.home-row-title{font-size:20px;font-weight:600;letter-spacing:-.3px;color:var(--text);line-height:1.2}
+.home-row-link{
+  font-size:13px;color:var(--link);text-decoration:none;
+  white-space:nowrap;flex-shrink:0;margin-left:20px;padding-bottom:2px;
+}
+.home-row-link:hover{text-decoration:underline}
+.home-row-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){
+  .home-row-grid{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:10px;padding-bottom:6px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .home-row-grid::-webkit-scrollbar{display:none}
+  .home-row-grid>.scard{flex-shrink:0;width:72vw;scroll-snap-align:start}
+}
+
 /* ── FEATURED BLOCK ── Apple TV: image fills left, list right */
 .featured{
   display:grid;grid-template-columns:2fr 1fr;
@@ -1342,77 +1370,183 @@ body{
       <div class="nr-progress"><div class="nr-progress-bar" id="nr-bar"></div></div>
     </div>
 
-    <!-- Featured list stays below -->
-    <div class="feat-list nr-feat-list">
-      <a class="feat-item" href="#" onclick="return show('entertainment')">
-        <div class="feat-item-eye">Competition · VOX Cinemas Oman</div>
-        <div class="feat-item-title">Competition Alert — Win TWO Movie Tickets</div>
-        <div class="feat-item-date">@voxcinemasoman</div>
-      </a>
-      <a class="feat-item" href="#" onclick="return show('campaigns')">
-        <div class="feat-item-eye">Retail Campaign</div>
-        <div class="feat-item-title">Cosmotel 2021 — Majid Al Futtaim, City Centre Mirdif</div>
-        <div class="feat-item-date">2021</div>
-      </a>
-      <a class="feat-item" href="#" onclick="return show('fnb')">
-        <div class="feat-item-eye">F&amp;B · Project Chaiwala</div>
-        <div class="feat-item-title">A Whole World of Flavours — Iced Chais to Mouthwatering Desserts</div>
-        <div class="feat-item-date">City Centre Malls · UAE &amp; Oman</div>
-      </a>
-      <a class="feat-item" href="#" onclick="return show('retail')">
-        <div class="feat-item-eye">Retail &amp; Lifestyle · 2XL</div>
-        <div class="feat-item-title">Lighten Up Your Space with the Soleil Buffet</div>
-        <div class="feat-item-date">@2xlfurniture · City Centre Malls</div>
-      </a>
-    </div>
+    <!-- ── Section Rows ── -->
+    <div class="home-rows">
 
-    <!-- Latest Work -->
-    <div class="sec-label mt-48 pb-20">Latest Work</div>
-    <div class="sgrid mt-2">
-      <a class="scard no-lb" href="#" onclick="return show('entertainment')">
-        <div class="scard-vis" style="overflow:hidden;position:relative">
-          <img loading="lazy" src="ent_vox1.jpg" alt="VOX Cinemas" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+      <!-- Entertainment -->
+      <div class="home-section-row">
+        <div class="home-row-header">
+          <div>
+            <div class="home-row-eye">Entertainment</div>
+            <div class="home-row-title">Copy crafted for the region's biggest cinema brand.</div>
+          </div>
+          <a href="#" onclick="return show('entertainment')" class="home-row-link">View all →</a>
         </div>
-        <div class="scard-body">
-          <div class="scard-eye">Entertainment</div>
-          <div class="scard-title">VOX Cinemas — Social Copy</div>
-          <div class="scard-desc">Five posts crafted to sell seats — from anime debuts to 25th anniversary re-releases.</div>
-          <div class="scard-date">2021</div>
+        <div class="home-row-grid">
+          <a class="scard no-lb" href="#" onclick="return show('entertainment')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="ent_vox1.jpg" alt="VOX Competition" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Competition · VOX Cinemas Oman</div>
+              <div class="scard-title">Competition Alert 🚨</div>
+              <div class="scard-desc">Win TWO movie tickets — name the 3 actors who play the Spider-Men.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('entertainment')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="ent_vox2.jpg" alt="Kickstart Your Weekend" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Lifestyle · VOX Cinemas Oman</div>
+              <div class="scard-title">Kickstart Your Weekend</div>
+              <div class="scard-desc">Grab your popcorn — a whole line-up of great blockbusters awaits.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('entertainment')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="ent_vox3_1.jpg" alt="Bitten by the Movie Bug" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Carousel · VOX Cinemas Oman</div>
+              <div class="scard-title">Bitten by the Movie Bug?</div>
+              <div class="scard-desc">Catch the latest blockbuster hits in ultimate comfort.</div>
+            </div>
+          </a>
         </div>
-      </a>
-      <a class="scard no-lb" href="#" onclick="return show('campaigns')">
-        <div class="scard-vis" style="overflow:hidden">
-          <img loading="lazy" src="cosmotel2021.jpg" alt="Cosmotel 2021" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+      </div>
+
+      <!-- Campaigns -->
+      <div class="home-section-row">
+        <div class="home-row-header">
+          <div>
+            <div class="home-row-eye">Campaigns</div>
+            <div class="home-row-title">Real-world copy for iconic brands across the region.</div>
+          </div>
+          <a href="#" onclick="return show('campaigns')" class="home-row-link">View all →</a>
         </div>
-        <div class="scard-body">
-          <div class="scard-eye">Campaign</div>
-          <div class="scard-title">Cosmotel 2021 — Majid Al Futtaim</div>
-          <div class="scard-desc">10-post Instagram campaign for a tech activation at City Centre Mirdif.</div>
-          <div class="scard-date">2021</div>
+        <div class="home-row-grid">
+          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="dsf_fenty.png" alt="Dubai Shopping Festival" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Campaign · Dubai Tourism · 2020–2021</div>
+              <div class="scard-title">Dubai Shopping Festival</div>
+              <div class="scard-desc">150+ influencers, 92.6M engagements, 20 venues citywide.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="cosmotel2021.jpg" alt="Cosmotel 2021" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Campaign · Majid Al Futtaim · 2021</div>
+              <div class="scard-title">Cosmotel 2021</div>
+              <div class="scard-desc">A beauty wonderland — 10-post Instagram campaign at City Centre Mirdif.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="iv_01.png" alt="The Irish Village" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Campaign · The Irish Village</div>
+              <div class="scard-title">The IV Campaign</div>
+              <div class="scard-desc">Social-first brand campaign — bringing the spirit of IV to feed and story.</div>
+            </div>
+          </a>
         </div>
-      </a>
-      <a class="scard no-lb" href="#" onclick="return show('fnb')">
-        <div class="scard-vis" style="overflow:hidden;position:relative">
-          <img loading="lazy" src="fnb_chai6.jpg" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+      </div>
+
+      <!-- F&B -->
+      <div class="home-section-row">
+        <div class="home-row-header">
+          <div>
+            <div class="home-row-eye">Food &amp; Beverage</div>
+            <div class="home-row-title">Copy that makes you taste the dish before it arrives.</div>
+          </div>
+          <a href="#" onclick="return show('fnb')" class="home-row-link">View all →</a>
         </div>
-        <div class="scard-body">
-          <div class="scard-eye">F&amp;B</div>
-          <div class="scard-title">Project Chaiwala — City Centre Malls</div>
-          <div class="scard-desc">A whole world of flavours — from iced chais to mouthwatering desserts.</div>
+        <div class="home-row-grid">
+          <a class="scard no-lb" href="#" onclick="return show('fnb')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="fnb_chai6.jpg" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">F&amp;B · Project Chaiwala</div>
+              <div class="scard-title">A Whole World of Flavours</div>
+              <div class="scard-desc">Iced chais, matcha soft serves, and comfort bites across UAE &amp; Oman.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('fnb')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="fnb_laduree.jpg" alt="Ladurée" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Patisserie · Ladurée</div>
+              <div class="scard-title">A Weekend Delight</div>
+              <div class="scard-desc">Ladurée's legendary macarons — a weekend well spent.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('fnb')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="fnb_shack.jpg" alt="Shake Shack" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">F&amp;B · Shake Shack</div>
+              <div class="scard-title">BBQ Is Back</div>
+              <div class="scard-desc">Saucy new menu additions worth stopping for.</div>
+            </div>
+          </a>
         </div>
-      </a>
-      <a class="scard no-lb" href="#" onclick="return show('retail')">
-        <div class="scard-vis" style="overflow:hidden;position:relative">
-          <img loading="lazy" src="ret_2xl.jpg" alt="2XL Furniture" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+      </div>
+
+      <!-- Retail & Lifestyle -->
+      <div class="home-section-row">
+        <div class="home-row-header">
+          <div>
+            <div class="home-row-eye">Retail &amp; Lifestyle</div>
+            <div class="home-row-title">Copy that turns browsing into buying.</div>
+          </div>
+          <a href="#" onclick="return show('retail')" class="home-row-link">View all →</a>
         </div>
-        <div class="scard-body">
-          <div class="scard-eye">Retail &amp; Lifestyle</div>
-          <div class="scard-title">2XL — Lighten Up Your Space</div>
-          <div class="scard-desc">Beauty brought to a whole new level with the Soleil Buffet.</div>
+        <div class="home-row-grid">
+          <a class="scard no-lb" href="#" onclick="return show('retail')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="ret_flormar.jpg" alt="Flormar" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Beauty · Flormar Oman</div>
+              <div class="scard-title">The Perfect Companion</div>
+              <div class="scard-desc">Soft, lightweight texture with trendy colours — a tempting choice.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('retail')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="ret_2xl.jpg" alt="2XL Furniture" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Home &amp; Lifestyle · 2XL</div>
+              <div class="scard-title">Lighten Up Your Space</div>
+              <div class="scard-desc">The Soleil Buffet — beauty brought to a whole new level.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('retail')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="ret_undiz1.jpg" alt="Undiz" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Fashion · Undiz</div>
+              <div class="scard-title">Fun, Bold, Undiz</div>
+              <div class="scard-desc">Where fashion meets fun — the season's most playful new arrivals.</div>
+            </div>
+          </a>
         </div>
-      </a>
-    </div>
-  </div>
+      </div>
+
+    </div><!-- /.home-rows -->
+  </div><!-- /.wrap -->
 </div>
 
 
