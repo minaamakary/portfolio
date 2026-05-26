@@ -2891,7 +2891,7 @@ body{
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-copy">Copyright © 2026 Copywriting Portfolio. All rights reserved.</div>
+    <div class="footer-copy">© 2026 Mina Makary. All rights reserved.</div>
     <div class="footer-links">
       <a href="#" onclick="return show('home')">Home</a>
       <a href="#" onclick="return show('entertainment')">Entertainment</a>
@@ -3274,7 +3274,6 @@ document.addEventListener('DOMContentLoaded', () => {
     video.load();
 
     function startPlay() {
-      video.currentTime = 0;
       if (isTouch) {
         // Mobile tap: play with sound by default
         video.muted = false;
@@ -3284,10 +3283,19 @@ document.addEventListener('DOMContentLoaded', () => {
         video.muted = true;
         if (muteBtn) muteBtn.textContent = '🔇';
       }
+      // Only seek to start if data is already buffered —
+      // seeking before load on iOS silently breaks play()
+      if (video.readyState >= 2) video.currentTime = 0;
       video.play().then(() => {
         playing = true;
         playBtn.classList.add('hidden');
-      }).catch(() => {});
+      }).catch(() => {
+        // Play failed — reset everything so the user can try again
+        playing = false;
+        video.muted = true;
+        if (muteBtn) muteBtn.textContent = '🔇';
+        playBtn.classList.remove('hidden');
+      });
     }
 
     function stopPlay() {
