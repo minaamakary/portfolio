@@ -677,7 +677,7 @@ body{
   background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
 }
 .dsf-opening-videos{
-  display:grid;grid-template-rows:repeat(3,1fr);
+  display:grid;grid-template-rows:repeat(4,1fr);
   gap:1px;background:var(--border);
 }
 .dsf-opening-videos > .scard{
@@ -696,7 +696,7 @@ body{
 @media(max-width:680px){
   .dsf-opening-grid{grid-template-columns:1fr}
   .dsf-opening-main{min-height:260px}
-  .dsf-opening-videos{grid-template-rows:none;grid-template-columns:repeat(3,1fr)}
+  .dsf-opening-videos{grid-template-rows:none;grid-template-columns:repeat(4,1fr)}
 }
 .dsf-fenty{
   display:grid;grid-template-columns:1fr 1fr;
@@ -1507,8 +1507,18 @@ body{
     <div class="highlights-stage-wrap">
       <div class="highlights-stage">
 
-      <!-- Slide 1: Cosmotel -->
+      <!-- Slide 1: DSF -->
       <div class="hl-slide active" id="hl-slide-0">
+        <img src="dsf_fenty.png" class="hl-media" alt="Dubai Shopping Festival — The Island by Fenty Skin" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+        <div class="hl-overlay">
+          <div class="hl-badge">Dubai Tourism · Dec 2020 – Feb 2021</div>
+          <div class="hl-caption">Dubai Shopping Festival — 150+ Influencers · 20 Venues Citywide</div>
+        </div>
+        <button class="hl-cta" onclick="campScrollTo('dsf')">View case study ↓</button>
+      </div>
+
+      <!-- Slide 2: Cosmotel -->
+      <div class="hl-slide" id="hl-slide-1">
         <img src="cosmotel2021.jpg" class="hl-media" alt="Cosmotel 2021" style="object-fit:cover"/>
         <div class="hl-overlay">
           <div class="hl-badge">Cosmotel 2021</div>
@@ -1517,24 +1527,14 @@ body{
         <button class="hl-cta" onclick="campScrollTo('cosmotel')">View campaign ↓</button>
       </div>
 
-      <!-- Slide 2: Irish Village -->
-      <div class="hl-slide" id="hl-slide-1">
+      <!-- Slide 3: Irish Village -->
+      <div class="hl-slide" id="hl-slide-2">
         <video src="iv_17.mp4" class="hl-media" loop muted playsinline preload="metadata" id="hl-v1"></video>
         <div class="hl-overlay">
           <div class="hl-badge">The IV Campaign</div>
           <div class="hl-caption">The Irish Village, Al Garhoud — Social-First Brand Campaign</div>
         </div>
         <button class="hl-cta" onclick="campScrollTo('iv')">View campaign ↓</button>
-      </div>
-
-      <!-- Slide 3: DSF -->
-      <div class="hl-slide" id="hl-slide-2">
-        <img src="dsf_fenty.png" class="hl-media" alt="Dubai Shopping Festival — The Island by Fenty Skin" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
-        <div class="hl-overlay">
-          <div class="hl-badge">Dubai Tourism · Dec 2020 – Feb 2021</div>
-          <div class="hl-caption">Dubai Shopping Festival — 150+ Influencers · 20 Venues Citywide</div>
-        </div>
-        <button class="hl-cta" onclick="campScrollTo('dsf')">View case study ↓</button>
       </div>
 
     </div>
@@ -1545,27 +1545,339 @@ body{
     <div class="highlights-tabs">
       <button class="hl-tab active" onclick="hlSwitch(0)">
         <span class="hl-tab-progress" id="hl-prog-0"></span>
-        <span class="hl-tab-eye">Majid Al Futtaim · 2021</span>
-        <span class="hl-tab-title">Cosmotel 2021</span>
+        <span class="hl-tab-eye">Dubai Tourism · 2020–2021</span>
+        <span class="hl-tab-title">Dubai Shopping Festival</span>
       </button>
       <button class="hl-tab" onclick="hlSwitch(1)">
         <span class="hl-tab-progress" id="hl-prog-1"></span>
-        <span class="hl-tab-eye">The Irish Village · Dubai</span>
-        <span class="hl-tab-title">The IV Campaign</span>
+        <span class="hl-tab-eye">Majid Al Futtaim · 2021</span>
+        <span class="hl-tab-title">Cosmotel 2021</span>
       </button>
       <button class="hl-tab" onclick="hlSwitch(2)">
         <span class="hl-tab-progress" id="hl-prog-2"></span>
-        <span class="hl-tab-eye">Dubai Tourism · 2020–2021</span>
-        <span class="hl-tab-title">Dubai Shopping Festival</span>
+        <span class="hl-tab-eye">The Irish Village · Dubai</span>
+        <span class="hl-tab-title">The IV Campaign</span>
       </button>
     </div>
   </div>
 
   <div class="wrap">
 
+    <!-- ══════════════════════════════════════════
+         DUBAI SHOPPING FESTIVAL CAMPAIGN
+    ══════════════════════════════════════════ -->
+    <div style="border-top:1px solid var(--border);margin:64px 0 0"></div>
+    <div id="dsf" class="camp-section-anchor"></div>
+
+    <!-- Intro -->
+    <div class="camp-intro" style="margin-top:0">
+      <div>
+        <div class="camp-eye">Dubai Tourism · Dec 2020 – Feb 2021</div>
+        <div class="camp-h2">Dubai Shopping Festival</div>
+        <div class="camp-desc">A city-wide influencer marketing campaign spanning 20 venues, 236 retail partners, and two months — orchestrated from the ground up. As Influencer &amp; Account Manager, I handled end-to-end campaign logistics: talent identification, shoot coordination, venue activations, and content delivery across a network of 150+ influencers representing 30+ nationalities.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-hd">Campaign Scale</div>
+        <div class="meta-row"><span class="meta-l">Client</span><span class="meta-v">Dubai Tourism · DTCM</span></div>
+        <div class="meta-row"><span class="meta-l">Duration</span><span class="meta-v">Dec 2020 – Feb 2021</span></div>
+        <div class="meta-row"><span class="meta-l">Role</span><span class="meta-v">Influencer &amp; Account Manager</span></div>
+        <div class="meta-row"><span class="meta-l">Venues</span><span class="meta-v">20 Malls &amp; Locations</span></div>
+        <div class="meta-row"><span class="meta-l">Partners</span><span class="meta-v">236 Retailers</span></div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="dsf-stats">
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">150<span>+</span></div>
+        <div class="dsf-stat-label">Influencers Managed</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">30<span>+</span></div>
+        <div class="dsf-stat-label">Nationalities</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">1,300<span>+</span></div>
+        <div class="dsf-stat-label">Pieces of Content</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">92.6<span>M</span></div>
+        <div class="dsf-stat-label">Total Engagements</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">122.4<span>M</span></div>
+        <div class="dsf-stat-label">Combined Follower Base</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">236</div>
+        <div class="dsf-stat-label">Retail Partners</div>
+      </div>
+    </div>
+
+    <!-- What I did -->
+    <div class="dsf-pillars">
+      <div class="dsf-pillar">
+        <div class="dsf-pillar-icon">🎯</div>
+        <div class="dsf-pillar-title">Influencer Strategy</div>
+        <div class="dsf-pillar-desc">Identified and vetted 150+ influencers spanning micro to macro tiers across 30+ nationalities — matching talent to venues, activations, and retail partner objectives.</div>
+      </div>
+      <div class="dsf-pillar">
+        <div class="dsf-pillar-icon">📍</div>
+        <div class="dsf-pillar-title">Shoot Logistics</div>
+        <div class="dsf-pillar-desc">Coordinated shoots across 20 venues citywide — from the opening nights at Burj Park with Tamer Hosny and Hussain Al Jasmi, to activations at Dubai Mall, Mall of the Emirates, The Walk JBR, Bluewaters, La Mer, Al Seef, and beyond.</div>
+      </div>
+      <div class="dsf-pillar">
+        <div class="dsf-pillar-icon">📸</div>
+        <div class="dsf-pillar-title">Production Management</div>
+        <div class="dsf-pillar-desc">Briefed and managed photographers and videographers on-location for every activation. Accompanied influencers to shoots, ensured brand guidelines were met, and managed delivery timelines for 1,300+ pieces of content.</div>
+      </div>
+      <div class="dsf-pillar">
+        <div class="dsf-pillar-icon">🤝</div>
+        <div class="dsf-pillar-title">Partner Coordination</div>
+        <div class="dsf-pillar-desc">Liaised between 236 retail partners and the influencer network — aligning content briefs, product integrations, and activation schedules across a two-month campaign window.</div>
+      </div>
+    </div>
+
+    <!-- ── FEATURED ACTIVATION: FENTY ISLAND ── -->
+    <div class="sec-label mt-48 pb-20">Featured Activation</div>
+
+    <div class="dsf-fenty">
+      <div class="dsf-fenty-visual">
+        <img src="dsf_fenty.png" alt="The Island by Fenty Skin" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 60%)"></div>
+      </div>
+      <div class="dsf-fenty-body">
+        <div class="dsf-fenty-tag">Fenty Beauty · Sephora GCC · DSF 2021</div>
+        <div class="dsf-fenty-title">The Island by Fenty Skin</div>
+        <div class="dsf-fenty-desc">
+          As part of the exclusive GCC launch of Rihanna's Fenty Skin at Sephora, the Dubai Mall Promenade was transformed into a fully immersive tropical island pop-up — one of the most ambitious beauty activations ever staged at DSF.
+        </div>
+        <div class="dsf-fenty-desc" style="margin-top:12px">
+          The 10-day experience featured a tiki island resort concept with themed zones named after Fenty Skin products — including the Total Cleans'r Cove, Fat Water Falls, and Hydra Vizor Sundeck. A tropical juice bar, hidden QR codes unlocking prizes, Spotify playlists, and product trial stations made it a social-first, fully shareable experience.
+        </div>
+        <div class="dsf-fenty-desc" style="margin-top:12px">
+          The activation coincided with Rihanna's takeover of the Burj Khalifa facade — her appearance across the world's tallest building driving audiences to the island pop-up below.
+        </div>
+        <div class="dsf-fenty-highlights">
+          <div class="dsf-fenty-hl"><span>📍</span> Dubai Mall Promenade</div>
+          <div class="dsf-fenty-hl"><span>🗓</span> January 6 – 16, 2021</div>
+          <div class="dsf-fenty-hl"><span>🌴</span> Immersive Island Experience</div>
+          <div class="dsf-fenty-hl"><span>✨</span> GCC Launch of Fenty Skin</div>
+          <div class="dsf-fenty-hl"><span>🏙</span> Burj Khalifa Takeover</div>
+          <div class="dsf-fenty-hl"><span>🛍</span> Sephora · UAE &amp; KSA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Venues covered -->
+    <div class="sec-label mt-48 pb-20">Venues &amp; Activations Covered</div>
+    <div class="dsf-venues">
+      <div class="dsf-venue dsf-venue-hero">
+        <div class="dsf-venue-name">Burj Park</div>
+        <div class="dsf-venue-detail">Opening Night · Tamer Hosny &amp; Hussain Al Jasmi · 2 Days</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Dubai Mall</div>
+        <div class="dsf-venue-detail">Retail Activations</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Mall of the Emirates</div>
+        <div class="dsf-venue-detail">Retail Activations</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">DSF Mall</div>
+        <div class="dsf-venue-detail">Dubai Shopping Festival Mall</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">The Walk JBR</div>
+        <div class="dsf-venue-detail">Outdoor Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Bluewaters</div>
+        <div class="dsf-venue-detail">Island Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">La Mer</div>
+        <div class="dsf-venue-detail">Beachfront Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">The Beach</div>
+        <div class="dsf-venue-detail">Outdoor Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Mercato</div>
+        <div class="dsf-venue-detail">Retail Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Al Khawaneej</div>
+        <div class="dsf-venue-detail">Community Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Al Seef Market</div>
+        <div class="dsf-venue-detail">Heritage District Activation</div>
+      </div>
+    </div>
+
+    <!-- Image placeholder row -->
+    <!-- ══════════════════════════════════════
+         SECTION A: INFLUENCER CONTENT (OFFICIAL)
+    ══════════════════════════════════════ -->
+    <div class="sec-label mt-48 pb-20">Influencer Content</div>
+    <p style="font-size:13px;color:var(--secondary);margin:-8px 0 20px;line-height:1.6">Content produced as part of the official DSF influencer campaign.</p>
+
+    <div class="sgrid mt-2">
+
+      <!-- Zeina MOTB — Burj Park -->
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
+          <video src="dsf_zeina.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Influencer Content · Official</div>
+          <div class="scard-title">Zeina — Burj Park Open Market</div>
+          <div class="scard-desc">@MOTB covering the DSF Open Market activation at Burj Park — creative content produced as part of the influencer campaign.</div>
+          <div class="scard-date">DSF 2020–2021 · Burj Park, Downtown Dubai</div>
+        </div>
+      </div>
+
+      <!-- Amal Hatta -->
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
+          <video src="dsf_amal.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Influencer Content · Official</div>
+          <div class="scard-title">Amal — Hatta Open Market</div>
+          <div class="scard-desc">Influencer coverage of the DSF Open Market in Hatta — part of the city-wide activation bringing the festival beyond the urban centre.</div>
+          <div class="scard-date">DSF 2020–2021 · Hatta</div>
+        </div>
+      </div>
+
+      <!-- Ahmed ElSayed — Snapchat -->
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
+          <video src="dsf_ahmed.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Snapchat Campaign · Official</div>
+          <div class="scard-title">Ahmed ElSayed — Scan to Win</div>
+          <div class="scard-desc">@twistedcurlz promoting the DSF Snapchat activation: scan the barcode visible in any retail store window for a chance to win AED 2,000 store credit.</div>
+          <div class="scard-date">DSF 2020–2021 · Snapchat Campaign</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SECTION B: LIVE COVERAGE (PERSONAL BTS)
+    ══════════════════════════════════════ -->
+    <div class="sec-label mt-48 pb-20">Live Coverage</div>
+    <p style="font-size:13px;color:var(--secondary);margin:-8px 0 20px;line-height:1.6">Personal field coverage captured on-location throughout the campaign — demonstrating hands-on presence across every activation.</p>
+
+    <!-- Opening Night -->
+    <div class="dsf-bts-label">Opening Night — Burj Park</div>
+    <div class="dsf-bts-sub">Tamer Hosny &amp; Hussain Al Jasmi · DSF Opening Concert · Day 1</div>
+
+    <div class="dsf-opening-grid">
+
+      <!-- Setup photo — full height left -->
+      <div class="dsf-opening-main">
+        <img src="dsf_opening_setup.jpg" alt="Burj Park setup prior to opening" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        <div class="dsf-opening-caption">Burj Park — Pre-show setup, chairs arranged with glow sticks ahead of the opening night concert marking the first day of DSF 2020.</div>
+      </div>
+
+      <!-- 3 videos right column -->
+      <div class="dsf-opening-videos">
+        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
+          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
+            <video src="dsf_tamer1.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
+            <button class="mute-btn" title="Toggle sound">🔇</button>
+            <div class="dsf-vid-label">Opening Statement</div>
+          </div>
+        </div>
+        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
+          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
+            <video src="dsf_tamer2.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
+            <button class="mute-btn" title="Toggle sound">🔇</button>
+            <div class="dsf-vid-label">Opening Concert</div>
+          </div>
+        </div>
+        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
+          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
+            <video src="dsf_tamer3.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
+            <button class="mute-btn" title="Toggle sound">🔇</button>
+            <div class="dsf-vid-label">Concert Highlights</div>
+          </div>
+        </div>
+        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
+          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
+            <video src="dsf_hussain.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
+            <button class="mute-btn" title="Toggle sound">🔇</button>
+            <div class="dsf-vid-label">Hussain Al Jasmi</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Open Markets -->
+    <div class="dsf-bts-label" style="margin-top:40px">Open Markets</div>
+    <div class="dsf-bts-sub">Al Khawaneej Community Market · DSF Open Markets Programme</div>
+
+    <div class="dsf-img-row" style="grid-template-columns:1fr;margin-top:16px">
+      <div style="position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--border)">
+        <img src="dsf_khawaneej.jpg" alt="Al Khawaneej Market" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+        <div class="dsf-opening-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);color:rgba(255,255,255,.85)">Al Khawaneej Open Market — one of 20 venues covered across the city as part of the DSF activations programme.</div>
+      </div>
+    </div>
+
+    <!-- Drone Shows -->
+    <div class="dsf-bts-label" style="margin-top:40px">Drone Shows</div>
+    <div class="dsf-bts-sub">JBR The Beach · Bluewaters — DSF Drone Light Show Programme</div>
+
+    <div class="sgrid mt-2" style="grid-template-columns:1fr 1fr">
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:16/9;overflow:hidden;position:relative">
+          <video src="dsf_drone_beach.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Live Coverage · JBR</div>
+          <div class="scard-title">Drone Light Show — The Beach</div>
+          <div class="scard-date">DSF 2020–2021 · JBR, The Beach</div>
+        </div>
+      </div>
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:16/9;overflow:hidden;position:relative">
+          <video src="dsf_drone_bluewaters.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Live Coverage · Bluewaters</div>
+          <div class="scard-title">Drone Light Show — Bluewaters</div>
+          <div class="scard-date">DSF 2020–2021 · Bluewaters Island</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Campaign divider -->
+    <div style="border-top:1px solid var(--border);margin:64px 0 0"></div>
+
     <!-- COSMOTEL SECTION -->
     <div id="cosmotel" class="camp-section-anchor"></div>
-    <div class="camp-intro">
+    <div class="camp-intro" style="margin-top:0">
       <div>
         <div class="camp-eye">Majid Al Futtaim · Retail &amp; Lifestyle</div>
         <div class="camp-h2">Cosmotel 2021</div>
@@ -2001,309 +2313,13 @@ body{
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         DUBAI SHOPPING FESTIVAL CAMPAIGN
-    ══════════════════════════════════════════ -->
-    <div style="border-top:1px solid var(--border);margin:64px 0 0"></div>
-    <div id="dsf" class="camp-section-anchor"></div>
 
-    <!-- Intro -->
-    <div class="camp-intro" style="margin-top:0">
-      <div>
-        <div class="camp-eye">Dubai Tourism · Dec 2020 – Feb 2021</div>
-        <div class="camp-h2">Dubai Shopping Festival</div>
-        <div class="camp-desc">A city-wide influencer marketing campaign spanning 20 venues, 236 retail partners, and two months — orchestrated from the ground up. As Influencer &amp; Account Manager, I handled end-to-end campaign logistics: talent identification, shoot coordination, venue activations, and content delivery across a network of 150+ influencers representing 30+ nationalities.</div>
-      </div>
-      <div class="meta-card">
-        <div class="meta-card-hd">Campaign Scale</div>
-        <div class="meta-row"><span class="meta-l">Client</span><span class="meta-v">Dubai Tourism · DTCM</span></div>
-        <div class="meta-row"><span class="meta-l">Duration</span><span class="meta-v">Dec 2020 – Feb 2021</span></div>
-        <div class="meta-row"><span class="meta-l">Role</span><span class="meta-v">Influencer &amp; Account Manager</span></div>
-        <div class="meta-row"><span class="meta-l">Venues</span><span class="meta-v">20 Malls &amp; Locations</span></div>
-        <div class="meta-row"><span class="meta-l">Partners</span><span class="meta-v">236 Retailers</span></div>
-      </div>
-    </div>
+  </div><!-- /.wrap (campaigns) -->
+</div><!-- /#page-campaigns -->
 
-    <!-- Stats bar -->
-    <div class="dsf-stats">
-      <div class="dsf-stat">
-        <div class="dsf-stat-num">150<span>+</span></div>
-        <div class="dsf-stat-label">Influencers Managed</div>
-      </div>
-      <div class="dsf-stat">
-        <div class="dsf-stat-num">30<span>+</span></div>
-        <div class="dsf-stat-label">Nationalities</div>
-      </div>
-      <div class="dsf-stat">
-        <div class="dsf-stat-num">1,300<span>+</span></div>
-        <div class="dsf-stat-label">Pieces of Content</div>
-      </div>
-      <div class="dsf-stat">
-        <div class="dsf-stat-num">92.6<span>M</span></div>
-        <div class="dsf-stat-label">Total Engagements</div>
-      </div>
-      <div class="dsf-stat">
-        <div class="dsf-stat-num">122.4<span>M</span></div>
-        <div class="dsf-stat-label">Combined Follower Base</div>
-      </div>
-      <div class="dsf-stat">
-        <div class="dsf-stat-num">236</div>
-        <div class="dsf-stat-label">Retail Partners</div>
-      </div>
-    </div>
 
-    <!-- What I did -->
-    <div class="dsf-pillars">
-      <div class="dsf-pillar">
-        <div class="dsf-pillar-icon">🎯</div>
-        <div class="dsf-pillar-title">Influencer Strategy</div>
-        <div class="dsf-pillar-desc">Identified and vetted 150+ influencers spanning micro to macro tiers across 30+ nationalities — matching talent to venues, activations, and retail partner objectives.</div>
-      </div>
-      <div class="dsf-pillar">
-        <div class="dsf-pillar-icon">📍</div>
-        <div class="dsf-pillar-title">Shoot Logistics</div>
-        <div class="dsf-pillar-desc">Coordinated shoots across 20 venues citywide — from the opening nights at Burj Park with Tamer Hosny and Hussain Al Jasmi, to activations at Dubai Mall, Mall of the Emirates, The Walk JBR, Bluewaters, La Mer, Al Seef, and beyond.</div>
-      </div>
-      <div class="dsf-pillar">
-        <div class="dsf-pillar-icon">📸</div>
-        <div class="dsf-pillar-title">Production Management</div>
-        <div class="dsf-pillar-desc">Briefed and managed photographers and videographers on-location for every activation. Accompanied influencers to shoots, ensured brand guidelines were met, and managed delivery timelines for 1,300+ pieces of content.</div>
-      </div>
-      <div class="dsf-pillar">
-        <div class="dsf-pillar-icon">🤝</div>
-        <div class="dsf-pillar-title">Partner Coordination</div>
-        <div class="dsf-pillar-desc">Liaised between 236 retail partners and the influencer network — aligning content briefs, product integrations, and activation schedules across a two-month campaign window.</div>
-      </div>
-    </div>
-
-    <!-- ── FEATURED ACTIVATION: FENTY ISLAND ── -->
-    <div class="sec-label mt-48 pb-20">Featured Activation</div>
-
-    <div class="dsf-fenty">
-      <div class="dsf-fenty-visual">
-        <img src="dsf_fenty.png" alt="The Island by Fenty Skin" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 60%)"></div>
-      </div>
-      <div class="dsf-fenty-body">
-        <div class="dsf-fenty-tag">Fenty Beauty · Sephora GCC · DSF 2021</div>
-        <div class="dsf-fenty-title">The Island by Fenty Skin</div>
-        <div class="dsf-fenty-desc">
-          As part of the exclusive GCC launch of Rihanna's Fenty Skin at Sephora, the Dubai Mall Promenade was transformed into a fully immersive tropical island pop-up — one of the most ambitious beauty activations ever staged at DSF.
-        </div>
-        <div class="dsf-fenty-desc" style="margin-top:12px">
-          The 10-day experience featured a tiki island resort concept with themed zones named after Fenty Skin products — including the Total Cleans'r Cove, Fat Water Falls, and Hydra Vizor Sundeck. A tropical juice bar, hidden QR codes unlocking prizes, Spotify playlists, and product trial stations made it a social-first, fully shareable experience.
-        </div>
-        <div class="dsf-fenty-desc" style="margin-top:12px">
-          The activation coincided with Rihanna's takeover of the Burj Khalifa facade — her appearance across the world's tallest building driving audiences to the island pop-up below.
-        </div>
-        <div class="dsf-fenty-highlights">
-          <div class="dsf-fenty-hl"><span>📍</span> Dubai Mall Promenade</div>
-          <div class="dsf-fenty-hl"><span>🗓</span> January 6 – 16, 2021</div>
-          <div class="dsf-fenty-hl"><span>🌴</span> Immersive Island Experience</div>
-          <div class="dsf-fenty-hl"><span>✨</span> GCC Launch of Fenty Skin</div>
-          <div class="dsf-fenty-hl"><span>🏙</span> Burj Khalifa Takeover</div>
-          <div class="dsf-fenty-hl"><span>🛍</span> Sephora · UAE &amp; KSA</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Venues covered -->
-    <div class="sec-label mt-48 pb-20">Venues &amp; Activations Covered</div>
-    <div class="dsf-venues">
-      <div class="dsf-venue dsf-venue-hero">
-        <div class="dsf-venue-name">Burj Park</div>
-        <div class="dsf-venue-detail">Opening Night · Tamer Hosny &amp; Hussain Al Jasmi · 2 Days</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">Dubai Mall</div>
-        <div class="dsf-venue-detail">Retail Activations</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">Mall of the Emirates</div>
-        <div class="dsf-venue-detail">Retail Activations</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">DSF Mall</div>
-        <div class="dsf-venue-detail">Dubai Shopping Festival Mall</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">The Walk JBR</div>
-        <div class="dsf-venue-detail">Outdoor Activation</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">Bluewaters</div>
-        <div class="dsf-venue-detail">Island Activation</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">La Mer</div>
-        <div class="dsf-venue-detail">Beachfront Activation</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">The Beach</div>
-        <div class="dsf-venue-detail">Outdoor Activation</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">Mercato</div>
-        <div class="dsf-venue-detail">Retail Activation</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">Al Khawaneej</div>
-        <div class="dsf-venue-detail">Community Activation</div>
-      </div>
-      <div class="dsf-venue">
-        <div class="dsf-venue-name">Al Seef Market</div>
-        <div class="dsf-venue-detail">Heritage District Activation</div>
-      </div>
-    </div>
-
-    <!-- Image placeholder row -->
-    <!-- ══════════════════════════════════════
-         SECTION A: INFLUENCER CONTENT (OFFICIAL)
-    ══════════════════════════════════════ -->
-    <div class="sec-label mt-48 pb-20">Influencer Content</div>
-    <p style="font-size:13px;color:var(--secondary);margin:-8px 0 20px;line-height:1.6">Content produced as part of the official DSF influencer campaign.</p>
-
-    <div class="sgrid mt-2">
-
-      <!-- Zeina MOTB — Burj Park -->
-      <div class="scard no-lb" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
-          <video src="dsf_zeina.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-          <div class="vcard-play">▶</div>
-          <button class="mute-btn" title="Toggle sound">🔇</button>
-        </div>
-        <div class="scard-body">
-          <div class="scard-eye">Influencer Content · Official</div>
-          <div class="scard-title">Zeina — Burj Park Open Market</div>
-          <div class="scard-desc">@MOTB covering the DSF Open Market activation at Burj Park — creative content produced as part of the influencer campaign.</div>
-          <div class="scard-date">DSF 2020–2021 · Burj Park, Downtown Dubai</div>
-        </div>
-      </div>
-
-      <!-- Amal Hatta -->
-      <div class="scard no-lb" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
-          <video src="dsf_amal.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-          <div class="vcard-play">▶</div>
-          <button class="mute-btn" title="Toggle sound">🔇</button>
-        </div>
-        <div class="scard-body">
-          <div class="scard-eye">Influencer Content · Official</div>
-          <div class="scard-title">Amal — Hatta Open Market</div>
-          <div class="scard-desc">Influencer coverage of the DSF Open Market in Hatta — part of the city-wide activation bringing the festival beyond the urban centre.</div>
-          <div class="scard-date">DSF 2020–2021 · Hatta</div>
-        </div>
-      </div>
-
-      <!-- Ahmed ElSayed — Snapchat -->
-      <div class="scard no-lb" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
-          <video src="dsf_ahmed.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-          <div class="vcard-play">▶</div>
-          <button class="mute-btn" title="Toggle sound">🔇</button>
-        </div>
-        <div class="scard-body">
-          <div class="scard-eye">Snapchat Campaign · Official</div>
-          <div class="scard-title">Ahmed ElSayed — Scan to Win</div>
-          <div class="scard-desc">@twistedcurlz promoting the DSF Snapchat activation: scan the barcode visible in any retail store window for a chance to win AED 2,000 store credit.</div>
-          <div class="scard-date">DSF 2020–2021 · Snapchat Campaign</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ══════════════════════════════════════
-         SECTION B: LIVE COVERAGE (PERSONAL BTS)
-    ══════════════════════════════════════ -->
-    <div class="sec-label mt-48 pb-20">Live Coverage</div>
-    <p style="font-size:13px;color:var(--secondary);margin:-8px 0 20px;line-height:1.6">Personal field coverage captured on-location throughout the campaign — demonstrating hands-on presence across every activation.</p>
-
-    <!-- Opening Night -->
-    <div class="dsf-bts-label">Opening Night — Burj Park</div>
-    <div class="dsf-bts-sub">Tamer Hosny &amp; Hussain Al Jasmi · DSF Opening Concert · Day 1</div>
-
-    <div class="dsf-opening-grid">
-
-      <!-- Setup photo — full height left -->
-      <div class="dsf-opening-main">
-        <img src="dsf_opening_setup.jpg" alt="Burj Park setup prior to opening" style="width:100%;height:100%;object-fit:cover;display:block"/>
-        <div class="dsf-opening-caption">Burj Park — Pre-show setup, chairs arranged with glow sticks ahead of the opening night concert marking the first day of DSF 2020.</div>
-      </div>
-
-      <!-- 3 videos right column -->
-      <div class="dsf-opening-videos">
-        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
-          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
-            <video src="dsf_tamer1.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
-            <button class="mute-btn" title="Toggle sound">🔇</button>
-            <div class="dsf-vid-label">Opening Statement</div>
-          </div>
-        </div>
-        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
-          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
-            <video src="dsf_tamer2.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
-            <button class="mute-btn" title="Toggle sound">🔇</button>
-            <div class="dsf-vid-label">Opening Concert</div>
-          </div>
-        </div>
-        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
-          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
-            <video src="dsf_tamer3.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
-            <button class="mute-btn" title="Toggle sound">🔇</button>
-            <div class="dsf-vid-label">Concert Highlights</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Open Markets -->
-    <div class="dsf-bts-label" style="margin-top:40px">Open Markets</div>
-    <div class="dsf-bts-sub">Al Khawaneej Community Market · DSF Open Markets Programme</div>
-
-    <div class="dsf-img-row" style="grid-template-columns:1fr;margin-top:16px">
-      <div style="position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--border)">
-        <img src="dsf_khawaneej.jpg" alt="Al Khawaneej Market" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-        <div class="dsf-opening-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);color:rgba(255,255,255,.85)">Al Khawaneej Open Market — one of 20 venues covered across the city as part of the DSF activations programme.</div>
-      </div>
-    </div>
-
-    <!-- Drone Shows -->
-    <div class="dsf-bts-label" style="margin-top:40px">Drone Shows</div>
-    <div class="dsf-bts-sub">JBR The Beach · Bluewaters — DSF Drone Light Show Programme</div>
-
-    <div class="sgrid mt-2" style="grid-template-columns:1fr 1fr">
-      <div class="scard no-lb" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:16/9;overflow:hidden;position:relative">
-          <video src="dsf_drone_beach.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-          <div class="vcard-play">▶</div>
-          <button class="mute-btn" title="Toggle sound">🔇</button>
-        </div>
-        <div class="scard-body">
-          <div class="scard-eye">Live Coverage · JBR</div>
-          <div class="scard-title">Drone Light Show — The Beach</div>
-          <div class="scard-date">DSF 2020–2021 · JBR, The Beach</div>
-        </div>
-      </div>
-      <div class="scard no-lb" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:16/9;overflow:hidden;position:relative">
-          <video src="dsf_drone_bluewaters.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-          <div class="vcard-play">▶</div>
-          <button class="mute-btn" title="Toggle sound">🔇</button>
-        </div>
-        <div class="scard-body">
-          <div class="scard-eye">Live Coverage · Bluewaters</div>
-          <div class="scard-title">Drone Light Show — Bluewaters</div>
-          <div class="scard-date">DSF 2020–2021 · Bluewaters Island</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
+<!-- ████████████████████████████████████████████
+     F&B PAGE
 ████████████████████████████████████████████ -->
 <div class="page" id="page-fnb">
   <div class="page-hero">
