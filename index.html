@@ -930,11 +930,13 @@ body{
 .hl-slide{
   position:absolute;inset:0;
   opacity:0;visibility:hidden;
+  z-index:0;
   transition:opacity .5s ease,visibility 0s linear .5s;
   pointer-events:none;overflow:hidden;
 }
 .hl-slide.active{
   opacity:1;visibility:visible;
+  z-index:1;
   transition:opacity .5s ease,visibility 0s linear 0s;
   pointer-events:auto;
 }
