@@ -40,7 +40,9 @@ body{
   backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
   height:52px;
-  position:sticky;top:0;z-index:9999;
+  position:-webkit-sticky;
+  position:sticky;
+  top:0;z-index:9999;
   border-bottom:1px solid var(--border);
 }
 .gnav-inner{
@@ -87,8 +89,12 @@ body{
 /* Mobile dropdown */
 .gnav-mobile-menu{
   display:none;
-  background:rgba(0,0,0,.96);
+  background:rgba(0,0,0,.97);
   border-top:1px solid var(--border);
+  position:sticky;
+  top:52px;
+  z-index:9998;
+  width:100%;
 }
 .gnav-mobile-menu.open{display:block}
 .gnav-mobile-menu ul{
@@ -104,6 +110,126 @@ body{
   transition:color .15s;
 }
 .gnav-mobile-menu a:hover{color:var(--secondary)}
+
+/* ══════════════════════════════════════════
+   INTERACTIVE FEATURES
+══════════════════════════════════════════ */
+
+/* 1. PAGE TRANSITIONS — smooth fade between pages */
+.page{
+  display:none;
+  animation:none;
+}
+.page.active{
+  display:block;
+  animation:pageFadeIn .3s ease;
+}
+@keyframes pageFadeIn{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* 2. HOVER CAPTION OVERLAY — slides up over card image on hover */
+.scard-vis{position:relative}
+.scard-hover-cap{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.3) 60%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:14px 14px 16px;
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .25s ease,transform .25s ease;
+  pointer-events:none;
+  z-index:3;
+}
+.scard:hover .scard-hover-cap{
+  opacity:1;
+  transform:translateY(0);
+}
+.scard-hover-cap-text{
+  font-size:11px;line-height:1.55;color:rgba(255,255,255,.9);
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+}
+.scard-hover-cap-tag{
+  font-size:9px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);
+  margin-bottom:5px;
+}
+
+/* 3. LIGHTBOX — fullscreen post viewer */
+.lb-overlay{
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(0,0,0,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease,visibility 0s linear .3s;
+}
+.lb-overlay.open{
+  opacity:1;visibility:visible;
+  transition:opacity .3s ease,visibility 0s linear 0s;
+}
+.lb-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  max-width:760px;width:100%;
+  max-height:90vh;
+  overflow-y:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  transform:scale(.96) translateY(8px);
+  transition:transform .3s cubic-bezier(.25,.46,.45,.94);
+  position:relative;
+}
+.lb-overlay.open .lb-box{transform:scale(1) translateY(0)}
+.lb-media{
+  position:relative;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border-radius:var(--r) 0 0 var(--r);
+  flex-shrink:0;
+}
+.lb-media img,.lb-media video{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.lb-body{
+  padding:28px 24px 28px;
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+}
+.lb-eye{
+  font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:8px;
+}
+.lb-title{
+  font-size:19px;font-weight:600;letter-spacing:-.3px;
+  color:var(--text);margin-bottom:12px;line-height:1.25;
+}
+.lb-caption{
+  font-size:13px;line-height:1.75;color:rgba(255,255,255,.8);
+  flex:1;
+}
+.lb-tags{
+  font-size:11px;color:var(--link);margin-top:14px;line-height:1.8;
+}
+.lb-close{
+  position:absolute;top:14px;right:14px;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:none;
+  color:var(--text);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;z-index:2;font-family:inherit;
+  line-height:1;
+}
+.lb-close:hover{background:rgba(255,255,255,.2)}
+@media(max-width:600px){
+  .lb-box{grid-template-columns:1fr}
+  .lb-media{aspect-ratio:16/9;border-radius:var(--r) var(--r) 0 0}
+  .lb-body{padding:20px 18px 24px}
+  .lb-title{font-size:16px}
+}
 
 /* ── WRAPPER ── */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
@@ -513,7 +639,228 @@ body{
 }
 .carousel-dot.active{background:#fff}
 
-/* ── IV CAMPAIGN PILLARS ── */
+/* ── MUTE TOGGLE ── */
+.mute-btn{
+  position:absolute;bottom:10px;left:10px;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  color:#fff;font-size:13px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  z-index:5;transition:background .2s;
+  pointer-events:auto;
+}
+.mute-btn:hover{background:rgba(255,255,255,.2)}
+.dsf-bts-label{
+  font-size:18px;font-weight:600;letter-spacing:-.2px;
+  color:var(--text);margin-top:36px;margin-bottom:4px;
+}
+.dsf-bts-sub{
+  font-size:12px;color:var(--secondary);
+  letter-spacing:.02em;margin-bottom:16px;
+}
+/* Opening night grid — photo left, 3 videos right */
+.dsf-opening-grid{
+  display:grid;grid-template-columns:1.4fr 1fr;
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;
+}
+.dsf-opening-main{
+  position:relative;overflow:hidden;
+  min-height:400px;
+}
+.dsf-opening-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:16px;font-size:11px;line-height:1.55;
+  color:rgba(255,255,255,.8);
+  background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
+}
+.dsf-opening-videos{
+  display:grid;grid-template-rows:repeat(3,1fr);
+  gap:1px;background:var(--border);
+}
+.dsf-opening-videos > .scard{
+  background:transparent;
+}
+.dsf-opening-videos > .scard .scard-vis{
+  height:100%;aspect-ratio:unset;
+}
+.dsf-vid-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:8px 10px;font-size:10px;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+  background:linear-gradient(to top,rgba(0,0,0,.65),transparent);
+}
+@media(max-width:680px){
+  .dsf-opening-grid{grid-template-columns:1fr}
+  .dsf-opening-main{min-height:260px}
+  .dsf-opening-videos{grid-template-rows:none;grid-template-columns:repeat(3,1fr)}
+}
+.dsf-fenty{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;
+}
+.dsf-fenty-visual{
+  position:relative;
+  min-height:360px;
+  background:linear-gradient(135deg,#1a0030 0%,#0d001a 40%,#001a10 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.dsf-fenty-bg{
+  text-align:center;z-index:2;position:relative;padding:32px;
+}
+.dsf-fenty-icon{font-size:52px;margin-bottom:16px;line-height:1}
+.dsf-fenty-wordmark{
+  font-size:22px;font-weight:700;color:#fff;line-height:1.2;
+  letter-spacing:-.3px;margin-bottom:10px;
+}
+.dsf-fenty-wordmark span{
+  font-size:13px;font-weight:400;color:rgba(255,255,255,.5);
+  letter-spacing:.05em;text-transform:uppercase;font-style:italic;
+}
+.dsf-fenty-date{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-top:8px;
+}
+.dsf-fenty-body{
+  padding:32px 28px;background:var(--surface);
+  display:flex;flex-direction:column;gap:0;
+}
+.dsf-fenty-tag{
+  font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:10px;
+}
+.dsf-fenty-title{
+  font-size:24px;font-weight:700;letter-spacing:-.4px;
+  color:var(--text);margin-bottom:16px;line-height:1.2;
+}
+.dsf-fenty-desc{
+  font-size:13px;line-height:1.75;color:rgba(255,255,255,.7);
+}
+.dsf-fenty-highlights{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;
+  padding-top:20px;border-top:1px solid var(--border);
+}
+.dsf-fenty-hl{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:500;color:var(--secondary);
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:20px;padding:5px 12px;
+}
+@media(max-width:860px){
+  .dsf-fenty{grid-template-columns:1fr}
+  .dsf-fenty-visual{min-height:240px}
+}
+
+/* ── DSF CASE STUDY ── */
+.dsf-stats{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  overflow:hidden;
+  margin-top:32px;
+}
+.dsf-stat{
+  padding:28px 16px;
+  text-align:center;
+  border-right:1px solid var(--border);
+  background:var(--surface);
+}
+.dsf-stat:last-child{border-right:none}
+.dsf-stat-num{
+  font-size:30px;font-weight:700;letter-spacing:-.8px;
+  color:var(--text);line-height:1;margin-bottom:8px;
+}
+.dsf-stat-num span{
+  font-size:20px;color:#c9a06a;
+}
+.dsf-stat-label{
+  font-size:10px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--secondary);line-height:1.4;
+}
+/* Pillars */
+.dsf-pillars{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;margin-top:32px;
+}
+.dsf-pillar{
+  background:var(--surface);padding:28px 24px;
+}
+.dsf-pillar-icon{font-size:24px;margin-bottom:12px}
+.dsf-pillar-title{
+  font-size:15px;font-weight:600;letter-spacing:-.2px;
+  color:var(--text);margin-bottom:8px;
+}
+.dsf-pillar-desc{
+  font-size:13px;line-height:1.7;color:var(--secondary);
+}
+/* Venues */
+.dsf-venues{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;margin-top:16px;
+}
+.dsf-venue{
+  background:var(--surface);padding:18px 18px;
+}
+.dsf-venue-hero{
+  grid-column:span 2;
+  background:var(--surface2);
+  border-right:1px solid var(--border);
+}
+.dsf-venue-name{
+  font-size:14px;font-weight:600;color:var(--text);
+  margin-bottom:4px;
+}
+.dsf-venue-hero .dsf-venue-name{font-size:17px}
+.dsf-venue-detail{
+  font-size:11px;color:var(--secondary);line-height:1.5;
+}
+/* BTS image placeholders */
+.dsf-img-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;margin-top:16px;
+}
+.dsf-img-placeholder{
+  aspect-ratio:4/3;background:var(--surface);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:10px;
+}
+.dsf-img-ph-icon{font-size:28px;opacity:.3}
+.dsf-img-ph-text{
+  font-size:11px;color:var(--secondary);
+  letter-spacing:.05em;
+}
+/* Responsive */
+@media(max-width:860px){
+  .dsf-stats{grid-template-columns:repeat(3,1fr)}
+  .dsf-stat:nth-child(3){border-right:none}
+  .dsf-stat:nth-child(4){border-top:1px solid var(--border)}
+  .dsf-venues{grid-template-columns:repeat(2,1fr)}
+  .dsf-venue-hero{grid-column:span 2}
+}
+@media(max-width:580px){
+  .dsf-stats{grid-template-columns:repeat(2,1fr)}
+  .dsf-stat{padding:20px 12px}
+  .dsf-stat-num{font-size:24px}
+  .dsf-stat:nth-child(2){border-right:none}
+  .dsf-stat:nth-child(3){border-top:1px solid var(--border)}
+  .dsf-pillars{grid-template-columns:1fr}
+  .dsf-venues{grid-template-columns:1fr 1fr}
+  .dsf-img-row{grid-template-columns:1fr}
+}
 .iv-pillar-label{
   padding:36px 0 20px;
   border-bottom:1px solid var(--border);
@@ -744,7 +1091,7 @@ body{
 /* ══════════════════════════════════════════
    MOBILE — 580px and below (phones)
 ══════════════════════════════════════════ */
-@media(max-width:580px){
+@media(max-width:768px){
 
   /* ── Mobile nav: show hamburger, hide desktop links ── */
   .gnav-links{display:none}
@@ -959,6 +1306,19 @@ body{
           </div>
         </div>
 
+        <!-- Slide 7: DSF — Campaigns -->
+        <div class="nr-slide" id="nr-slide-6" onclick="show('campaigns')" style="cursor:pointer">
+          <div class="nr-img" style="background:linear-gradient(135deg,#0a0812 0%,#1a0800 50%,#00120a 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px">
+            <div style="font-size:72px;font-weight:800;letter-spacing:-3px;color:#c9a06a;line-height:1">DSF</div>
+            <div style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35)">Dubai Shopping Festival</div>
+          </div>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">Campaign · Dubai Tourism · 2020–2021</div>
+            <div class="nr-title">150+ Influencers · 92.6M Engagements · 20 Venues</div>
+          </div>
+        </div>
+
       </div>
 
       <!-- Arrow buttons -->
@@ -973,6 +1333,7 @@ body{
         <span class="nr-dot" onclick="nrJump(3);event.stopPropagation()"></span>
         <span class="nr-dot" onclick="nrJump(4);event.stopPropagation()"></span>
         <span class="nr-dot" onclick="nrJump(5);event.stopPropagation()"></span>
+        <span class="nr-dot" onclick="nrJump(6);event.stopPropagation()"></span>
       </div>
 
       <!-- Progress bar -->
@@ -1006,7 +1367,7 @@ body{
     <!-- Latest Work -->
     <div class="sec-label mt-48 pb-20">Latest Work</div>
     <div class="sgrid mt-2">
-      <a class="scard" href="#" onclick="return show('entertainment')">
+      <a class="scard no-lb" href="#" onclick="return show('entertainment')">
         <div class="scard-vis" style="overflow:hidden;position:relative">
           <img src="ent_vox1.jpg" alt="VOX Cinemas" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
         </div>
@@ -1017,7 +1378,7 @@ body{
           <div class="scard-date">2021</div>
         </div>
       </a>
-      <a class="scard" href="#" onclick="return show('campaigns')">
+      <a class="scard no-lb" href="#" onclick="return show('campaigns')">
         <div class="scard-vis" style="overflow:hidden">
           <img src="cosmotel2021.jpg" alt="Cosmotel 2021" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
         </div>
@@ -1028,7 +1389,7 @@ body{
           <div class="scard-date">2021</div>
         </div>
       </a>
-      <a class="scard" href="#" onclick="return show('fnb')">
+      <a class="scard no-lb" href="#" onclick="return show('fnb')">
         <div class="scard-vis" style="overflow:hidden;position:relative">
           <img src="fnb_chai6.jpg" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
         </div>
@@ -1038,7 +1399,7 @@ body{
           <div class="scard-desc">A whole world of flavours — from iced chais to mouthwatering desserts.</div>
         </div>
       </a>
-      <a class="scard" href="#" onclick="return show('retail')">
+      <a class="scard no-lb" href="#" onclick="return show('retail')">
         <div class="scard-vis" style="overflow:hidden;position:relative">
           <img src="ret_2xl.jpg" alt="2XL Furniture" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
         </div>
@@ -1166,7 +1527,18 @@ body{
         <button class="hl-cta" onclick="campScrollTo('iv')">View campaign ↓</button>
       </div>
 
+      <!-- Slide 3: DSF -->
+      <div class="hl-slide" id="hl-slide-2">
+        <img src="dsf_fenty.png" class="hl-media" alt="Dubai Shopping Festival — The Island by Fenty Skin" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+        <div class="hl-overlay">
+          <div class="hl-badge">Dubai Tourism · Dec 2020 – Feb 2021</div>
+          <div class="hl-caption">Dubai Shopping Festival — 150+ Influencers · 20 Venues Citywide</div>
+        </div>
+        <button class="hl-cta" onclick="campScrollTo('dsf')">View case study ↓</button>
+      </div>
+
     </div>
+
     </div><!-- /highlights-stage-wrap -->
 
     <!-- Tab strip below — Apple style -->
@@ -1180,6 +1552,11 @@ body{
         <span class="hl-tab-progress" id="hl-prog-1"></span>
         <span class="hl-tab-eye">The Irish Village · Dubai</span>
         <span class="hl-tab-title">The IV Campaign</span>
+      </button>
+      <button class="hl-tab" onclick="hlSwitch(2)">
+        <span class="hl-tab-progress" id="hl-prog-2"></span>
+        <span class="hl-tab-eye">Dubai Tourism · 2020–2021</span>
+        <span class="hl-tab-title">Dubai Shopping Festival</span>
       </button>
     </div>
   </div>
@@ -1624,12 +2001,309 @@ body{
       </div>
     </div>
 
+    <!-- ══════════════════════════════════════════
+         DUBAI SHOPPING FESTIVAL CAMPAIGN
+    ══════════════════════════════════════════ -->
+    <div style="border-top:1px solid var(--border);margin:64px 0 0"></div>
+    <div id="dsf" class="camp-section-anchor"></div>
+
+    <!-- Intro -->
+    <div class="camp-intro" style="margin-top:0">
+      <div>
+        <div class="camp-eye">Dubai Tourism · Dec 2020 – Feb 2021</div>
+        <div class="camp-h2">Dubai Shopping Festival</div>
+        <div class="camp-desc">A city-wide influencer marketing campaign spanning 20 venues, 236 retail partners, and two months — orchestrated from the ground up. As Influencer &amp; Account Manager, I handled end-to-end campaign logistics: talent identification, shoot coordination, venue activations, and content delivery across a network of 150+ influencers representing 30+ nationalities.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-hd">Campaign Scale</div>
+        <div class="meta-row"><span class="meta-l">Client</span><span class="meta-v">Dubai Tourism · DTCM</span></div>
+        <div class="meta-row"><span class="meta-l">Duration</span><span class="meta-v">Dec 2020 – Feb 2021</span></div>
+        <div class="meta-row"><span class="meta-l">Role</span><span class="meta-v">Influencer &amp; Account Manager</span></div>
+        <div class="meta-row"><span class="meta-l">Venues</span><span class="meta-v">20 Malls &amp; Locations</span></div>
+        <div class="meta-row"><span class="meta-l">Partners</span><span class="meta-v">236 Retailers</span></div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="dsf-stats">
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">150<span>+</span></div>
+        <div class="dsf-stat-label">Influencers Managed</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">30<span>+</span></div>
+        <div class="dsf-stat-label">Nationalities</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">1,300<span>+</span></div>
+        <div class="dsf-stat-label">Pieces of Content</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">92.6<span>M</span></div>
+        <div class="dsf-stat-label">Total Engagements</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">122.4<span>M</span></div>
+        <div class="dsf-stat-label">Combined Follower Base</div>
+      </div>
+      <div class="dsf-stat">
+        <div class="dsf-stat-num">236</div>
+        <div class="dsf-stat-label">Retail Partners</div>
+      </div>
+    </div>
+
+    <!-- What I did -->
+    <div class="dsf-pillars">
+      <div class="dsf-pillar">
+        <div class="dsf-pillar-icon">🎯</div>
+        <div class="dsf-pillar-title">Influencer Strategy</div>
+        <div class="dsf-pillar-desc">Identified and vetted 150+ influencers spanning micro to macro tiers across 30+ nationalities — matching talent to venues, activations, and retail partner objectives.</div>
+      </div>
+      <div class="dsf-pillar">
+        <div class="dsf-pillar-icon">📍</div>
+        <div class="dsf-pillar-title">Shoot Logistics</div>
+        <div class="dsf-pillar-desc">Coordinated shoots across 20 venues citywide — from the opening nights at Burj Park with Tamer Hosny and Hussain Al Jasmi, to activations at Dubai Mall, Mall of the Emirates, The Walk JBR, Bluewaters, La Mer, Al Seef, and beyond.</div>
+      </div>
+      <div class="dsf-pillar">
+        <div class="dsf-pillar-icon">📸</div>
+        <div class="dsf-pillar-title">Production Management</div>
+        <div class="dsf-pillar-desc">Briefed and managed photographers and videographers on-location for every activation. Accompanied influencers to shoots, ensured brand guidelines were met, and managed delivery timelines for 1,300+ pieces of content.</div>
+      </div>
+      <div class="dsf-pillar">
+        <div class="dsf-pillar-icon">🤝</div>
+        <div class="dsf-pillar-title">Partner Coordination</div>
+        <div class="dsf-pillar-desc">Liaised between 236 retail partners and the influencer network — aligning content briefs, product integrations, and activation schedules across a two-month campaign window.</div>
+      </div>
+    </div>
+
+    <!-- ── FEATURED ACTIVATION: FENTY ISLAND ── -->
+    <div class="sec-label mt-48 pb-20">Featured Activation</div>
+
+    <div class="dsf-fenty">
+      <div class="dsf-fenty-visual">
+        <img src="dsf_fenty.png" alt="The Island by Fenty Skin" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 60%)"></div>
+      </div>
+      <div class="dsf-fenty-body">
+        <div class="dsf-fenty-tag">Fenty Beauty · Sephora GCC · DSF 2021</div>
+        <div class="dsf-fenty-title">The Island by Fenty Skin</div>
+        <div class="dsf-fenty-desc">
+          As part of the exclusive GCC launch of Rihanna's Fenty Skin at Sephora, the Dubai Mall Promenade was transformed into a fully immersive tropical island pop-up — one of the most ambitious beauty activations ever staged at DSF.
+        </div>
+        <div class="dsf-fenty-desc" style="margin-top:12px">
+          The 10-day experience featured a tiki island resort concept with themed zones named after Fenty Skin products — including the Total Cleans'r Cove, Fat Water Falls, and Hydra Vizor Sundeck. A tropical juice bar, hidden QR codes unlocking prizes, Spotify playlists, and product trial stations made it a social-first, fully shareable experience.
+        </div>
+        <div class="dsf-fenty-desc" style="margin-top:12px">
+          The activation coincided with Rihanna's takeover of the Burj Khalifa facade — her appearance across the world's tallest building driving audiences to the island pop-up below.
+        </div>
+        <div class="dsf-fenty-highlights">
+          <div class="dsf-fenty-hl"><span>📍</span> Dubai Mall Promenade</div>
+          <div class="dsf-fenty-hl"><span>🗓</span> January 6 – 16, 2021</div>
+          <div class="dsf-fenty-hl"><span>🌴</span> Immersive Island Experience</div>
+          <div class="dsf-fenty-hl"><span>✨</span> GCC Launch of Fenty Skin</div>
+          <div class="dsf-fenty-hl"><span>🏙</span> Burj Khalifa Takeover</div>
+          <div class="dsf-fenty-hl"><span>🛍</span> Sephora · UAE &amp; KSA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Venues covered -->
+    <div class="sec-label mt-48 pb-20">Venues &amp; Activations Covered</div>
+    <div class="dsf-venues">
+      <div class="dsf-venue dsf-venue-hero">
+        <div class="dsf-venue-name">Burj Park</div>
+        <div class="dsf-venue-detail">Opening Night · Tamer Hosny &amp; Hussain Al Jasmi · 2 Days</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Dubai Mall</div>
+        <div class="dsf-venue-detail">Retail Activations</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Mall of the Emirates</div>
+        <div class="dsf-venue-detail">Retail Activations</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">DSF Mall</div>
+        <div class="dsf-venue-detail">Dubai Shopping Festival Mall</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">The Walk JBR</div>
+        <div class="dsf-venue-detail">Outdoor Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Bluewaters</div>
+        <div class="dsf-venue-detail">Island Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">La Mer</div>
+        <div class="dsf-venue-detail">Beachfront Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">The Beach</div>
+        <div class="dsf-venue-detail">Outdoor Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Mercato</div>
+        <div class="dsf-venue-detail">Retail Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Al Khawaneej</div>
+        <div class="dsf-venue-detail">Community Activation</div>
+      </div>
+      <div class="dsf-venue">
+        <div class="dsf-venue-name">Al Seef Market</div>
+        <div class="dsf-venue-detail">Heritage District Activation</div>
+      </div>
+    </div>
+
+    <!-- Image placeholder row -->
+    <!-- ══════════════════════════════════════
+         SECTION A: INFLUENCER CONTENT (OFFICIAL)
+    ══════════════════════════════════════ -->
+    <div class="sec-label mt-48 pb-20">Influencer Content</div>
+    <p style="font-size:13px;color:var(--secondary);margin:-8px 0 20px;line-height:1.6">Content produced as part of the official DSF influencer campaign.</p>
+
+    <div class="sgrid mt-2">
+
+      <!-- Zeina MOTB — Burj Park -->
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
+          <video src="dsf_zeina.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Influencer Content · Official</div>
+          <div class="scard-title">Zeina — Burj Park Open Market</div>
+          <div class="scard-desc">@MOTB covering the DSF Open Market activation at Burj Park — creative content produced as part of the influencer campaign.</div>
+          <div class="scard-date">DSF 2020–2021 · Burj Park, Downtown Dubai</div>
+        </div>
+      </div>
+
+      <!-- Amal Hatta -->
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
+          <video src="dsf_amal.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Influencer Content · Official</div>
+          <div class="scard-title">Amal — Hatta Open Market</div>
+          <div class="scard-desc">Influencer coverage of the DSF Open Market in Hatta — part of the city-wide activation bringing the festival beyond the urban centre.</div>
+          <div class="scard-date">DSF 2020–2021 · Hatta</div>
+        </div>
+      </div>
+
+      <!-- Ahmed ElSayed — Snapchat -->
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:4/5;overflow:hidden;position:relative">
+          <video src="dsf_ahmed.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Snapchat Campaign · Official</div>
+          <div class="scard-title">Ahmed ElSayed — Scan to Win</div>
+          <div class="scard-desc">@twistedcurlz promoting the DSF Snapchat activation: scan the barcode visible in any retail store window for a chance to win AED 2,000 store credit.</div>
+          <div class="scard-date">DSF 2020–2021 · Snapchat Campaign</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SECTION B: LIVE COVERAGE (PERSONAL BTS)
+    ══════════════════════════════════════ -->
+    <div class="sec-label mt-48 pb-20">Live Coverage</div>
+    <p style="font-size:13px;color:var(--secondary);margin:-8px 0 20px;line-height:1.6">Personal field coverage captured on-location throughout the campaign — demonstrating hands-on presence across every activation.</p>
+
+    <!-- Opening Night -->
+    <div class="dsf-bts-label">Opening Night — Burj Park</div>
+    <div class="dsf-bts-sub">Tamer Hosny &amp; Hussain Al Jasmi · DSF Opening Concert · Day 1</div>
+
+    <div class="dsf-opening-grid">
+
+      <!-- Setup photo — full height left -->
+      <div class="dsf-opening-main">
+        <img src="dsf_opening_setup.jpg" alt="Burj Park setup prior to opening" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        <div class="dsf-opening-caption">Burj Park — Pre-show setup, chairs arranged with glow sticks ahead of the opening night concert marking the first day of DSF 2020.</div>
+      </div>
+
+      <!-- 3 videos right column -->
+      <div class="dsf-opening-videos">
+        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
+          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
+            <video src="dsf_tamer1.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
+            <button class="mute-btn" title="Toggle sound">🔇</button>
+            <div class="dsf-vid-label">Opening Statement</div>
+          </div>
+        </div>
+        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
+          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
+            <video src="dsf_tamer2.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
+            <button class="mute-btn" title="Toggle sound">🔇</button>
+            <div class="dsf-vid-label">Opening Concert</div>
+          </div>
+        </div>
+        <div class="scard no-lb" style="cursor:default;border-radius:6px;overflow:hidden">
+          <div class="scard-vis" style="aspect-ratio:9/16;overflow:hidden;position:relative">
+            <video src="dsf_tamer3.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" style="font-size:16px;width:36px;height:36px">▶</div>
+            <button class="mute-btn" title="Toggle sound">🔇</button>
+            <div class="dsf-vid-label">Concert Highlights</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Open Markets -->
+    <div class="dsf-bts-label" style="margin-top:40px">Open Markets</div>
+    <div class="dsf-bts-sub">Al Khawaneej Community Market · DSF Open Markets Programme</div>
+
+    <div class="dsf-img-row" style="grid-template-columns:1fr;margin-top:16px">
+      <div style="position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--border)">
+        <img src="dsf_khawaneej.jpg" alt="Al Khawaneej Market" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+        <div class="dsf-opening-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);color:rgba(255,255,255,.85)">Al Khawaneej Open Market — one of 20 venues covered across the city as part of the DSF activations programme.</div>
+      </div>
+    </div>
+
+    <!-- Drone Shows -->
+    <div class="dsf-bts-label" style="margin-top:40px">Drone Shows</div>
+    <div class="dsf-bts-sub">JBR The Beach · Bluewaters — DSF Drone Light Show Programme</div>
+
+    <div class="sgrid mt-2" style="grid-template-columns:1fr 1fr">
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:16/9;overflow:hidden;position:relative">
+          <video src="dsf_drone_beach.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Live Coverage · JBR</div>
+          <div class="scard-title">Drone Light Show — The Beach</div>
+          <div class="scard-date">DSF 2020–2021 · JBR, The Beach</div>
+        </div>
+      </div>
+      <div class="scard no-lb" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:16/9;overflow:hidden;position:relative">
+          <video src="dsf_drone_bluewaters.mp4" loop muted playsinline preload="metadata" data-sound="true" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="vcard-play">▶</div>
+          <button class="mute-btn" title="Toggle sound">🔇</button>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Live Coverage · Bluewaters</div>
+          <div class="scard-title">Drone Light Show — Bluewaters</div>
+          <div class="scard-date">DSF 2020–2021 · Bluewaters Island</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
-
-
-<!-- ████████████████████████████████████████████
-     F&B PAGE
 ████████████████████████████████████████████ -->
 <div class="page" id="page-fnb">
   <div class="page-hero">
@@ -2213,8 +2887,25 @@ body{
 
 
 <script>
+// ── Mute toggle buttons ──────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('video[data-sound]').forEach(video => {
+    const btn = video.parentElement.querySelector('.mute-btn');
+    if (!btn) return;
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      video.muted = !video.muted;
+      btn.textContent = video.muted ? '🔇' : '🔊';
+      // If video isn't playing yet, start it so sound is audible
+      if (!video.muted && video.paused) {
+        video.play().catch(() => {});
+      }
+    });
+  });
+});
+
 // ── Newsroom Carousel ──────────────────────────────────
-const NR_TOTAL = 6;
+const NR_TOTAL = 7;
 const NR_DURATION = 5000;
 let nrCurrent = 0;
 let nrTimer = null;
@@ -2455,6 +3146,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+// ── Lightbox ─────────────────────────────────────────
+function lbOpen(eye, title, caption, tags, mediaSrc, mediaType) {
+  const overlay = document.getElementById('lb-overlay');
+  const media   = document.getElementById('lb-media');
+  if (mediaType === 'video') {
+    media.innerHTML = `<video src="${mediaSrc}" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>`;
+  } else {
+    media.innerHTML = `<img src="${mediaSrc}" alt="${title}" style="width:100%;height:100%;object-fit:cover;display:block"/>`;
+  }
+  document.getElementById('lb-eye').textContent     = eye || '';
+  document.getElementById('lb-title').textContent   = title || '';
+  document.getElementById('lb-caption').textContent = caption || '';
+  document.getElementById('lb-tags').textContent    = tags || '';
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function lbClose(e) {
+  if (e && e.type === 'click') {
+    const box = document.getElementById('lb-box');
+    if (box && box.contains(e.target) && !e.target.classList.contains('lb-close')) return;
+  }
+  const overlay = document.getElementById('lb-overlay');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  const vid = overlay.querySelector('video');
+  if (vid) vid.pause();
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') lbClose();
+});
+
 function makeStars(id, n) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -2475,6 +3197,52 @@ makeStars('e-hero', 60);
 makeStars('e1', 20);
 makeStars('e3', 20);
 makeStars('e5', 20);
+
+// ── Auto-wire hover captions + lightbox to all scards ──
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.scard').forEach(card => {
+    // Skip cards with no real image/video
+    const vis  = card.querySelector('.scard-vis');
+    const img  = card.querySelector('.scard-vis img');
+    const vid  = card.querySelector('.scard-vis video');
+    const eye  = card.querySelector('.scard-eye')?.textContent  || '';
+    const title= card.querySelector('.scard-title')?.textContent|| '';
+    const desc = card.querySelector('.scard-desc')?.textContent || '';
+    const date = card.querySelector('.scard-date')?.textContent || '';
+
+    if (!vis || (!img && !vid)) return;
+
+    const src      = img ? img.getAttribute('src') : vid?.getAttribute('src');
+    const mType    = vid ? 'video' : 'image';
+
+    // 1. Inject hover caption overlay
+    if (desc && src) {
+      const cap = document.createElement('div');
+      cap.className = 'scard-hover-cap';
+      cap.innerHTML = `
+        <div class="scard-hover-cap-tag">${eye}</div>
+        <div class="scard-hover-cap-text">${desc}</div>`;
+      vis.appendChild(cap);
+    }
+
+    // 2. Wire lightbox on click — but only if card isn't a nav link
+    // and only if it has real content
+    if (src && title && !card.classList.contains('no-lb')) {
+      // Preserve existing onclick for nav cards (home shelf)
+      const existingOnclick = card.getAttribute('onclick');
+      if (!existingOnclick || existingOnclick.includes('show(')) {
+        // Don't override navigation cards — only add lightbox to non-nav cards
+        if (!existingOnclick) {
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', (e) => {
+            e.preventDefault();
+            lbOpen(eye, title, desc, date, src, mType);
+          });
+        }
+      }
+    }
+  });
+});
 
 // ── Video cards: seek to midpoint for thumbnail, hover/tap to play ──────
 (function initVideos() {
@@ -2585,5 +3353,19 @@ makeStars('e5', 20);
   });
 })();
 </script>
+<!-- ── LIGHTBOX ── -->
+<div class="lb-overlay" id="lb-overlay" onclick="lbClose(event)">
+  <div class="lb-box" id="lb-box">
+    <button class="lb-close" onclick="lbClose()">✕</button>
+    <div class="lb-media" id="lb-media"></div>
+    <div class="lb-body">
+      <div class="lb-eye"  id="lb-eye"></div>
+      <div class="lb-title" id="lb-title"></div>
+      <div class="lb-caption" id="lb-caption"></div>
+      <div class="lb-tags"  id="lb-tags"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
