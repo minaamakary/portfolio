@@ -2905,47 +2905,6 @@ body{
 
 
 <script>
-// ── Mute toggle buttons ──────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('video[data-sound]').forEach(video => {
-    const muteBtn = video.parentElement.querySelector('.mute-btn');
-    const playBtn = video.parentElement.querySelector('.vcard-play');
-
-    // Mute toggle
-    if (muteBtn) {
-      muteBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        video.muted = !video.muted;
-        muteBtn.textContent = video.muted ? '🔇' : '🔊';
-        if (!video.muted && video.paused) {
-          video.play().then(() => {
-            if (playBtn) playBtn.classList.add('hidden');
-          }).catch(() => {});
-        }
-      });
-    }
-
-    // Click-to-play for data-sound cards that aren't inside a .vcard
-    if (!video.closest('.vcard') && playBtn) {
-      const wrapper = video.parentElement;
-      wrapper.style.cursor = 'pointer';
-      wrapper.addEventListener('click', e => {
-        if (e.target === muteBtn) return;
-        if (video.paused) {
-          video.play().then(() => {
-            playBtn.classList.add('hidden');
-          }).catch(() => {});
-        } else {
-          video.pause();
-          playBtn.classList.remove('hidden');
-        }
-      });
-      video.addEventListener('ended', () => {
-        playBtn.classList.remove('hidden');
-      });
-    }
-  });
-});
 
 // ── Newsroom Carousel ──────────────────────────────────
 const NR_TOTAL = 7;
@@ -3287,19 +3246,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ── Video cards: seek to midpoint for thumbnail, hover/tap to play ──────
-(function initVideos() {
+// ── Unified video card player ────────────────────────────────────────
+(function initAllVideos() {
   const isTouch = window.matchMedia('(hover: none)').matches;
 
-  document.querySelectorAll('.vcard').forEach(card => {
-    const video = card.querySelector('video');
-    const btn   = card.querySelector('.vcard-play');
-    if (!video) return;
+  document.querySelectorAll('video').forEach(video => {
+    // Skip auto-managed videos (highlight carousel, lightbox)
+    if (video.closest('.hl-slide') || video.closest('#lb-media')) return;
+
+    const wrapper = video.parentElement;
+    const playBtn = wrapper.querySelector('.vcard-play');
+    const muteBtn = wrapper.querySelector('.mute-btn');
+
+    if (!playBtn) return; // not an interactive card
 
     let playing = false;
-    let seeked  = false;
+    let seeked   = false;
 
-    // Once metadata loads we know duration — seek to 40% through for a vibrant frame
+    // Seek to a good thumbnail frame once metadata loads
     video.addEventListener('loadedmetadata', () => {
       if (!seeked && video.duration && isFinite(video.duration)) {
         const customSeek = video.getAttribute('data-seek');
@@ -3307,94 +3271,54 @@ document.addEventListener('DOMContentLoaded', () => {
         seeked = true;
       }
     });
-
-    // Also catch seeked event to ensure the frame renders
-    video.addEventListener('seeked', () => {
-      seeked = true;
-    });
-
     video.load();
 
-    function play() {
-      video.currentTime = 0; // restart from beginning when playing
-      const p = video.play();
-      if (p !== undefined) {
-        p.then(() => {
-          playing = true;
-          if (btn) btn.classList.add('hidden');
-        }).catch(() => {});
-      }
+    function startPlay() {
+      video.currentTime = 0;
+      video.muted = true;
+      video.play().then(() => {
+        playing = true;
+        playBtn.classList.add('hidden');
+      }).catch(() => {});
     }
 
-    function pause() {
+    function stopPlay() {
       video.pause();
-      // Return to custom seek point or midpoint thumbnail after pausing
+      playing = false;
+      playBtn.classList.remove('hidden');
+      playBtn.textContent = '▶';
       const customSeek = video.getAttribute('data-seek');
       if (customSeek) {
         video.currentTime = parseFloat(customSeek);
       } else if (video.duration && isFinite(video.duration)) {
         video.currentTime = video.duration * 0.4;
       }
-      playing = false;
-      if (btn) {
-        btn.classList.remove('hidden');
-        btn.textContent = '▶';
-      }
     }
 
-    if (isTouch) {
-      card.addEventListener('click', e => {
-        e.preventDefault();
-        playing ? pause() : play();
-      });
-    } else {
-      card.addEventListener('mouseenter', play);
-      card.addEventListener('mouseleave', pause);
-    }
-  });
-// ── Also handle non-vcard videos (e.g. IV trivia, drone cards) ──────
-  document.querySelectorAll('.scard video').forEach(video => {
-    // Skip videos already handled by .vcard or mute-btn handlers
-    const card = video.closest('.scard');
-    if (!card) return;
-    if (video.closest('.vcard')) return;
-    if (video.hasAttribute('data-sound')) return;
-
-    const btn = video.parentElement.querySelector('.vcard-play');
-    video.load();
-    let playing = false;
-
-    video.addEventListener('loadedmetadata', () => {
-      if (video.duration && isFinite(video.duration)) {
-        video.currentTime = video.duration * 0.4;
-      }
-    });
-
-    if (isTouch) {
-      card.addEventListener('click', e => {
-        e.preventDefault();
-        if (playing) {
-          video.pause();
-          playing = false;
-          if (btn) btn.classList.remove('hidden');
-        } else {
-          video.currentTime = 0;
-          video.play().then(() => {
-            playing = true;
-            if (btn) btn.classList.add('hidden');
-          }).catch(() => {});
+    // Mute toggle (for videos with a sound button)
+    if (muteBtn) {
+      muteBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        muteBtn.textContent = video.muted ? '🔇' : '🔊';
+        // If unmuting a paused video, start playing it
+        if (!video.muted && !playing) {
+          startPlay();
         }
       });
+    }
+
+    if (isTouch) {
+      // Touch: tap to play/pause
+      wrapper.addEventListener('click', e => {
+        if (muteBtn && (e.target === muteBtn || muteBtn.contains(e.target))) return;
+        e.stopPropagation();
+        playing ? stopPlay() : startPlay();
+      });
     } else {
-      card.addEventListener('mouseenter', () => {
-        video.currentTime = 0;
-        video.play().then(() => { playing = true; if (btn) btn.classList.add('hidden'); }).catch(() => {});
-      });
-      card.addEventListener('mouseleave', () => {
-        video.pause();
-        playing = false;
-        if (btn) btn.classList.remove('hidden');
-      });
+      // Desktop: hover to play muted, mouse-leave to pause
+      wrapper.addEventListener('mouseenter', startPlay);
+      wrapper.addEventListener('mouseleave', stopPlay);
     }
   });
 })();
