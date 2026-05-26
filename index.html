@@ -2908,17 +2908,42 @@ body{
 // ── Mute toggle buttons ──────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('video[data-sound]').forEach(video => {
-    const btn = video.parentElement.querySelector('.mute-btn');
-    if (!btn) return;
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      video.muted = !video.muted;
-      btn.textContent = video.muted ? '🔇' : '🔊';
-      // If video isn't playing yet, start it so sound is audible
-      if (!video.muted && video.paused) {
-        video.play().catch(() => {});
-      }
-    });
+    const muteBtn = video.parentElement.querySelector('.mute-btn');
+    const playBtn = video.parentElement.querySelector('.vcard-play');
+
+    // Mute toggle
+    if (muteBtn) {
+      muteBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        muteBtn.textContent = video.muted ? '🔇' : '🔊';
+        if (!video.muted && video.paused) {
+          video.play().then(() => {
+            if (playBtn) playBtn.classList.add('hidden');
+          }).catch(() => {});
+        }
+      });
+    }
+
+    // Click-to-play for data-sound cards that aren't inside a .vcard
+    if (!video.closest('.vcard') && playBtn) {
+      const wrapper = video.parentElement;
+      wrapper.style.cursor = 'pointer';
+      wrapper.addEventListener('click', e => {
+        if (e.target === muteBtn) return;
+        if (video.paused) {
+          video.play().then(() => {
+            playBtn.classList.add('hidden');
+          }).catch(() => {});
+        } else {
+          video.pause();
+          playBtn.classList.remove('hidden');
+        }
+      });
+      video.addEventListener('ended', () => {
+        playBtn.classList.remove('hidden');
+      });
+    }
   });
 });
 
