@@ -3275,7 +3275,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startPlay() {
       video.currentTime = 0;
-      video.muted = true;
+      if (isTouch) {
+        // Mobile tap: play with sound by default
+        video.muted = false;
+        if (muteBtn) muteBtn.textContent = '🔊';
+      } else {
+        // Desktop hover: silent preview
+        video.muted = true;
+        if (muteBtn) muteBtn.textContent = '🔇';
+      }
       video.play().then(() => {
         playing = true;
         playBtn.classList.add('hidden');
@@ -3285,6 +3293,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function stopPlay() {
       video.pause();
       playing = false;
+      video.muted = true;
+      if (muteBtn) muteBtn.textContent = '🔇';
       playBtn.classList.remove('hidden');
       playBtn.textContent = '▶';
       const customSeek = video.getAttribute('data-seek');
@@ -3301,7 +3311,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         video.muted = !video.muted;
         muteBtn.textContent = video.muted ? '🔇' : '🔊';
-        // If unmuting a paused video, start playing it
         if (!video.muted && !playing) {
           startPlay();
         }
@@ -3353,13 +3362,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const vo = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const v = entry.target;
-      if (entry.isIntersecting && v.preload === 'none') {
-        v.preload = 'metadata';
+      if (entry.isIntersecting && v.preload !== 'auto') {
+        v.preload = 'auto';
         v.load();
         vo.unobserve(v);
       }
     });
-  }, { rootMargin: '200px' });
+  }, { rootMargin: '600px' });
 
   document.querySelectorAll('video[preload="none"]').forEach(v => vo.observe(v));
 })();
