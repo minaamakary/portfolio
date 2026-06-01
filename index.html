@@ -1243,8 +1243,8 @@ body{
     <!-- Desktop links -->
     <ul class="gnav-links">
       <li><a href="#" onclick="return show('home')"          id="gn-home"          class="active">Home</a></li>
-      <li><a href="#" onclick="return show('entertainment')" id="gn-entertainment">Entertainment</a></li>
       <li><a href="#" onclick="return show('campaigns')"     id="gn-campaigns">Campaigns</a></li>
+      <li><a href="#" onclick="return show('entertainment')" id="gn-entertainment">Entertainment</a></li>
       <li><a href="#" onclick="return show('fnb')"           id="gn-fnb">F&amp;B</a></li>
       <li><a href="#" onclick="return show('retail')"        id="gn-retail">Retail &amp; Lifestyle</a></li>
       <li><a href="#" onclick="return show('about')"         id="gn-about">About</a></li>
@@ -1258,8 +1258,8 @@ body{
   <div class="gnav-mobile-menu" id="gnav-mobile-menu">
     <ul>
       <li><a href="#" onclick="return mobileShow('home')">Home</a></li>
-      <li><a href="#" onclick="return mobileShow('entertainment')">Entertainment</a></li>
       <li><a href="#" onclick="return mobileShow('campaigns')">Campaigns</a></li>
+      <li><a href="#" onclick="return mobileShow('entertainment')">Entertainment</a></li>
       <li><a href="#" onclick="return mobileShow('fnb')">F&amp;B</a></li>
       <li><a href="#" onclick="return mobileShow('retail')">Retail &amp; Lifestyle</a></li>
       <li><a href="#" onclick="return mobileShow('about')">About</a></li>
@@ -1275,8 +1275,8 @@ body{
 ████████████████████████████████████████████ -->
 <div class="page active" id="page-home">
   <div class="page-hero">
-    <h1>Words that Worked</h1>
-    <p>Brand copy, social strategy, and campaign management — from beauty activations and influencer campaigns to F&amp;B and retail. Every post crafted to tell a story worth stopping for.</p>
+    <h1>Content that moves people.</h1>
+    <p>Strategy, copy, and campaign management — from influencer activations and live coverage to social-first content built for the region's biggest brands.</p>
   </div>
 
   <div class="wrap">
@@ -1284,8 +1284,18 @@ body{
     <div class="nr-carousel-wrap">
       <div class="nr-carousel" id="nr-carousel">
 
-        <!-- Slide 1: Cosmotel — Campaigns -->
+        <!-- Slide 1: DSF — Campaigns -->
         <div class="nr-slide active" id="nr-slide-0" onclick="show('campaigns')" style="cursor:pointer">
+          <img src="DSF landing banner_hero_bag.jpg" class="nr-img" alt="Dubai Shopping Festival"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">Campaign · Dubai Tourism · 2020–2021</div>
+            <div class="nr-title">150+ Influencers · 92.6M Engagements · 20 Venues</div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Cosmotel — Campaigns -->
+        <div class="nr-slide" id="nr-slide-1" onclick="show('campaigns')" style="cursor:pointer">
           <img src="cosmotel2021.jpg" class="nr-img" alt="Cosmotel 2021"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
@@ -1294,39 +1304,19 @@ body{
           </div>
         </div>
 
-        <!-- Slide 2: Ladurée — F&B -->
-        <div class="nr-slide" id="nr-slide-1" onclick="show('fnb')" style="cursor:pointer">
-          <img src="fnb_laduree.jpg" class="nr-img" alt="Ladurée"/>
+        <!-- Slide 3: Irish Village — Campaigns -->
+        <div class="nr-slide" id="nr-slide-2" onclick="show('campaigns')" style="cursor:pointer">
+          <img loading="lazy" src="iv_01.png" class="nr-img" alt="The Irish Village"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
-            <div class="nr-eye">F&amp;B · Ladurée</div>
-            <div class="nr-title">A Weekend Delight — City Centre Malls</div>
+            <div class="nr-eye">Campaign · The Irish Village · Dubai</div>
+            <div class="nr-title">The IV Campaign — Social-First Brand Content</div>
           </div>
         </div>
 
-        <!-- Slide 3: Jovial Watch — Retail -->
-        <div class="nr-slide" id="nr-slide-2" onclick="show('retail')" style="cursor:pointer">
-          <img src="ret_jovial.jpg" class="nr-img" alt="Jovial Watches"/>
-          <div class="nr-grad"></div>
-          <div class="nr-body">
-            <div class="nr-eye">Retail &amp; Lifestyle · Jovial</div>
-            <div class="nr-title">Symbolize Individuality — City Centre Al Zahia</div>
-          </div>
-        </div>
-
-        <!-- Slide 4: Shake Shack — F&B -->
-        <div class="nr-slide" id="nr-slide-3" onclick="show('fnb')" style="cursor:pointer">
-          <img src="fnb_shack.jpg" class="nr-img" alt="Shake Shack"/>
-          <div class="nr-grad"></div>
-          <div class="nr-body">
-            <div class="nr-eye">F&amp;B · Shake Shack</div>
-            <div class="nr-title">BBQ Is Back — Saucy New Menu Additions</div>
-          </div>
-        </div>
-
-        <!-- Slide 5: VOX Competition — Entertainment -->
-        <div class="nr-slide" id="nr-slide-4" onclick="show('entertainment')" style="cursor:pointer">
-          <img loading="lazy" src="ent_vox1.jpg" class="nr-img" alt="VOX Cinemas"/>
+        <!-- Slide 4: VOX Competition — Entertainment -->
+        <div class="nr-slide" id="nr-slide-3" onclick="show('entertainment')" style="cursor:pointer">
+          <img loading="lazy" src="vox_competition_banner.jpg" class="nr-img" alt="VOX Cinemas"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
             <div class="nr-eye">Entertainment · VOX Cinemas</div>
@@ -1334,26 +1324,33 @@ body{
           </div>
         </div>
 
-        <!-- Slide 6: 2XL — Retail -->
-        <div class="nr-slide" id="nr-slide-5" onclick="show('retail')" style="cursor:pointer">
+        <!-- Slide 5: Ladurée — F&B -->
+        <div class="nr-slide" id="nr-slide-4" onclick="show('fnb')" style="cursor:pointer">
+          <img loading="lazy" src="fnb_laduree.jpg" class="nr-img" alt="Ladurée"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">F&amp;B · Ladurée</div>
+            <div class="nr-title">A Weekend Delight — City Centre Malls</div>
+          </div>
+        </div>
+
+        <!-- Slide 6: Shake Shack — F&B -->
+        <div class="nr-slide" id="nr-slide-5" onclick="show('fnb')" style="cursor:pointer">
+          <img loading="lazy" src="fnb_shack.jpg" class="nr-img" alt="Shake Shack"/>
+          <div class="nr-grad"></div>
+          <div class="nr-body">
+            <div class="nr-eye">F&amp;B · Shake Shack</div>
+            <div class="nr-title">BBQ Is Back — Saucy New Menu Additions</div>
+          </div>
+        </div>
+
+        <!-- Slide 7: 2XL — Retail -->
+        <div class="nr-slide" id="nr-slide-6" onclick="show('retail')" style="cursor:pointer">
           <img loading="lazy" src="ret_2xl.jpg" class="nr-img" alt="2XL Furniture"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
             <div class="nr-eye">Retail &amp; Lifestyle · 2XL</div>
             <div class="nr-title">Lighten Up Your Space — Soleil Buffet</div>
-          </div>
-        </div>
-
-        <!-- Slide 7: DSF — Campaigns -->
-        <div class="nr-slide" id="nr-slide-6" onclick="show('campaigns')" style="cursor:pointer">
-          <div class="nr-img" style="background:linear-gradient(135deg,#0a0812 0%,#1a0800 50%,#00120a 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px">
-            <div style="font-size:72px;font-weight:800;letter-spacing:-3px;color:#c9a06a;line-height:1">DSF</div>
-            <div style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35)">Dubai Shopping Festival</div>
-          </div>
-          <div class="nr-grad"></div>
-          <div class="nr-body">
-            <div class="nr-eye">Campaign · Dubai Tourism · 2020–2021</div>
-            <div class="nr-title">150+ Influencers · 92.6M Engagements · 20 Venues</div>
           </div>
         </div>
 
@@ -1380,6 +1377,49 @@ body{
 
     <!-- ── Section Rows ── -->
     <div class="home-rows">
+
+      <!-- Campaigns -->
+      <div class="home-section-row">
+        <div class="home-row-header">
+          <div>
+            <div class="home-row-eye">Campaigns</div>
+            <div class="home-row-title">Strategy, content, and activation — built for iconic brands across the region.</div>
+          </div>
+          <a href="#" onclick="return show('campaigns')" class="home-row-link">View all →</a>
+        </div>
+        <div class="home-row-grid">
+          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="dsf_fenty.png" alt="Dubai Shopping Festival" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Campaign · Dubai Tourism · 2020–2021</div>
+              <div class="scard-title">Dubai Shopping Festival</div>
+              <div class="scard-desc">150+ influencers, 92.6M engagements, 20 venues citywide.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="cosmotel2021.jpg" alt="Cosmotel 2021" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Campaign · Majid Al Futtaim · 2021</div>
+              <div class="scard-title">Cosmotel 2021</div>
+              <div class="scard-desc">A beauty wonderland — 10-post Instagram campaign at City Centre Mirdif.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="iv_01.png" alt="The Irish Village" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Campaign · The Irish Village</div>
+              <div class="scard-title">The IV Campaign</div>
+              <div class="scard-desc">Social-first brand campaign — bringing the spirit of IV to feed and story.</div>
+            </div>
+          </a>
+        </div>
+      </div>
 
       <!-- Entertainment -->
       <div class="home-section-row">
@@ -1424,55 +1464,12 @@ body{
         </div>
       </div>
 
-      <!-- Campaigns -->
-      <div class="home-section-row">
-        <div class="home-row-header">
-          <div>
-            <div class="home-row-eye">Campaigns</div>
-            <div class="home-row-title">Real-world copy for iconic brands across the region.</div>
-          </div>
-          <a href="#" onclick="return show('campaigns')" class="home-row-link">View all →</a>
-        </div>
-        <div class="home-row-grid">
-          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
-            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
-              <img loading="lazy" src="dsf_fenty.png" alt="Dubai Shopping Festival" style="width:100%;height:100%;object-fit:cover;display:block"/>
-            </div>
-            <div class="scard-body">
-              <div class="scard-eye">Campaign · Dubai Tourism · 2020–2021</div>
-              <div class="scard-title">Dubai Shopping Festival</div>
-              <div class="scard-desc">150+ influencers, 92.6M engagements, 20 venues citywide.</div>
-            </div>
-          </a>
-          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
-            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
-              <img loading="lazy" src="cosmotel2021.jpg" alt="Cosmotel 2021" style="width:100%;height:100%;object-fit:cover;display:block"/>
-            </div>
-            <div class="scard-body">
-              <div class="scard-eye">Campaign · Majid Al Futtaim · 2021</div>
-              <div class="scard-title">Cosmotel 2021</div>
-              <div class="scard-desc">A beauty wonderland — 10-post Instagram campaign at City Centre Mirdif.</div>
-            </div>
-          </a>
-          <a class="scard no-lb" href="#" onclick="return show('campaigns')">
-            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
-              <img loading="lazy" src="iv_01.png" alt="The Irish Village" style="width:100%;height:100%;object-fit:cover;display:block"/>
-            </div>
-            <div class="scard-body">
-              <div class="scard-eye">Campaign · The Irish Village</div>
-              <div class="scard-title">The IV Campaign</div>
-              <div class="scard-desc">Social-first brand campaign — bringing the spirit of IV to feed and story.</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
       <!-- F&B -->
       <div class="home-section-row">
         <div class="home-row-header">
           <div>
             <div class="home-row-eye">Food &amp; Beverage</div>
-            <div class="home-row-title">Copy that makes you taste the dish before it arrives.</div>
+            <div class="home-row-title">Food content that makes you hungry before you're done scrolling.</div>
           </div>
           <a href="#" onclick="return show('fnb')" class="home-row-link">View all →</a>
         </div>
@@ -1515,7 +1512,7 @@ body{
         <div class="home-row-header">
           <div>
             <div class="home-row-eye">Retail &amp; Lifestyle</div>
-            <div class="home-row-title">Copy that turns browsing into buying.</div>
+            <div class="home-row-title">Content built to turn browsers to buyers.</div>
           </div>
           <a href="#" onclick="return show('retail')" class="home-row-link">View all →</a>
         </div>
@@ -1554,6 +1551,19 @@ body{
       </div>
 
     </div><!-- /.home-rows -->
+
+    <!-- ── HOME CTA STRIP ── -->
+    <div style="border:1px solid var(--border);border-radius:var(--r);padding:36px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;background:var(--surface);margin-bottom:80px">
+      <div>
+        <div style="font-size:20px;font-weight:600;letter-spacing:-.3px;color:var(--text);margin-bottom:6px;line-height:1.2">Like what you see?</div>
+        <div style="font-size:14px;color:var(--secondary)">Let's work on something together.</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="mailto:mina.makary@live.com" style="display:inline-flex;align-items:center;gap:7px;background:var(--text);color:#000;font-size:13px;font-weight:600;padding:10px 20px;border-radius:980px;text-decoration:none">✉ Get in touch</a>
+        <a href="#" onclick="return show('about')" style="display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--text);font-size:13px;font-weight:500;padding:10px 20px;border-radius:980px;text-decoration:none;border:1px solid var(--border)">About me →</a>
+      </div>
+    </div>
+
   </div><!-- /.wrap -->
 </div>
 
@@ -3069,6 +3079,42 @@ body{
 
     </div>
 
+    <!-- ── MUSIC ── -->
+    <div class="sec-label mt-48 pb-20">Also an Artist</div>
+    <div style="margin-top:16px">
+      <p style="font-size:15px;color:var(--secondary);line-height:1.65;max-width:560px;margin:0 0 24px">Beyond the strategy and the copy — I make music. Available on all major platforms.</p>
+      <iframe style="border-radius:12px;display:block" src="https://open.spotify.com/embed/artist/0IFJLnxNBavk2O2GZtqRSQ?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+        <a href="https://open.spotify.com/artist/0IFJLnxNBavk2O2GZtqRSQ" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:12px;font-weight:500;padding:8px 16px;border-radius:980px;text-decoration:none;transition:background .15s">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Spotify
+        </a>
+        <a href="https://music.apple.com/ae/artist/mina-makary/1709026577" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:12px;font-weight:500;padding:8px 16px;border-radius:980px;text-decoration:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FA243C"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.769-.75c-.593-.123-1.761-.182-1.967-.19L8.716 0C8.52 0 7.404.06 6.809.165c-.65.12-1.234.384-1.747.757C4.01 1.72 3.218 2.805 3.002 4.088a9.93 9.93 0 00-.16 1.574c-.013.5-.012 8.257-.012 8.257s-.01 7.757.012 8.257c.033.92.16 1.3.207 1.575.277 1.374 1.047 2.44 2.106 3.052.65.375 1.36.57 2.1.64.77.075 1.5.09 1.5.09L12 27l3.246-.067s.73-.015 1.5-.09c.74-.07 1.45-.265 2.1-.64 1.06-.612 1.83-1.678 2.106-3.052.047-.274.174-.654.207-1.575.022-.5.012-8.257.012-8.257s.01-7.757-.012-8.257zM16.914 13.5l-2.084 1.2-2.083 1.2a.5.5 0 01-.75-.433V8.533a.5.5 0 01.75-.433l2.083 1.2 2.084 1.2a.5.5 0 010 .867z"/></svg>
+          Apple Music
+        </a>
+        <a href="https://play.anghami.com/artist/6039566" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:12px;font-weight:500;padding:8px 16px;border-radius:980px;text-decoration:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#E8274B"><circle cx="12" cy="12" r="12"/><path d="M12 6a6 6 0 100 12A6 6 0 0012 6zm0 9a3 3 0 110-6 3 3 0 010 6z" fill="#fff"/></svg>
+          Anghami
+        </a>
+        <a href="https://music.youtube.com/@makarymusic" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:12px;font-weight:500;padding:8px 16px;border-radius:980px;text-decoration:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          YouTube Music
+        </a>
+      </div>
+    </div>
+
+    <!-- ── ABOUT PAGE CTA ── -->
+    <div style="border-top:1px solid var(--border);padding:52px 0 60px;text-align:center;margin-top:64px">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:12px">Let's work together</div>
+      <div style="font-size:36px;font-weight:700;letter-spacing:-.6px;color:var(--text);margin-bottom:10px;line-height:1.1">Got a brief? Let's talk.</div>
+      <p style="font-size:16px;color:var(--secondary);margin:0 auto 32px;line-height:1.6;max-width:440px">Whether it's a campaign, a content calendar, or copy that needs a sharper voice — I'd love to hear about it.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:mina.makary@live.com" style="display:inline-flex;align-items:center;gap:8px;background:var(--text);color:#000;font-size:14px;font-weight:600;padding:12px 24px;border-radius:980px;text-decoration:none">✉ mina.makary@live.com</a>
+        <a href="https://www.linkedin.com/in/minaamakary/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);font-size:14px;font-weight:500;padding:12px 24px;border-radius:980px;text-decoration:none;border:1px solid var(--border)">in LinkedIn</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -3078,6 +3124,10 @@ body{
   <div class="footer-inner">
     <div class="footer-copy">© 2026 Mina Makary. All rights reserved.</div>
     <div class="footer-links">
+      <a href="mailto:mina.makary@live.com">mina.makary@live.com</a>
+      <a href="https://www.linkedin.com/in/minaamakary/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-links" style="margin-top:4px">
       <a href="#" onclick="return show('home')">Home</a>
       <a href="#" onclick="return show('entertainment')">Entertainment</a>
       <a href="#" onclick="return show('campaigns')">Campaigns</a>
