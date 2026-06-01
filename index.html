@@ -1232,6 +1232,25 @@ body{
 
 /* Hide mob-only items on desktop */
 .mob-only{display:none}
+
+/* ── HERO HEADLINE ANIMATION ── */
+.hero-word{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(10px);
+  animation:wordIn .5s cubic-bezier(.25,.46,.45,.94) forwards;
+}
+@keyframes wordIn{
+  to{opacity:1;transform:translateY(0)}
+}
+.page-hero h1.animated .hero-word:nth-child(1){animation-delay:.05s}
+.page-hero h1.animated .hero-word:nth-child(2){animation-delay:.18s}
+.page-hero h1.animated .hero-word:nth-child(3){animation-delay:.31s}
+.page-hero h1.animated .hero-word:nth-child(4){animation-delay:.44s}
+.page-hero h1.animated .hero-word:nth-child(5){animation-delay:.57s}
+
+/* ── FOOTER ACTIVE STATE ── */
+.footer-links a.active{color:var(--text)}
 </style>
 </head>
 <body>
@@ -1275,7 +1294,7 @@ body{
 ████████████████████████████████████████████ -->
 <div class="page active" id="page-home">
   <div class="page-hero">
-    <h1>Content that moves people.</h1>
+    <h1 id="hero-h1"><span class="hero-word">Content</span> <span class="hero-word">that</span> <span class="hero-word">moves</span> <span class="hero-word">people.</span></h1>
     <p>Strategy, copy, and campaign management — from influencer activations and live coverage to social-first content built for the region's biggest brands.</p>
   </div>
 
@@ -3124,12 +3143,12 @@ body{
   <div class="footer-inner">
     <div class="footer-copy" style="margin-bottom:6px">© 2026 Mina Makary. All rights reserved.</div>
     <div class="footer-links">
-      <a href="#" onclick="return show('home')">Home</a>
-      <a href="#" onclick="return show('campaigns')">Campaigns</a>
-      <a href="#" onclick="return show('entertainment')">Entertainment</a>
-      <a href="#" onclick="return show('fnb')">F&amp;B</a>
-      <a href="#" onclick="return show('retail')">Retail &amp; Lifestyle</a>
-      <a href="#" onclick="return show('about')">About</a>
+      <a href="#" onclick="return show('home')"          data-page="home"          class="active">Home</a>
+      <a href="#" onclick="return show('campaigns')"     data-page="campaigns">Campaigns</a>
+      <a href="#" onclick="return show('entertainment')" data-page="entertainment">Entertainment</a>
+      <a href="#" onclick="return show('fnb')"           data-page="fnb">F&amp;B</a>
+      <a href="#" onclick="return show('retail')"        data-page="retail">Retail &amp; Lifestyle</a>
+      <a href="#" onclick="return show('about')"         data-page="about">About</a>
     </div>
   </div>
 </footer>
@@ -3166,7 +3185,11 @@ function nrJump(idx) {
 }
 
 // Start on page load
-document.addEventListener('DOMContentLoaded', () => nrJump(0));
+document.addEventListener('DOMContentLoaded', () => {
+  nrJump(0);
+  const h1 = document.getElementById('hero-h1');
+  if (h1) h1.classList.add('animated');
+});
 const HL_DURATION = 8000; // ms per slide before auto-advancing
 let hlCurrent = 0;
 let hlTotal = 0;
@@ -3247,11 +3270,30 @@ function show(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pg = document.getElementById('page-' + id);
   if (pg) pg.classList.add('active');
+
+  // Top nav active state
   document.querySelectorAll('.gnav-links a').forEach(a => a.classList.remove('active'));
   const gn = document.getElementById('gn-' + id);
   if (gn) gn.classList.add('active');
+
+  // Footer nav active state
+  document.querySelectorAll('.footer-links a[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === id);
+  });
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (id === 'campaigns') setTimeout(hlInit, 100);
+
+  // Hero animation — re-trigger when returning to home
+  if (id === 'home') {
+    const h1 = document.getElementById('hero-h1');
+    if (h1) {
+      h1.classList.remove('animated');
+      void h1.offsetWidth;
+      h1.classList.add('animated');
+    }
+  }
+
   return false;
 }
 
