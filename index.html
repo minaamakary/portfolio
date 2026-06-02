@@ -1260,6 +1260,23 @@ body{
 
 /* ── FOOTER ACTIVE STATE ── */
 .footer-links a.active{color:var(--text)}
+
+/* ── BILINGUAL TOGGLE ── */
+.lang-toggle{
+  display:flex;align-items:center;gap:7px;
+  margin-top:10px;padding-top:10px;
+  border-top:1px solid var(--border);
+}
+.lang-btn{
+  font-size:10px;font-weight:600;letter-spacing:.04em;
+  padding:3px 10px;border-radius:980px;
+  border:1px solid var(--border);background:transparent;
+  color:var(--secondary);cursor:pointer;font-family:var(--font);
+  transition:background .15s,color .15s;
+}
+.lang-btn.active{background:var(--text);color:#000;border-color:var(--text)}
+.lang-badge{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--secondary);margin-left:auto}
+.scard-desc[dir="rtl"]{direction:rtl;text-align:right;line-height:1.85}
 </style>
 </head>
 <body>
@@ -1547,22 +1564,22 @@ body{
         <div class="home-row-grid">
           <a class="scard no-lb" href="#" onclick="return show('retail')">
             <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+              <img loading="lazy" src="Hisense_WinterisGone.jpg" alt="Hisense Winter Has Gone" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div class="scard-body">
+              <div class="scard-eye">Electronics · Hisense Middle East</div>
+              <div class="scard-title">Winter Has Gone</div>
+              <div class="scard-desc">Game of Thrones meets UAE summer - reactive content that made a product post feel like a cultural moment.</div>
+            </div>
+          </a>
+          <a class="scard no-lb" href="#" onclick="return show('retail')">
+            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
               <img loading="lazy" src="ret_flormar.jpg" alt="Flormar" style="width:100%;height:100%;object-fit:cover;display:block"/>
             </div>
             <div class="scard-body">
               <div class="scard-eye">Beauty · Flormar Oman</div>
               <div class="scard-title">The Perfect Companion</div>
               <div class="scard-desc">Soft, lightweight texture with trendy colours - a tempting choice.</div>
-            </div>
-          </a>
-          <a class="scard no-lb" href="#" onclick="return show('retail')">
-            <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
-              <img loading="lazy" src="ret_2xl.jpg" alt="2XL Furniture" style="width:100%;height:100%;object-fit:cover;display:block"/>
-            </div>
-            <div class="scard-body">
-              <div class="scard-eye">Home &amp; Lifestyle · 2XL</div>
-              <div class="scard-title">Lighten Up Your Space</div>
-              <div class="scard-desc">The Soleil Buffet - beauty brought to a whole new level.</div>
             </div>
           </a>
           <a class="scard no-lb" href="#" onclick="return show('retail')">
@@ -2844,8 +2861,168 @@ body{
   </div>
   <div class="wrap">
 
+    <!-- ── HISENSE WINTER HAS GONE ── -->
+    <div class="camp-intro" style="margin-top:0;padding-top:0">
+      <div>
+        <div class="camp-eye">Hisense Middle East · Reactive Content · 2019</div>
+        <div class="camp-h2">Winter Has Gone</div>
+        <div class="camp-desc">The final season of Game of Thrones had just aired and the whole world was talking about it. Rather than letting the moment pass, we turned it into a product post. The iconic "Winter is Coming" warning flipped into "Winter Has Gone", tied directly to the arrival of UAE summer and the need for a reliable AC.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-hd">Project Details</div>
+        <div class="meta-row"><span class="meta-l">Client</span><span class="meta-v">Hisense Middle East</span></div>
+        <div class="meta-row"><span class="meta-l">Channel</span><span class="meta-v">Instagram</span></div>
+        <div class="meta-row"><span class="meta-l">Market</span><span class="meta-v">UAE</span></div>
+        <div class="meta-row"><span class="meta-l">Languages</span><span class="meta-v">English &amp; Arabic</span></div>
+        <div class="meta-row"><span class="meta-l">Type</span><span class="meta-v">Reactive / Trending Content</span></div>
+      </div>
+    </div>
+
+    <div class="dsf-fenty mt-2" style="margin-top:16px">
+      <div class="dsf-fenty-visual" style="min-height:400px">
+        <img loading="lazy" src="Hisense_WinterisGone.jpg" alt="Hisense Winter Has Gone - Game of Thrones inspired post" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 60%)"></div>
+      </div>
+      <div class="dsf-fenty-body">
+        <div class="dsf-fenty-tag">Inspired by Game of Thrones · UAE Summer · 2019</div>
+        <div class="dsf-fenty-title">Winter Has Gone</div>
+        <div class="dsf-fenty-desc">The GOT font, the icy creative, and the copy made it feel like a natural part of the cultural conversation, not a forced brand intrusion. It's the kind of post that gets shared because it's clever, not because it's promoted.</div>
+        <div style="margin-top:20px;padding:16px 18px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r)">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--secondary);margin-bottom:8px">Caption</div>
+          <div style="font-size:13px;line-height:1.7;color:var(--text)">Winter has gone! Are you prepared to battle the summer heat, with the true "King" of ACs?</div>
+        </div>
+        <div class="dsf-fenty-highlights" style="margin-top:20px">
+          <div class="dsf-fenty-hl"><span>🎬</span> Inspired by Game of Thrones</div>
+          <div class="dsf-fenty-hl"><span>⚡</span> Reactive to cultural moment</div>
+          <div class="dsf-fenty-hl"><span>🌡</span> Summer season launch</div>
+          <div class="dsf-fenty-hl"><span>🌍</span> English &amp; Arabic copy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pullquote" style="margin-top:16px">
+      <div class="pq-inner">
+        <div class="pq-eye">Hisense · On the Approach</div>
+        <div class="pq-q">"The best product posts don't feel like product posts. They feel like they belong in the conversation already."</div>
+        <cite class="pq-cite">- Mina Makary</cite>
+      </div>
+    </div>
+
+    <!-- Hisense Laser TV -->
+    <div style="border-top:1px solid var(--border);margin:64px 0 0"></div>
+    <div class="camp-intro" style="margin-top:0">
+      <div>
+        <div class="camp-eye">Hisense Middle East · Product Launch</div>
+        <div class="camp-h2">Hisense 100" Laser TV Launch</div>
+        <div class="camp-desc">A product launch campaign for the Hisense 100" Laser TV across Instagram. Each post was designed to spotlight a different feature of the screen, from anti-reflective technology to HDR colour accuracy, building the case for the product one visual at a time.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-hd">Project Details</div>
+        <div class="meta-row"><span class="meta-l">Client</span><span class="meta-v">Hisense Middle East</span></div>
+        <div class="meta-row"><span class="meta-l">Channel</span><span class="meta-v">Instagram</span></div>
+        <div class="meta-row"><span class="meta-l">Market</span><span class="meta-v">UAE</span></div>
+        <div class="meta-row"><span class="meta-l">Type</span><span class="meta-v">Product Launch Campaign</span></div>
+        <div class="meta-row"><span class="meta-l">Posts</span><span class="meta-v">6 Posts</span></div>
+      </div>
+    </div>
+
+    <div class="sgrid mt-2" style="margin-top:16px">
+
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img loading="lazy" src="hisense_crystal_clear.jpg" alt="Hisense Laser TV - Crystal Clear Quality" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Product Feature · Anti-Reflective Screen</div>
+          <div class="scard-title">Movies Come to Life</div>
+          <div class="scard-desc">Experience your favourite movies come to life. Our Hisense Laser TV's anti reflective screen is optimized for day time watching, offering great quality any time of the day.</div>
+        </div>
+      </div>
+
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img loading="lazy" src="hisense_fully_immersive.jpg" alt="Hisense Laser TV - Fully Immersive" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Product Feature · Immersive Experience</div>
+          <div class="scard-title">Fully Immersive</div>
+          <div class="scard-desc" id="hl-fi-desc" data-en="Hisense technology enables you to live the experience with authentic colours, sharper images and enhanced details with our new 100&quot; Laser TV technology." data-ar="تقنيات هايسنس تجعلك تعيش التجربة بألوان وتفاصيل أدق وأجمل مع تلفزيون هايسنس الليزر الجديد ذو شاشة 100 بوصة">Hisense technology enables you to live the experience with authentic colours, sharper images and enhanced details with our new 100" Laser TV technology.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="hlLang('hl-fi-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="hlLang('hl-fi-desc',this,'ar')">عربي</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img loading="lazy" src="hisense_vibrant_experience.jpg" alt="Hisense Laser TV - Vibrant Experience" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Product Feature · Colour Accuracy</div>
+          <div class="scard-title">The Brilliance of Colour</div>
+          <div class="scard-desc" id="hl-bc-desc" data-en="The brilliance of colour. Explore the 100&quot; Hisense Laser TV's incredible accuracy of colour that opens a new window to reality." data-ar="جمال عمق الألوان. استكشف دقة تلفزيون هايسنس الليزر بحجم 100 بوصة الذي يفتح لك باب جديداً للواقع">The brilliance of colour. Explore the 100" Hisense Laser TV's incredible accuracy of colour that opens a new window to reality.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="hlLang('hl-bc-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="hlLang('hl-bc-desc',this,'ar')">عربي</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img loading="lazy" src="hisense_breathtaking_views.jpg" alt="Hisense Laser TV - Breath-Taking Views" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Product Feature · HDR Technology</div>
+          <div class="scard-title">Breath-Taking Views</div>
+          <div class="scard-desc" id="hl-bv-desc" data-en="Sit back and enjoy exceptional views with our 100&quot; Hisense Laser TV's HDR technology that delivers outstanding contrast, colour and details." data-ar="شاهدوا أجمل البرامج من شاشة هايسنس الليزر بحجم 100 بوصة التي تعطيك ألوان وتفاصيل ولا أروع">Sit back and enjoy exceptional views with our 100" Hisense Laser TV's HDR technology that delivers outstanding contrast, colour and details.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="hlLang('hl-bv-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="hlLang('hl-bv-desc',this,'ar')">عربي</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img loading="lazy" src="hisense_exceptional_clarity.jpg" alt="Hisense Laser TV - Exceptional Clarity" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Product Feature · Exceptional Clarity</div>
+          <div class="scard-title">Exceptional Clarity</div>
+          <div class="scard-desc" id="hl-ec-desc" data-en="Our Laser TV's stunning vibrant picture with incredible depth and sharp details bring you a whole new experience." data-ar="استمتع ببرامجك المفضلة. تلفزيون هايسنس الليزر بالتقنية الضد العاكسة يجعل المشاهدة في النهار أفضل ليقدم لك مشاهدة برامج بجودة عالية في أي وقت">Our Laser TV's stunning vibrant picture with incredible depth and sharp details bring you a whole new experience.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="hlLang('hl-ec-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="hlLang('hl-ec-desc',this,'ar')">عربي</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scard" style="cursor:default">
+        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+          <img loading="lazy" src="hisense_hilife_deer.jpg" alt="Hisense Laser TV - HiLife" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+        <div class="scard-body">
+          <div class="scard-eye">Lifestyle · Seasonal Content</div>
+          <div class="scard-title">Enjoy Autumn at Home</div>
+          <div class="scard-desc" id="hl-ea-desc" data-en="Enjoy Autumn in the wild and at home 🧡 #SeeTheIncredible with the Hisense Laser 100&quot; TV." data-ar="تلفزيون هايسنس الليزر بألوانه المتنوعة الدقيقة يعطيك تفاصيل على الشاشة وتجربة جديدة لن تعرفها من قبل">Enjoy Autumn in the wild and at home 🧡 #SeeTheIncredible with the Hisense Laser 100" TV.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="hlLang('hl-ea-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="hlLang('hl-ea-desc',this,'ar')">عربي</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
     <!-- Sub-heading -->
-    <div class="sec-label pb-20">City Centre Retail Malls · UAE &amp; Oman</div>
+    <div class="sec-label mt-48 pb-20">City Centre Retail Malls · UAE &amp; Oman</div>
 
     <!-- Featured: Flormar as hero -->
     <div class="featured">
@@ -3008,6 +3185,7 @@ body{
       </div>
 
     </div>
+
   </div>
 </div>
 
@@ -3239,6 +3417,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const h1 = document.getElementById('hero-h1');
   if (h1) h1.classList.add('animated');
 });
+
+function hlLang(id, btn, lang) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = el.dataset[lang];
+  el.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  const btns = btn.parentNode.querySelectorAll('.lang-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
 const HL_DURATION = 8000; // ms per slide before auto-advancing
 let hlCurrent = 0;
 let hlTotal = 0;
