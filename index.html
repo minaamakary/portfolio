@@ -123,18 +123,27 @@ body{
    INTERACTIVE FEATURES
 ══════════════════════════════════════════ */
 
-/* 1. PAGE TRANSITIONS — smooth fade between pages */
+/* 1. PAGE TRANSITIONS — crossfade */
 .page{
   display:none;
-  animation:none;
+  opacity:0;
 }
 .page.active{
   display:block;
-  animation:pageFadeIn .3s ease;
+  animation:pageFadeIn .4s cubic-bezier(.25,.46,.45,.94) forwards;
+}
+.page.leaving{
+  display:block;
+  animation:pageFadeOut .2s ease forwards;
+  pointer-events:none;
 }
 @keyframes pageFadeIn{
-  from{opacity:0;transform:translateY(6px)}
+  from{opacity:0;transform:translateY(8px)}
   to{opacity:1;transform:translateY(0)}
+}
+@keyframes pageFadeOut{
+  from{opacity:1;transform:translateY(0)}
+  to{opacity:0;transform:translateY(-6px)}
 }
 
 /* 2. HOVER CAPTION OVERLAY — slides up over card image on hover */
@@ -3307,31 +3316,45 @@ function campScrollTo(id) {
 }
 // ── Router ──────────────────────────────────────
 function show(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const pg = document.getElementById('page-' + id);
-  if (pg) pg.classList.add('active');
+  const current = document.querySelector('.page.active');
 
-  // Top nav active state
-  document.querySelectorAll('.gnav-links a').forEach(a => a.classList.remove('active'));
-  const gn = document.getElementById('gn-' + id);
-  if (gn) gn.classList.add('active');
+  const activate = () => {
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active');
+      p.classList.remove('leaving');
+    });
+    const pg = document.getElementById('page-' + id);
+    if (pg) pg.classList.add('active');
 
-  // Footer nav active state
-  document.querySelectorAll('.footer-links a[data-page]').forEach(a => {
-    a.classList.toggle('active', a.dataset.page === id);
-  });
+    // Top nav active state
+    document.querySelectorAll('.gnav-links a').forEach(a => a.classList.remove('active'));
+    const gn = document.getElementById('gn-' + id);
+    if (gn) gn.classList.add('active');
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (id === 'campaigns') setTimeout(hlInit, 100);
+    // Footer nav active state
+    document.querySelectorAll('.footer-links a[data-page]').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === id);
+    });
 
-  // Hero animation — re-trigger when returning to home
-  if (id === 'home') {
-    const h1 = document.getElementById('hero-h1');
-    if (h1) {
-      h1.classList.remove('animated');
-      void h1.offsetWidth;
-      h1.classList.add('animated');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (id === 'campaigns') setTimeout(hlInit, 100);
+
+    // Hero animation — re-trigger when returning to home
+    if (id === 'home') {
+      const h1 = document.getElementById('hero-h1');
+      if (h1) {
+        h1.classList.remove('animated');
+        void h1.offsetWidth;
+        h1.classList.add('animated');
+      }
     }
+  };
+
+  if (current && current.id !== 'page-' + id) {
+    current.classList.add('leaving');
+    setTimeout(activate, 200);
+  } else {
+    activate();
   }
 
   return false;
