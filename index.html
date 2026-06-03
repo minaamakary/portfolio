@@ -1261,6 +1261,10 @@ body{
 /* ── FOOTER ACTIVE STATE ── */
 .footer-links a.active{color:var(--text)}
 
+/* ── FEATURED ITEM ACTIVE STATE ── */
+.feat-item.active{background:var(--surface2)}
+.feat-item.active .feat-item-title{color:var(--text)}
+
 /* ── BILINGUAL TOGGLE ── */
 .lang-toggle{
   display:flex;align-items:center;gap:7px;
@@ -1691,7 +1695,12 @@ body{
         <div class="scard-body">
           <div class="scard-eye">Pillar 2 · Movie Post</div>
           <div class="scard-title">Kickstart Your Weekend</div>
-          <div class="scard-desc">Kickstart your weekend with a whole line-up of great blockbusters at VOX Cinemas. Grab your popcorn with your little ones and let the show begin!</div>
+          <div class="scard-desc" id="vox-kickstart-desc" data-en="Kickstart your weekend with a whole line-up of great blockbusters at VOX Cinemas. Grab your popcorn with your little ones and let the show begin!" data-ar="استعدوا لعطلة نهاية الأسبوع واستمتعوا بمشاهدة باقة متنوعة من الأفلام الرائعة في ڤوكس سينما. تلذذوا بالفشار وعيشوا أوقاتاً لا تُنسى! #أسعد_اللحظات #لحظات_معاً #سيتي_سنتر_القرم">Kickstart your weekend with a whole line-up of great blockbusters at VOX Cinemas. Grab your popcorn with your little ones and let the show begin!</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('vox-kickstart-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('vox-kickstart-desc',this,'ar')">AR</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
           <div class="scard-date">@voxcinemasoman · #GreatMoments #CCQurum</div>
         </div>
       </div>
@@ -1721,7 +1730,12 @@ body{
         <div class="scard-body">
           <div class="scard-eye">Pillar 3 · Generic &amp; Lifestyle · Carousel · 6 slides</div>
           <div class="scard-title">Bitten by the Movie Bug?</div>
-          <div class="scard-desc">Catch the latest blockbuster hits in ultimate comfort at VOX Cinemas - showcasing the full range of screens and cinema experiences available.</div>
+          <div class="scard-desc" id="vox-bitten-desc" data-en="Catch the latest blockbuster hits in ultimate comfort at VOX Cinemas - showcasing the full range of screens and cinema experiences available." data-ar="عشاق الأفلام والإثارة والحماس، ماذا تنتظرون؟ استمتعوا بمشاهدة أحدث أفلام السينما العالمية بكل راحة وانسجام في فوكس سينما. #أسعد_اللحظات #لحظات_معاً #سيتي_سنتر_القرم">Catch the latest blockbuster hits in ultimate comfort at VOX Cinemas - showcasing the full range of screens and cinema experiences available.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('vox-bitten-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('vox-bitten-desc',this,'ar')">AR</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
           <div class="scard-date">@voxcinemasoman · #GreatMoments #CityCentreQurum</div>
         </div>
       </div>
@@ -2611,40 +2625,40 @@ body{
   <div class="wrap">
     <div class="sec-label pb-20">City Centre Retail Malls · UAE &amp; Oman</div>
 
-    <!-- Featured: Chaiwala hero -->
+    <!-- Featured: Chaiwala hero — interactive switcher -->
     <div class="featured">
       <div class="feat-visual" style="cursor:default;overflow:hidden">
-        <div class="feat-scale">
-          <img loading="lazy" src="fnb_chai6.jpg" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"/>
+        <div class="feat-scale" id="fnb-feat-scale">
+          <img id="fnb-feat-img" loading="lazy" src="fnb_chai1.jpg" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:opacity .3s ease"/>
         </div>
         <div class="feat-grad"></div>
         <div class="feat-body">
-          <div class="feat-eyebrow">F&amp;B · Project Chaiwala</div>
-          <div class="feat-title">A whole world of flavours - iced chais, sandwiches, and mouthwatering desserts.</div>
+          <div class="feat-eyebrow" id="fnb-feat-eye">Dessert · Project Chaiwala</div>
+          <div class="feat-title" id="fnb-feat-title">Matcha Soft Serve - Project Chaiwala</div>
         </div>
       </div>
       <div class="feat-list">
-        <div class="feat-item" style="cursor:default">
+        <div class="feat-item active" onclick="fnbSwitch(this,'fnb_chai1.jpg','Dessert · Project Chaiwala','Matcha Soft Serve - Project Chaiwala')">
           <div class="feat-item-eye">Dessert</div>
           <div class="feat-item-title">Matcha Soft Serve - Project Chaiwala</div>
         </div>
-        <div class="feat-item" style="cursor:default">
+        <div class="feat-item" onclick="fnbSwitch(this,'fnb_chai6.jpg','Drink · Project Chaiwala','Homebrewed Lemon Iced Tea')">
           <div class="feat-item-eye">Drink</div>
           <div class="feat-item-title">Homebrewed Lemon Iced Tea</div>
         </div>
-        <div class="feat-item" style="cursor:default">
+        <div class="feat-item" onclick="fnbSwitch(this,'fnb_chai7.jpg','Drink · Project Chaiwala','Iced Karak - the signature in a cup')">
           <div class="feat-item-eye">Drink</div>
           <div class="feat-item-title">Iced Karak - the signature in a cup</div>
         </div>
-        <div class="feat-item" style="cursor:default">
+        <div class="feat-item" onclick="fnbSwitch(this,'fnb_chai3.jpg','Food · Project Chaiwala','Tikki Burger &amp; Grilled Cheese - comfort chai-side bites')">
           <div class="feat-item-eye">Food</div>
           <div class="feat-item-title">Tikki Burger &amp; Grilled Cheese - comfort chai-side bites</div>
         </div>
-        <div class="feat-item" style="cursor:default">
+        <div class="feat-item" onclick="fnbSwitch(this,'fnb_laduree.jpg','Patisserie · Ladurée','A weekend delight - Ladurée\'s strawberry tart')">
           <div class="feat-item-eye">Patisserie · Ladurée</div>
           <div class="feat-item-title">A weekend delight - Ladurée's strawberry tart</div>
         </div>
-        <div class="feat-item" style="cursor:default">
+        <div class="feat-item" onclick="fnbSwitch(this,'fnb_paul.jpg','Bakery · Paul','Macaroons a world apart - 25% off on the Paul app')">
           <div class="feat-item-eye">Bakery · Paul</div>
           <div class="feat-item-title">Macaroons a world apart - 25% off on the Paul app</div>
         </div>
@@ -2661,7 +2675,7 @@ body{
     </div>
 
     <!-- Chaiwala - portrait carousel + caption side by side -->
-    <div class="chai-post mt-2">
+    <div class="chai-post mt-2 no-lb">
 
       <!-- Left: portrait carousel -->
       <div class="chai-visual">
@@ -2701,12 +2715,14 @@ body{
         </div>
         <div class="scard-eye" style="margin-bottom:8px">F&amp;B · Carousel · 7 Posts</div>
         <div class="scard-title" style="font-size:20px;margin-bottom:14px">Project Chaiwala - A Whole World of Flavours</div>
-        <div class="scard-desc" style="font-size:14px;line-height:1.75">
+        <div id="chai-caption" class="scard-desc" style="font-size:14px;line-height:1.75" data-en="Guess what's brewing at Project Chaiwala? A whole world of flavours! From iced chais to sandwiches to mouthwatering desserts, every moment is a celebration of amazing food. Drop in to experience the authentic tastes." data-ar="خمنوا شو بيترياكم في بروجكت تشايوالا... عالم من نكهات الشاي المثلج والسندويشات والحلويات الشهية، احتفلوا بكل لحظة بطعم مختلف. زوروا المقهى واستمتعوا بالنكهات الأصيلة.">
           Guess what's brewing at Project Chaiwala? A whole world of flavours! From iced chais to sandwiches to mouthwatering desserts, every moment is a celebration of amazing food. Drop in to experience the authentic tastes.
         </div>
-        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
-          <div style="font-size:11px;color:var(--secondary);line-height:1.8">
-            City Centre Malls · UAE &amp; Oman
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:11px;color:var(--secondary);line-height:1.8">City Centre Malls · UAE &amp; Oman</div>
+          <div style="display:flex;gap:6px">
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('chai-caption',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('chai-caption',this,'ar')">AR</button>
           </div>
         </div>
         <!-- Slide thumbnails row -->
@@ -2734,7 +2750,12 @@ body{
         <div class="scard-body">
           <div class="scard-eye">Patisserie · UAE</div>
           <div class="scard-title">Ladurée - A Weekend Delight</div>
-          <div class="scard-desc">Ladurée's interpretation of a weekend delight.</div>
+          <div class="scard-desc" id="laduree-desc" data-en="Ladurée's interpretation of a weekend delight." data-ar="المعنى الحقيقي للطعم المثالي مع لادوري">Ladurée's interpretation of a weekend delight.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('laduree-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('laduree-desc',this,'ar')">AR</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
           <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
         </div>
       </div>
@@ -2747,7 +2768,12 @@ body{
         <div class="scard-body">
           <div class="scard-eye">Bakery · UAE</div>
           <div class="scard-title">Paul - Little Treats a World Apart</div>
-          <div class="scard-desc">A big fan of macaroons? These little treats at Paul are a world apart and shouldn't be missed. Order on the Paul app and enjoy 25% off. When are you ordering?</div>
+          <div class="scard-desc" id="paul-desc" data-en="A big fan of macaroons? These little treats at Paul are a world apart and shouldn't be missed. Order on the Paul app and enjoy 25% off. When are you ordering?" data-ar="الألوان اللي تحلّي أوقات الجميع... زوروا &quot;پول تشاريوت&quot; واستانسوا بماكرون الذييييذ. متى حابين تزورونا؟">A big fan of macaroons? These little treats at Paul are a world apart and shouldn't be missed. Order on the Paul app and enjoy 25% off. When are you ordering?</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('paul-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('paul-desc',this,'ar')">AR</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
           <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
         </div>
       </div>
@@ -2762,7 +2788,12 @@ body{
         <div class="scard-body">
           <div class="scard-eye">Breakfast · UAE</div>
           <div class="scard-title">Zaatar W Zait - The Mega Breakfast</div>
-          <div class="scard-desc">Love a filling Middle Eastern breakfast? The Mega Breakfast at Zaatar w Zait is just what you need! Indulge in a range of authentic Lebanese dishes at just AED 35. Sounds tempting?</div>
+          <div class="scard-desc" id="zaatar-desc" data-en="Love a filling Middle Eastern breakfast? The Mega Breakfast at Zaatar w Zait is just what you need! Indulge in a range of authentic Lebanese dishes at just AED 35. Sounds tempting?" data-ar="مشتاقين للكعك؟ ما لكم غير مطعم زعتر وزيت وخيار الميغا بريكفسات اللبنانية... تلذّذوا بهالوجبة الأصيلة مقابل 35 درهم فقط. مين رفيقك/رفيقتك في الفطور؟">Love a filling Middle Eastern breakfast? The Mega Breakfast at Zaatar w Zait is just what you need! Indulge in a range of authentic Lebanese dishes at just AED 35. Sounds tempting?</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('zaatar-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('zaatar-desc',this,'ar')">AR</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
           <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
         </div>
       </div>
@@ -2775,7 +2806,12 @@ body{
         <div class="scard-body">
           <div class="scard-eye">Burgers · UAE</div>
           <div class="scard-title">Shake Shack - BBQ Is Back</div>
-          <div class="scard-desc">BBQ is back! Order Shake Shack's saucy new menu additions: BBQ ShackMeister Burger, BBQ Chick'n Shack and BBQ Veal Bacon &amp; Cheese Fries.</div>
+          <div class="scard-desc" id="shack-desc" data-en="BBQ is back! Order Shake Shack's saucy new menu additions: BBQ ShackMeister Burger, BBQ Chick'n Shack and BBQ Veal Bacon &amp; Cheese Fries." data-ar="شيك شاك ردلكم منيو الباربكيو! مروهم واستانسوا بثلاث اختيارات عجيبة: شاك مايستر باربكيو، تشيكن شاك باربكيو وبطاطا مقلية باربكيو">BBQ is back! Order Shake Shack's saucy new menu additions: BBQ ShackMeister Burger, BBQ Chick'n Shack and BBQ Veal Bacon &amp; Cheese Fries.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('shack-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('shack-desc',this,'ar')">AR</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
           <div class="scard-date">City Centre Malls · UAE &amp; Oman</div>
         </div>
       </div>
@@ -2888,8 +2924,14 @@ body{
         <div class="dsf-fenty-title">Winter Has Gone</div>
         <div class="dsf-fenty-desc">The GOT font, the icy creative, and the copy made it feel like a natural part of the cultural conversation, not a forced brand intrusion. It's the kind of post that gets shared because it's clever, not because it's promoted.</div>
         <div style="margin-top:20px;padding:16px 18px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r)">
-          <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--secondary);margin-bottom:8px">Caption</div>
-          <div style="font-size:13px;line-height:1.7;color:var(--text)">Winter has gone! Are you prepared to battle the summer heat, with the true "King" of ACs?</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--secondary)">Caption</div>
+            <div style="display:flex;gap:6px">
+              <button class="lang-btn active" onclick="event.stopPropagation();hlLang('wig-caption',this,'en')">EN</button>
+              <button class="lang-btn" onclick="event.stopPropagation();hlLang('wig-caption',this,'ar')">AR</button>
+            </div>
+          </div>
+          <div id="wig-caption" style="font-size:13px;line-height:1.7;color:var(--text)" data-en='Winter has gone! Are you prepared to battle the summer heat, with the true "King" of ACs?' data-ar="قد رحل الشتاء! هل انتم مستعدون للحرب مع حرارة الصيف مع ملك المكيفات الحقيقي؟">Winter has gone! Are you prepared to battle the summer heat, with the true "King" of ACs?</div>
         </div>
         <div class="dsf-fenty-highlights" style="margin-top:20px">
           <div class="dsf-fenty-hl"><span>🎬</span> Inspired by Game of Thrones</div>
@@ -2933,9 +2975,14 @@ body{
           <img loading="lazy" src="hisense_crystal_clear.jpg" alt="Hisense Laser TV - Crystal Clear Quality" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
-          <div class="scard-eye">Product Feature · Anti-Reflective Screen</div>
-          <div class="scard-title">Movies Come to Life</div>
-          <div class="scard-desc">Experience your favourite movies come to life. Our Hisense Laser TV's anti reflective screen is optimized for day time watching, offering great quality any time of the day.</div>
+          <div class="scard-eye">Product Feature · Vibrant Picture</div>
+          <div class="scard-title">A Whole New Experience</div>
+          <div class="scard-desc" id="hl-cc-desc" data-en="Our Laser TV's stunning vibrant picture with incredible depth and sharp details bring you a whole new experience." data-ar="تلفزيون هايسنس الليزر بألوانه المتنوعة الدقيقة يعطيك تفاصيل على الشاشة وتجربة جديدة لن تعرفها من قبل">Our Laser TV's stunning vibrant picture with incredible depth and sharp details bring you a whole new experience.</div>
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('hl-cc-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('hl-cc-desc',this,'ar')">AR</button>
+            <span class="lang-badge">Bilingual</span>
+          </div>
         </div>
       </div>
 
@@ -2948,8 +2995,8 @@ body{
           <div class="scard-title">Fully Immersive</div>
           <div class="scard-desc" id="hl-fi-desc" data-en="Hisense technology enables you to live the experience with authentic colours, sharper images and enhanced details with our new 100&quot; Laser TV technology." data-ar="تقنيات هايسنس تجعلك تعيش التجربة بألوان وتفاصيل أدق وأجمل مع تلفزيون هايسنس الليزر الجديد ذو شاشة 100 بوصة">Hisense technology enables you to live the experience with authentic colours, sharper images and enhanced details with our new 100" Laser TV technology.</div>
           <div class="lang-toggle">
-            <button class="lang-btn active" onclick="hlLang('hl-fi-desc',this,'en')">EN</button>
-            <button class="lang-btn" onclick="hlLang('hl-fi-desc',this,'ar')">عربي</button>
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('hl-fi-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('hl-fi-desc',this,'ar')">AR</button>
             <span class="lang-badge">Bilingual</span>
           </div>
         </div>
@@ -2964,8 +3011,8 @@ body{
           <div class="scard-title">The Brilliance of Colour</div>
           <div class="scard-desc" id="hl-bc-desc" data-en="The brilliance of colour. Explore the 100&quot; Hisense Laser TV's incredible accuracy of colour that opens a new window to reality." data-ar="جمال عمق الألوان. استكشف دقة تلفزيون هايسنس الليزر بحجم 100 بوصة الذي يفتح لك باب جديداً للواقع">The brilliance of colour. Explore the 100" Hisense Laser TV's incredible accuracy of colour that opens a new window to reality.</div>
           <div class="lang-toggle">
-            <button class="lang-btn active" onclick="hlLang('hl-bc-desc',this,'en')">EN</button>
-            <button class="lang-btn" onclick="hlLang('hl-bc-desc',this,'ar')">عربي</button>
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('hl-bc-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('hl-bc-desc',this,'ar')">AR</button>
             <span class="lang-badge">Bilingual</span>
           </div>
         </div>
@@ -2980,8 +3027,8 @@ body{
           <div class="scard-title">Breath-Taking Views</div>
           <div class="scard-desc" id="hl-bv-desc" data-en="Sit back and enjoy exceptional views with our 100&quot; Hisense Laser TV's HDR technology that delivers outstanding contrast, colour and details." data-ar="شاهدوا أجمل البرامج من شاشة هايسنس الليزر بحجم 100 بوصة التي تعطيك ألوان وتفاصيل ولا أروع">Sit back and enjoy exceptional views with our 100" Hisense Laser TV's HDR technology that delivers outstanding contrast, colour and details.</div>
           <div class="lang-toggle">
-            <button class="lang-btn active" onclick="hlLang('hl-bv-desc',this,'en')">EN</button>
-            <button class="lang-btn" onclick="hlLang('hl-bv-desc',this,'ar')">عربي</button>
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('hl-bv-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('hl-bv-desc',this,'ar')">AR</button>
             <span class="lang-badge">Bilingual</span>
           </div>
         </div>
@@ -2992,12 +3039,12 @@ body{
           <img loading="lazy" src="hisense_exceptional_clarity.jpg" alt="Hisense Laser TV - Exceptional Clarity" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
-          <div class="scard-eye">Product Feature · Exceptional Clarity</div>
+          <div class="scard-eye">Product Feature · Anti-Reflective Screen</div>
           <div class="scard-title">Exceptional Clarity</div>
-          <div class="scard-desc" id="hl-ec-desc" data-en="Our Laser TV's stunning vibrant picture with incredible depth and sharp details bring you a whole new experience." data-ar="استمتع ببرامجك المفضلة. تلفزيون هايسنس الليزر بالتقنية الضد العاكسة يجعل المشاهدة في النهار أفضل ليقدم لك مشاهدة برامج بجودة عالية في أي وقت">Our Laser TV's stunning vibrant picture with incredible depth and sharp details bring you a whole new experience.</div>
+          <div class="scard-desc" id="hl-ec-desc" data-en="Experience your favourite movies come to life. Our Hisense Laser TV's anti reflective screen is optimized for day time watching, offering great quality any time of the day." data-ar="استمتع ببرامجك المفضلة تلفزيون هايسنس الليزر بالتقنية الضد العاكسة يجعل المشاهدة في النهار أفضل ليقدم لك مشاهدة برامج بجودة عالية في اي وقت">Experience your favourite movies come to life. Our Hisense Laser TV's anti reflective screen is optimized for day time watching, offering great quality any time of the day.</div>
           <div class="lang-toggle">
-            <button class="lang-btn active" onclick="hlLang('hl-ec-desc',this,'en')">EN</button>
-            <button class="lang-btn" onclick="hlLang('hl-ec-desc',this,'ar')">عربي</button>
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('hl-ec-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('hl-ec-desc',this,'ar')">AR</button>
             <span class="lang-badge">Bilingual</span>
           </div>
         </div>
@@ -3012,8 +3059,8 @@ body{
           <div class="scard-title">Enjoy Autumn at Home</div>
           <div class="scard-desc" id="hl-ea-desc" data-en="Enjoy Autumn in the wild and at home 🧡 #SeeTheIncredible with the Hisense Laser 100&quot; TV." data-ar="تلفزيون هايسنس الليزر بألوانه المتنوعة الدقيقة يعطيك تفاصيل على الشاشة وتجربة جديدة لن تعرفها من قبل">Enjoy Autumn in the wild and at home 🧡 #SeeTheIncredible with the Hisense Laser 100" TV.</div>
           <div class="lang-toggle">
-            <button class="lang-btn active" onclick="hlLang('hl-ea-desc',this,'en')">EN</button>
-            <button class="lang-btn" onclick="hlLang('hl-ea-desc',this,'ar')">عربي</button>
+            <button class="lang-btn active" onclick="event.stopPropagation();hlLang('hl-ea-desc',this,'en')">EN</button>
+            <button class="lang-btn" onclick="event.stopPropagation();hlLang('hl-ea-desc',this,'ar')">AR</button>
             <span class="lang-badge">Bilingual</span>
           </div>
         </div>
@@ -3417,6 +3464,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const h1 = document.getElementById('hero-h1');
   if (h1) h1.classList.add('animated');
 });
+
+function fnbSwitch(el, img, eye, title) {
+  document.querySelectorAll('.feat-list .feat-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  const imgEl = document.getElementById('fnb-feat-img');
+  if (imgEl) {
+    imgEl.style.opacity = '0';
+    setTimeout(() => {
+      imgEl.src = img;
+      imgEl.style.opacity = '1';
+    }, 150);
+  }
+  const eyeEl = document.getElementById('fnb-feat-eye');
+  const titleEl = document.getElementById('fnb-feat-title');
+  if (eyeEl) eyeEl.textContent = eye;
+  if (titleEl) titleEl.textContent = title;
+}
 
 function hlLang(id, btn, lang) {
   const el = document.getElementById(id);
