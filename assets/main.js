@@ -691,3 +691,41 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
 
   request();
 })();
+
+// ── Featured panels (Fenty, Hisense): photo settles, title rises, text lights up in turn ──
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;   // panel stays exactly as written
+  document.querySelectorAll('.dsf-fenty').forEach(panel => {
+    const body  = panel.querySelector('.dsf-fenty-body');
+    const title = panel.querySelector('.dsf-fenty-title');
+    const img   = panel.querySelector('.dsf-fenty-visual img');
+    const pills = panel.querySelector('.dsf-fenty-highlights');
+    if (!body) return;
+    panel.classList.add('panel-anim');
+    if (title && !title.children.length) {
+      title.innerHTML = title.textContent.trim().split(/\s+/)
+        .map((w, i) => `<span class="rw" style="--i:${i}">${w}</span>`).join(' ');
+    }
+    // everything between the title and the pills lights up in reading order;
+    // paragraphs brighten, other blocks (e.g. the Hisense caption box) rise in
+    const seq = [...body.children].filter(el =>
+      !el.matches('.dsf-fenty-tag, .dsf-fenty-title, .dsf-fenty-highlights'));
+    seq.forEach(el => { if (!el.matches('.dsf-fenty-desc')) el.classList.add('panel-rise'); });
+    if (pills) pills.querySelectorAll('.dsf-fenty-hl').forEach((p, i) => p.style.setProperty('--i', i));
+
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const vh = innerHeight, r = panel.getBoundingClientRect();
+      if (r.top < vh * 0.8) panel.classList.add('go');                 // tag + title, once
+      seq.forEach(el => el.classList.toggle('lit', el.getBoundingClientRect().top < vh * 0.6));
+      const last = seq[seq.length - 1];
+      if (pills && (!last || last.classList.contains('lit')) && pills.getBoundingClientRect().top < vh * 0.92) pills.classList.add('in');
+      if (img) img.style.setProperty('--fz', (1.12 - 0.12 * Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)))).toFixed(4));
+    };
+    const req = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    addEventListener('scroll', req, { passive: true });
+    addEventListener('resize', req);
+    req();
+  });
+})();
