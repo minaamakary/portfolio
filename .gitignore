@@ -6,3 +6,9 @@ Mina_Makary_Job_Tracker.xlsx
 
 # macOS
 .DS_Store
+
+# Full-size source media (kept locally)
+_originals/
+
+# Local tooling
+.claude/
