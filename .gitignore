@@ -1,0 +1,8 @@
+# Private files
+Mina_Makary_Job_Tracker.xlsx
+
+# Office lock files
+~$*
+
+# macOS
+.DS_Store
