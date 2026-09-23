@@ -430,14 +430,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!playBtn) return; // not an interactive card
 
     let playing = false;
-    let seeked   = false;
-
-    // Seek to a good thumbnail frame once metadata loads
+    // Seek to a good thumbnail frame whenever metadata loads. The lazy
+    // loader below calls load() again, which resets the video to frame 0.
     video.addEventListener('loadedmetadata', () => {
-      if (!seeked && video.duration && isFinite(video.duration)) {
+      if (!playing && video.duration && isFinite(video.duration)) {
         const customSeek = video.getAttribute('data-seek');
         video.currentTime = customSeek ? parseFloat(customSeek) : video.duration * 0.4;
-        seeked = true;
       }
     });
     video.load();

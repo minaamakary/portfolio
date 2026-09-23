@@ -1282,3 +1282,8 @@ body{
 .hgal-btn:hover{background:#2c2c2e}
 .hgal-btn:disabled{opacity:.35;cursor:default}
 .hgal-btn:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.hgal--square .hgal-item{flex-basis:clamp(240px,72vw,300px)}
+.hgal--square .hgal-media{aspect-ratio:1/1}
+.hgal-eye{margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--secondary)}
+.hgal-eye + .hgal-cap{margin-top:6px}
+.hgal-meta{margin-top:8px;font-size:12px;line-height:1.5;color:var(--secondary);opacity:.8}
