@@ -15,6 +15,10 @@
 <meta name="twitter:title" content="Food &amp; Beverage - Mina Makary"/>
 <meta name="twitter:description" content="Copy for restaurants, cafés and F&amp;B brands across City Centre Malls - UAE &amp; Oman."/>
 <meta name="twitter:image" content="https://minaamakary.github.io/portfolio/og_image.png"/>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
+<meta name="theme-color" content="#000000"/>
 <link rel="stylesheet" href="assets/style.css"/>
 </head>
 <body>
@@ -74,27 +78,27 @@
         </div>
       </div>
       <div class="feat-list">
-        <div class="feat-item active" onclick="fnbSwitch(this,'fnb_chai1.webp','Dessert · Project Chaiwala','Matcha Soft Serve - Project Chaiwala')">
+        <div class="feat-item active" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai1.webp','Dessert · Project Chaiwala','Matcha Soft Serve - Project Chaiwala')">
           <div class="feat-item-eye">Dessert</div>
           <div class="feat-item-title">Matcha Soft Serve - Project Chaiwala</div>
         </div>
-        <div class="feat-item" onclick="fnbSwitch(this,'fnb_chai6.webp','Drink · Project Chaiwala','Homebrewed Lemon Iced Tea')">
+        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai6.webp','Drink · Project Chaiwala','Homebrewed Lemon Iced Tea')">
           <div class="feat-item-eye">Drink</div>
           <div class="feat-item-title">Homebrewed Lemon Iced Tea</div>
         </div>
-        <div class="feat-item" onclick="fnbSwitch(this,'fnb_chai7.webp','Drink · Project Chaiwala','Iced Karak - the signature in a cup')">
+        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai7.webp','Drink · Project Chaiwala','Iced Karak - the signature in a cup')">
           <div class="feat-item-eye">Drink</div>
           <div class="feat-item-title">Iced Karak - the signature in a cup</div>
         </div>
-        <div class="feat-item" onclick="fnbSwitch(this,'fnb_chai3.webp','Food · Project Chaiwala','Tikki Burger &amp; Grilled Cheese - comfort chai-side bites')">
+        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai3.webp','Food · Project Chaiwala','Tikki Burger &amp; Grilled Cheese - comfort chai-side bites')">
           <div class="feat-item-eye">Food</div>
           <div class="feat-item-title">Tikki Burger &amp; Grilled Cheese - comfort chai-side bites</div>
         </div>
-        <div class="feat-item" onclick="fnbSwitch(this,'fnb_laduree.webp','Patisserie · Ladurée','A weekend delight - Ladurée\'s strawberry tart')">
+        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_laduree.webp','Patisserie · Ladurée','A weekend delight - Ladurée\'s strawberry tart')">
           <div class="feat-item-eye">Patisserie · Ladurée</div>
           <div class="feat-item-title">A weekend delight - Ladurée's strawberry tart</div>
         </div>
-        <div class="feat-item" onclick="fnbSwitch(this,'fnb_paul.webp','Bakery · Paul','Macaroons a world apart - 25% off on the Paul app')">
+        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_paul.webp','Bakery · Paul','Macaroons a world apart - 25% off on the Paul app')">
           <div class="feat-item-eye">Bakery · Paul</div>
           <div class="feat-item-title">Macaroons a world apart - 25% off on the Paul app</div>
         </div>
@@ -131,8 +135,8 @@
             <div class="chai-slide"><img loading="lazy" src="fnb_chai6.webp" alt="Lemon Iced Tea" style="width:100%;height:100%;object-fit:contain;display:block;background:#f5e8c0"/></div>
             <div class="chai-slide"><img loading="lazy" src="fnb_chai7.webp" alt="Iced Karak" style="width:100%;height:100%;object-fit:contain;display:block;background:#ede8e0"/></div>
           </div>
-          <button class="carousel-btn carousel-prev" onclick="carouselPrev('chai')">‹</button>
-          <button class="carousel-btn carousel-next" onclick="carouselNext('chai')">›</button>
+          <button class="carousel-btn carousel-prev" aria-label="Previous slide" onclick="carouselPrev('chai')">‹</button>
+          <button class="carousel-btn carousel-next" aria-label="Next slide" onclick="carouselNext('chai')">›</button>
           <div class="carousel-dots" id="chai-dots">
             <span class="carousel-dot active"></span><span class="carousel-dot"></span>
             <span class="carousel-dot"></span><span class="carousel-dot"></span>
@@ -163,13 +167,13 @@
         </div>
         <!-- Slide thumbnails row -->
         <div style="display:flex;gap:6px;margin-top:20px;flex-wrap:wrap" id="chai-thumbs">
-          <div class="chai-thumb active" onclick="chaiJump(0)"><img loading="lazy" src="fnb_chai1.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="chaiJump(1)"><img loading="lazy" src="fnb_chai2.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="chaiJump(2)"><img loading="lazy" src="fnb_chai3.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="chaiJump(3)" style="background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.6)">▶</div>
-          <div class="chai-thumb" onclick="chaiJump(4)" style="background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.6)">▶</div>
-          <div class="chai-thumb" onclick="chaiJump(5)"><img loading="lazy" src="fnb_chai6.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="chaiJump(6)"><img loading="lazy" src="fnb_chai7.webp" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb active" role="button" tabindex="0" aria-label="Show slide 1: Matcha Soft Serve" onclick="chaiJump(0)"><img loading="lazy" src="fnb_chai1.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 2: Grilled Cheese" onclick="chaiJump(1)"><img loading="lazy" src="fnb_chai2.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 3: Tikki Burger" onclick="chaiJump(2)"><img loading="lazy" src="fnb_chai3.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 4: Video 1" onclick="chaiJump(3)" style="background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.6)">▶</div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 5: Video 2" onclick="chaiJump(4)" style="background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.6)">▶</div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 6: Lemon Iced Tea" onclick="chaiJump(5)"><img loading="lazy" src="fnb_chai6.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 7: Iced Karak" onclick="chaiJump(6)"><img loading="lazy" src="fnb_chai7.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
         </div>
       </div>
 
@@ -282,8 +286,8 @@
             <div class="chai-slide"><img loading="lazy" src="fnb_multi5.webp" alt="Filli Select" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
             <div class="chai-slide"><img loading="lazy" src="fnb_multi6.webp" alt="Mara" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
           </div>
-          <button class="carousel-btn carousel-prev" onclick="carouselPrev('multi')">‹</button>
-          <button class="carousel-btn carousel-next" onclick="carouselNext('multi')">›</button>
+          <button class="carousel-btn carousel-prev" aria-label="Previous slide" onclick="carouselPrev('multi')">‹</button>
+          <button class="carousel-btn carousel-next" aria-label="Next slide" onclick="carouselNext('multi')">›</button>
           <div class="carousel-dots" id="multi-dots">
             <span class="carousel-dot active"></span><span class="carousel-dot"></span>
             <span class="carousel-dot"></span><span class="carousel-dot"></span>
@@ -309,12 +313,12 @@
         </div>
         <!-- Thumbnail strip -->
         <div style="display:flex;gap:6px;margin-top:20px;flex-wrap:wrap" id="multi-thumbs">
-          <div class="chai-thumb active" onclick="multiJump(0)"><img loading="lazy" src="fnb_multi1.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="multiJump(1)"><img loading="lazy" src="fnb_multi2.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="multiJump(2)"><img loading="lazy" src="fnb_multi3.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="multiJump(3)"><img loading="lazy" src="fnb_multi4.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="multiJump(4)"><img loading="lazy" src="fnb_multi5.webp" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" onclick="multiJump(5)"><img loading="lazy" src="fnb_multi6.webp" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb active" role="button" tabindex="0" aria-label="Show slide 1: Kava Cafe" onclick="multiJump(0)"><img loading="lazy" src="fnb_multi1.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 2: Papa Rotti" onclick="multiJump(1)"><img loading="lazy" src="fnb_multi2.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 3: Pop City" onclick="multiJump(2)"><img loading="lazy" src="fnb_multi3.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 4: The Frozen Factory" onclick="multiJump(3)"><img loading="lazy" src="fnb_multi4.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 5: Filli Select" onclick="multiJump(4)"><img loading="lazy" src="fnb_multi5.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 6: Mara" onclick="multiJump(5)"><img loading="lazy" src="fnb_multi6.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
         </div>
       </div>
     </div>
@@ -341,7 +345,7 @@
 <!-- ── LIGHTBOX ── -->
 <div class="lb-overlay" id="lb-overlay" onclick="lbClose(event)">
   <div class="lb-box" id="lb-box">
-    <button class="lb-close" onclick="lbClose()">✕</button>
+    <button class="lb-close" aria-label="Close" onclick="lbClose()">✕</button>
     <div class="lb-media" id="lb-media"></div>
     <div class="lb-body">
       <div class="lb-eye"  id="lb-eye"></div>

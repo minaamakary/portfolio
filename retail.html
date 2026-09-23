@@ -15,6 +15,10 @@
 <meta name="twitter:title" content="Retail &amp; Lifestyle - Mina Makary"/>
 <meta name="twitter:description" content="Copy for fashion, beauty and lifestyle brands across City Centre Malls - UAE &amp; Oman."/>
 <meta name="twitter:image" content="https://minaamakary.github.io/portfolio/og_image.png"/>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
+<meta name="theme-color" content="#000000"/>
 <link rel="stylesheet" href="assets/style.css"/>
 </head>
 <body>
@@ -337,8 +341,8 @@
               <img loading="lazy" src="ret_undiz1.webp" alt="Undiz Now Open 1" style="width:100%;height:100%;object-fit:cover;display:block;flex-shrink:0"/>
               <img loading="lazy" src="ret_undiz2.webp" alt="Undiz Now Open 2" style="width:100%;height:100%;object-fit:cover;display:block;flex-shrink:0"/>
             </div>
-            <button class="carousel-btn carousel-prev" onclick="carouselPrev('undiz')">‹</button>
-            <button class="carousel-btn carousel-next" onclick="carouselNext('undiz')">›</button>
+            <button class="carousel-btn carousel-prev" aria-label="Previous slide" onclick="carouselPrev('undiz')">‹</button>
+            <button class="carousel-btn carousel-next" aria-label="Next slide" onclick="carouselNext('undiz')">›</button>
             <div class="carousel-dots" id="undiz-dots">
               <span class="carousel-dot active"></span>
               <span class="carousel-dot"></span>
@@ -418,7 +422,7 @@
 <!-- ── LIGHTBOX ── -->
 <div class="lb-overlay" id="lb-overlay" onclick="lbClose(event)">
   <div class="lb-box" id="lb-box">
-    <button class="lb-close" onclick="lbClose()">✕</button>
+    <button class="lb-close" aria-label="Close" onclick="lbClose()">✕</button>
     <div class="lb-media" id="lb-media"></div>
     <div class="lb-body">
       <div class="lb-eye"  id="lb-eye"></div>

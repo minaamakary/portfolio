@@ -15,6 +15,10 @@
 <meta name="twitter:title" content="Entertainment - Mina Makary"/>
 <meta name="twitter:description" content="Social content strategy and copywriting for VOX Cinemas, one of the region's biggest cinema brands, across Oman and the UAE."/>
 <meta name="twitter:image" content="https://minaamakary.github.io/portfolio/og_image.png"/>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
+<meta name="theme-color" content="#000000"/>
 <link rel="stylesheet" href="assets/style.css"/>
 </head>
 <body>
@@ -143,15 +147,15 @@
         <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden;position:relative">
           <div class="carousel" id="vox-carousel">
             <div class="carousel-track" id="vox-track">
-              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_1.webp" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_2.webp" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_3.webp" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_4.webp" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_5.webp" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_6.webp" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_1.webp" alt="Bitten by the Movie Bug, slide 1: Movies showing now at VOX Cinemas" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_2.webp" alt="Bitten by the Movie Bug, slide 2: One Shot (Action)" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_3.webp" alt="Bitten by the Movie Bug, slide 3: Ghostbusters: Afterlife (Supernatural Comedy)" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_4.webp" alt="Bitten by the Movie Bug, slide 4: Encanto (Animation)" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_5.webp" alt="Bitten by the Movie Bug, slide 5: King Richard (Family &amp; Kids)" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+              <div style="flex-shrink:0;width:100%;height:100%"><img loading="lazy" src="ent_vox3_6.webp" alt="Bitten by the Movie Bug, slide 6: And many more" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
             </div>
-            <button class="carousel-btn carousel-prev" onclick="carouselPrev('vox')">‹</button>
-            <button class="carousel-btn carousel-next" onclick="carouselNext('vox')">›</button>
+            <button class="carousel-btn carousel-prev" aria-label="Previous slide" onclick="carouselPrev('vox')">‹</button>
+            <button class="carousel-btn carousel-next" aria-label="Next slide" onclick="carouselNext('vox')">›</button>
             <div class="carousel-dots" id="vox-dots">
               <span class="carousel-dot active"></span><span class="carousel-dot"></span>
               <span class="carousel-dot"></span><span class="carousel-dot"></span>
@@ -196,7 +200,7 @@
 <!-- ── LIGHTBOX ── -->
 <div class="lb-overlay" id="lb-overlay" onclick="lbClose(event)">
   <div class="lb-box" id="lb-box">
-    <button class="lb-close" onclick="lbClose()">✕</button>
+    <button class="lb-close" aria-label="Close" onclick="lbClose()">✕</button>
     <div class="lb-media" id="lb-media"></div>
     <div class="lb-body">
       <div class="lb-eye"  id="lb-eye"></div>

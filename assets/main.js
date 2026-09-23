@@ -184,6 +184,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('page-campaigns')) setTimeout(hlInit, 100);
 });
 
+// Clickable non-link elements (role="button"/"link") respond to Enter and Space
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const el = e.target.closest('[role="button"][tabindex], [role="link"][tabindex]');
+  if (!el || el !== e.target) return;
+  e.preventDefault();
+  el.click();
+});
+
 // ── Mobile menu ─────────────────────────────────
 function toggleMenu() {
   const burger = document.getElementById('gnav-burger');
@@ -524,3 +533,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('video[preload="none"]').forEach(v => vo.observe(v));
 })();
+
+// ── Horizontal galleries (Campaigns: Opening Night, Drone Shows) ─────
+document.querySelectorAll('.hgal').forEach(gal => {
+  const track = gal.querySelector('.hgal-track');
+  const nav   = gal.querySelector('.hgal-nav');
+  const prev  = gal.querySelector('.hgal-btn[data-dir="-1"]');
+  const next  = gal.querySelector('.hgal-btn[data-dir="1"]');
+  if (!track || !nav) return;
+
+  const step = () => {
+    const item = track.querySelector('.hgal-item');
+    return item ? item.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 20) : track.clientWidth;
+  };
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    nav.hidden = max <= 1;              // everything fits: no buttons needed
+    prev.disabled = track.scrollLeft <= 1;
+    next.disabled = track.scrollLeft >= max - 1;
+  };
+
+  [prev, next].forEach(btn => btn.addEventListener('click', () => {
+    track.scrollBy({ left: step() * Number(btn.dataset.dir), behavior: 'smooth' });
+  }));
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+});
