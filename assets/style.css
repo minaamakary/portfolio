@@ -1223,3 +1223,47 @@ body{
 .panel-anim .dsf-fenty-hl{opacity:0;transform:translateY(10px) scale(.96);
   transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1);transition-delay:calc(var(--i) * 80ms)}
 .panel-anim .dsf-fenty-highlights.in .dsf-fenty-hl{opacity:1;transform:none}
+
+/* ═══ POLISH: IV wordplay · page titles · card hover · section lines ═══ */
+
+/* 1 ── IV wordplay: hidden letters lift out in gold, then settle into the word */
+.iv-anim .iv-pillar-title span{display:inline-block;color:var(--text);transform-origin:50% 80%}
+.iv-anim .iv-pillar-title.play span{animation:ivLift 1.5s cubic-bezier(.22,.61,.36,1) .25s forwards}
+@keyframes ivLift{
+  0%  {color:var(--text);transform:none;text-shadow:none}
+  35% {color:#e8c07a;transform:translateY(-.32em) scale(1.22);text-shadow:0 0 18px rgba(232,192,122,.75)}
+  65% {color:#d9b06f;transform:translateY(.04em) scale(1.02);text-shadow:0 0 10px rgba(201,160,106,.4)}
+  100%{color:#c9a06a;transform:none;text-shadow:none}
+}
+
+/* 2 ── Page titles rise in (words, or letters for one-word titles); intro line follows */
+.hero-rise .hero-word{animation-delay:var(--d,0s)}
+.hero-rise + p{opacity:0;transform:translateY(8px);animation:wordIn .6s cubic-bezier(.25,.46,.45,.94) forwards;animation-delay:var(--pd,.45s)}
+
+/* 9 ── Card hover: lift + shadow + slight image zoom (mouse/trackpad only) */
+@media (hover:hover){
+  .hgal-track{padding-top:12px;margin-top:-12px;padding-bottom:30px;margin-bottom:-26px}
+  .hgal-media{transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s ease}
+  .hgal-media > img,.hgal-media > video{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+  .hgal-item:hover .hgal-media{transform:translateY(-8px) scale(1.02);box-shadow:0 0 0 1px rgba(255,255,255,.16),0 16px 40px rgba(255,255,255,.07),0 22px 44px rgba(0,0,0,.6)}
+  .hgal-item:hover .hgal-media > img,.hgal-item:hover .hgal-media > video{transform:scale(1.04)}
+}
+
+/* 10 ── Section lines draw left → right (only when JS runs the reveal) */
+.sec-label.reveal,.iv-pillar-label.reveal{position:relative;border-bottom-color:transparent}
+.sec-label.reveal::after,.iv-pillar-label.reveal::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--border);
+  transform:scaleX(0);transform-origin:left center;
+}
+.sec-label.reveal.in::after,.iv-pillar-label.reveal.in::after{animation:lineDraw 1.3s cubic-bezier(.65,0,.35,1) .15s forwards}
+@keyframes lineDraw{
+  0%  {transform:scaleX(0);background:rgba(255,255,255,.7)}
+  70% {transform:scaleX(1);background:rgba(255,255,255,.45)}
+  100%{transform:scaleX(1);background:var(--border)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .iv-anim .iv-pillar-title span{color:#c9a06a;animation:none!important}
+  .hero-rise + p{opacity:1;transform:none;animation:none}
+  .sec-label.reveal::after,.iv-pillar-label.reveal::after{transform:none;animation:none}
+}

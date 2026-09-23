@@ -729,3 +729,35 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
     req();
   });
 })();
+
+// ═══ IV wordplay · page titles ═══
+(function () {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1 ── IV wordplay: play once when each pillar title is well in view
+  const titles = document.querySelectorAll('.iv-pillar-title');
+  if (titles.length && !reduce && 'IntersectionObserver' in window) {
+    document.body.classList.add('iv-anim');
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('play'); io.unobserve(e.target); }
+    }), { threshold: 1, rootMargin: '0px 0px -15% 0px' });
+    titles.forEach(t => io.observe(t));
+  }
+
+  // 2 ── Page titles (Home already animates its own headline)
+  const h1 = document.querySelector('.page-hero h1:not(#hero-h1)');
+  const run = () => {
+    if (!h1 || reduce || h1.querySelector('.hero-word')) return;
+    const text = h1.textContent.trim();
+    const words = text.split(/\s+/);
+    const parts = words.length === 1 ? [...text] : words;           // one word → letters
+    const step = words.length === 1 ? 0.035 : 0.12;
+    h1.innerHTML = parts.map((p, i) => `<span class="hero-word" style="--d:${(0.05 + i * step).toFixed(3)}s">${p.replace(/&/g,'&amp;')}</span>`)
+      .join(words.length === 1 ? '' : ' ');
+    h1.setAttribute('aria-label', text);
+    h1.classList.add('hero-rise');
+    const sub = h1.nextElementSibling;
+    if (sub) sub.style.setProperty('--pd', (0.25 + parts.length * step).toFixed(2) + 's');
+  };
+  run();
+})();
