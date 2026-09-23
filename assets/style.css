@@ -280,55 +280,6 @@ body{
 .home-row-link:hover{text-decoration:underline}
 
 /* ── FEATURED BLOCK ── Apple TV: image fills left, list right */
-.featured{
-  display:grid;grid-template-columns:2fr 1fr;
-  border:1px solid var(--border);border-radius:var(--r);
-  overflow:hidden;margin-bottom:0;
-}
-.feat-visual{
-  position:relative;min-height:400px;
-  display:flex;align-items:flex-end;
-  overflow:hidden;cursor:pointer;background:var(--surface);
-}
-.feat-visual:hover .feat-scale{transform:scale(1.025)}
-.feat-scale{
-  position:absolute;inset:0;
-  transition:transform .5s cubic-bezier(.25,.46,.45,.94);
-}
-.feat-grad{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.1) 55%,transparent 100%);
-}
-.feat-body{position:relative;z-index:2;padding:24px 28px 30px}
-.feat-eyebrow{
-  font-size:11px;font-weight:500;letter-spacing:.08em;
-  text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:7px;
-}
-.feat-title{
-  font-size:24px;font-weight:600;letter-spacing:-.3px;
-  line-height:1.2;color:#fff;
-}
-.feat-list{
-  background:var(--surface);
-  border-left:1px solid var(--border);
-  display:flex;flex-direction:column;
-}
-.feat-item{
-  flex:1;padding:18px 20px;border-bottom:1px solid var(--border);
-  display:flex;flex-direction:column;justify-content:center;
-  cursor:pointer;transition:background .15s;text-decoration:none;color:inherit;
-}
-.feat-item:last-child{border-bottom:none}
-.feat-item:hover{background:var(--surface2)}
-.feat-item-eye{
-  font-size:10px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--secondary);margin-bottom:5px;
-}
-.feat-item-title{
-  font-size:14px;font-weight:600;line-height:1.35;
-  color:var(--text);letter-spacing:-.1px;
-}
-.feat-item-date{font-size:11px;color:var(--secondary);margin-top:4px}
 
 /* ── STORY GRID (Apple TV shelves style) ── */
 
@@ -358,48 +309,6 @@ body{
 .scard-date{font-size:11px;color:var(--secondary);margin-top:8px;line-height:1.5}
 
 /* ── STORIES LEAD (big left + sidebar) ── */
-.stories-lead{
-  display:grid;grid-template-columns:2fr 1fr;
-  border:1px solid var(--border);border-radius:var(--r);
-  overflow:hidden;margin-bottom:0;
-}
-.sl-main{
-  background:var(--surface);cursor:pointer;
-  text-decoration:none;color:inherit;transition:background .15s;
-}
-.sl-main:hover{background:var(--surface2)}
-.sl-vis{
-  aspect-ratio:16/9;overflow:hidden;position:relative;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--surface2);
-}
-.sl-body{padding:22px 26px 28px}
-.sl-eye{
-  font-size:10px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--secondary);margin-bottom:8px;display:block;
-}
-.sl-title{
-  font-size:26px;font-weight:600;letter-spacing:-.4px;
-  line-height:1.15;color:var(--text);margin-bottom:8px;
-}
-.sl-desc{font-size:14px;line-height:1.6;color:var(--secondary)}
-.sl-sidebar{
-  border-left:1px solid var(--border);
-  background:var(--surface);display:flex;flex-direction:column;
-}
-.sl-item{
-  flex:1;padding:16px 20px;border-bottom:1px solid var(--border);
-  cursor:pointer;text-decoration:none;color:inherit;
-  transition:background .15s;display:flex;flex-direction:column;justify-content:center;
-}
-.sl-item:last-child{border-bottom:none}
-.sl-item:hover{background:var(--surface2)}
-.sl-item-eye{
-  font-size:10px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--secondary);margin-bottom:5px;
-}
-.sl-item-title{font-size:13px;font-weight:600;line-height:1.35;color:var(--text)}
-.sl-item-date{font-size:11px;color:var(--secondary);margin-top:3px}
 
 /* ── PULL QUOTE ── Apple TV dark: even darker panel */
 .pullquote{
@@ -511,7 +420,6 @@ body{
 
 /* ── BRAND VISUALS ── */
 
-
 /* ── ABOUT PAGE ── */
 .about-bio{
   display:grid;grid-template-columns:1fr 220px;gap:48px;
@@ -565,18 +473,7 @@ body{
 /* ── CHAIWALA PORTRAIT POST LAYOUT ── */
 
 /* Thumbnail strip */
-.chai-thumb{
-  width:44px;height:44px;border-radius:6px;
-  overflow:hidden;background:var(--surface2);
-  border:2px solid transparent;cursor:pointer;
-  flex-shrink:0;transition:border-color .15s;
-}
-.chai-thumb.active{border-color:var(--link)}
-.chai-thumb:hover{border-color:var(--secondary)}
 
-@media(max-width:500px){
-  .chai-thumb{width:36px;height:36px}
-}
 .carousel{position:relative;width:100%;height:100%;overflow:hidden}
 .carousel-track{display:flex;width:100%;height:100%;transition:transform .35s cubic-bezier(.25,.46,.45,.94)}
 .carousel-track img{flex-shrink:0;width:100%;height:100%;object-fit:cover}
@@ -945,8 +842,8 @@ body{
    MOBILE - 860px and below
 ══════════════════════════════════════════ */
 @media(max-width:860px){
-  .featured,.stories-lead{grid-template-columns:1fr}
-  .feat-list,.sl-sidebar{border-left:none;border-top:1px solid var(--border)}
+  
+  
   
   .about-bio{grid-template-columns:1fr}
   .about-avatar{display:none}
@@ -974,19 +871,19 @@ body{
   .page-hero p{font-size:15px}
 
   /* ── Featured blocks ── */
-  .feat-visual{min-height:240px}
-  .feat-title{font-size:18px}
-  .feat-eyebrow{font-size:10px}
-  .feat-body{padding:20px}
-  .feat-item{padding:14px 16px}
-  .feat-item-eye{font-size:10px}
-  .feat-item-title{font-size:14px}
-  .feat-item-date{font-size:10px}
+  
+  
+  
+  
+  
+  
+  
+  
 
   /* ── Stories lead ── */
-  .sl-vis{min-height:200px}
-  .sl-title{font-size:18px}
-  .sl-body{padding:18px 16px}
+  
+  
+  
 
   /* ── Pull quote ── */
   .pullquote{padding:32px 16px}
@@ -1029,7 +926,7 @@ body{
   
   
   
-  .chai-thumb{width:38px;height:38px}
+  
 
   /* ── IV pillar labels ── */
   .iv-pillar-title{font-size:22px}
@@ -1055,8 +952,8 @@ body{
   .page-hero h1{font-size:28px}
   
   .scard-desc{display:none}
-  .chai-thumb{width:32px;height:32px}
-  .feat-title{font-size:16px}
+  
+  
   .camp-h2{font-size:22px}
   .hl-caption{font-size:13px}
 }
@@ -1083,8 +980,6 @@ body{
 .footer-links a.active{color:var(--text)}
 
 /* ── FEATURED ITEM ACTIVE STATE ── */
-.feat-item.active{background:var(--surface2)}
-.feat-item.active .feat-item-title{color:var(--text)}
 
 /* ── BILINGUAL TOGGLE ── */
 .lang-toggle{
@@ -1154,14 +1049,14 @@ body{
 }
 
 /* Word-by-word fade-up when the text scrolls into view (words are wrapped by main.js) */
-.reveal-words .rw{
+.reveal-words .rw,.pq-q .rw{
   display:inline-block;opacity:0;transform:translateY(12px);
   transition:opacity .6s ease,transform .6s cubic-bezier(.25,.46,.45,.94);
   transition-delay:calc(var(--i) * 70ms);
 }
-.reveal-words.in-view .rw{opacity:1;transform:none}
+.reveal-words.in-view .rw,.pq-q.in-view .rw{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  .reveal-words .rw{opacity:1;transform:none;transition:none}
+  .reveal-words .rw,.pq-q .rw{opacity:1;transform:none;transition:none}
 }
 .hgal-item[data-lb]:focus-visible{outline:2px solid var(--link);outline-offset:4px;border-radius:22px}
 
@@ -1188,7 +1083,83 @@ body{
 .skill-card,.brand-logo-card{border-radius:var(--r)}
 .skill-card{padding:26px 24px}
 .exp-list{border:none;background:var(--surface)}
-.featured,.stories-lead,.dsf-fenty,.dsf-stats,.dsf-pillars,.dsf-venues,
-.meta-card,.highlights-stage-wrap,.nr-carousel-wrap,.dsf-img-row{border:none}
+.dsf-fenty,.dsf-stats,.dsf-pillars,.dsf-venues,.meta-card,.highlights-stage-wrap,.nr-carousel-wrap,.dsf-img-row{border:none}
 .dsf-pillars--3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:680px){.dsf-pillars--3{grid-template-columns:1fr}}
+
+/* ── FEATURE SWITCHER (.fx) ─────────────────────────────────────────
+   Replaces the static "image + list" banners (Retail, F&B, Cosmotel).
+   Auto-advances; the thin bar under the active item shows time left.
+   Styled like the Campaigns "Get the highlights" stage. */
+.fx{
+  display:grid;grid-template-columns:2fr 1fr;
+  border-radius:var(--r);overflow:hidden;background:var(--surface);
+  --fx-dur:6s;
+}
+.fx-stage{position:relative;min-height:420px;background:#000;overflow:hidden;isolation:isolate}
+.fx-slide{
+  position:absolute;inset:0;opacity:0;visibility:hidden;
+  transition:opacity .6s ease,visibility 0s linear .6s;
+}
+.fx-slide.active{opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s}
+.fx-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform-origin:center}
+.fx-slide.active .fx-media{animation:fxZoom var(--fx-dur) linear forwards}
+@keyframes fxZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
+.fx-overlay{
+  position:absolute;left:0;right:0;bottom:0;padding:28px 28px 30px;
+  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,transparent 100%);
+}
+.fx-badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px}
+.fx-caption{font-size:24px;font-weight:600;letter-spacing:-.3px;line-height:1.2;color:#fff;max-width:560px}
+.fx-desc{margin-top:10px;font-size:14px;line-height:1.55;color:rgba(255,255,255,.72);max-width:560px}
+/* Caption slides up as its slide comes in */
+.fx-slide .fx-overlay > *{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s cubic-bezier(.25,.46,.45,.94)}
+.fx-slide.active .fx-overlay > *{opacity:1;transform:none}
+.fx-slide.active .fx-overlay > :nth-child(2){transition-delay:.08s}
+.fx-slide.active .fx-overlay > :nth-child(3){transition-delay:.16s}
+
+.fx-tabs{display:flex;flex-direction:column}
+.fx-tab{
+  flex:1;position:relative;text-align:left;font-family:inherit;cursor:pointer;
+  padding:18px 22px;background:transparent;border:0;border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:center;transition:background .2s;
+}
+.fx-tab:last-child{border-bottom:0}
+.fx-tab:hover{background:var(--surface2)}
+.fx-tab.active{background:var(--surface2)}
+.fx-tab:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+.fx-tab-eye{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--secondary);margin-bottom:5px}
+.fx-tab-title{font-size:14px;font-weight:600;line-height:1.35;letter-spacing:-.1px;color:var(--secondary);transition:color .2s}
+.fx-tab.active .fx-tab-title,.fx-tab:hover .fx-tab-title{color:var(--text)}
+.fx-tab-meta{font-size:11px;color:var(--secondary);margin-top:4px}
+.fx-prog{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--text)}
+.fx-tab.active .fx-prog{animation:fxProg var(--fx-dur) linear forwards}
+@keyframes fxProg{from{width:0}to{width:100%}}
+/* Paused (hover, off-screen, other browser tab): freeze bar and zoom together */
+.fx.is-paused .fx-prog,.fx.is-paused .fx-media{animation-play-state:paused}
+/* Reduced motion: no autoplay, no zoom; click to switch */
+.fx.is-static .fx-prog{display:none}
+.fx.is-static .fx-media{animation:none}
+
+@media(max-width:760px){
+  .fx{grid-template-columns:1fr;background:none;border-radius:0;overflow:visible}
+  .fx-stage{min-height:0;aspect-ratio:4/5;border-radius:var(--r)}
+  .fx-overlay{padding:20px 18px 22px}
+  .fx-caption{font-size:19px}
+  .fx-desc{font-size:13px}
+  .fx-tabs{
+    flex-direction:row;gap:10px;margin-top:12px;overflow-x:auto;
+    scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:2px;
+  }
+  .fx-tabs::-webkit-scrollbar{display:none}
+  .fx-tab{flex:0 0 72%;scroll-snap-align:start;border:0;border-radius:16px;background:var(--surface);overflow:hidden;padding:14px 16px 16px}
+  .fx-tab.active{background:var(--surface2)}
+}
+@media(prefers-reduced-motion:reduce){
+  .fx-slide,.fx-slide .fx-overlay > *{transition:none}
+}
+
+/* ── SCROLL REVEAL ── sections fade up once as they enter the screen.
+   main.js adds .reveal only when it can animate, so content is never hidden without JS. */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.61,.36,1)}
+.reveal.in{opacity:1;transform:none}

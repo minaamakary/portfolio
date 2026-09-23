@@ -33,23 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (h1) h1.classList.add('animated');
 });
 
-function fnbSwitch(el, img, eye, title) {
-  document.querySelectorAll('.feat-list .feat-item').forEach(i => i.classList.remove('active'));
-  el.classList.add('active');
-  const imgEl = document.getElementById('fnb-feat-img');
-  if (imgEl) {
-    imgEl.style.opacity = '0';
-    setTimeout(() => {
-      imgEl.src = img;
-      imgEl.style.opacity = '1';
-    }, 150);
-  }
-  const eyeEl = document.getElementById('fnb-feat-eye');
-  const titleEl = document.getElementById('fnb-feat-title');
-  if (eyeEl) eyeEl.textContent = eye;
-  if (titleEl) titleEl.textContent = title;
-}
-
 function hlLang(id, btn, lang) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -481,10 +464,10 @@ document.querySelectorAll('.hgal').forEach(gal => {
   update();
 });
 
-// ── Word-by-word reveal (e.g. Drone Shows text) ─────────────────────
+// ── Word-by-word reveal (Drone Shows text, pull quotes) ─────────────
 // Text stays readable without JS; words are only wrapped when we can animate them.
 (function () {
-  const els = document.querySelectorAll('.reveal-words');
+  const els = document.querySelectorAll('.reveal-words, .pq-q');
   if (!els.length) return;
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -519,3 +502,116 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
   // On touch screens the video wrapper handles taps itself (play/pause) and stops the click here
   item.addEventListener('click', () => lbOpen(eye, title, '', '', media.getAttribute('src'), type));
 });
+
+// ── Feature switcher (.fx): Retail, F&B and Cosmotel banners ─────────
+// The active tab's progress bar is a CSS animation; when it ends we advance.
+// Pausing the animation (hover, off-screen, hidden browser tab) pauses everything.
+document.querySelectorAll('.fx').forEach(fx => {
+  const slides = [...fx.querySelectorAll('.fx-slide')];
+  const tabs   = [...fx.querySelectorAll('.fx-tab')];
+  const row    = fx.querySelector('.fx-tabs');
+  if (!slides.length || slides.length !== tabs.length) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) fx.classList.add('is-static');
+
+  let idx = 0, hovering = false, onScreen = false;
+
+  const setPaused = () => {
+    const paused = hovering || !onScreen || document.hidden;
+    fx.classList.toggle('is-paused', paused);
+    // an off-screen or background-tab switcher shouldn't keep a video running
+    const v = slides[idx] && slides[idx].querySelector('video');
+    if (v && !fx.classList.contains('is-static')) {
+      if (!onScreen || document.hidden) v.pause(); else v.play().catch(() => {});
+    }
+  };
+
+  function go(i) {
+    idx = (i + slides.length) % slides.length;
+    slides.forEach((s, n) => {
+      const on = n === idx;
+      s.classList.toggle('active', on);
+      const v = s.querySelector('video');
+      if (v) {
+        if (on && onScreen && !document.hidden && !fx.classList.contains('is-static')) v.play().catch(() => {});
+        else if (!on) v.pause();
+      }
+    });
+    tabs.forEach((t, n) => {
+      const on = n === idx;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+    });
+    // restart the active bar and zoom from zero
+    const bar = tabs[idx].querySelector('.fx-prog');
+    const media = slides[idx].querySelector('.fx-media');
+    [bar, media].forEach(el => { if (el) { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; } });
+    // keep the active tab visible in the phone's swipe row (horizontal only)
+    if (row.scrollWidth > row.clientWidth) row.scrollTo({ left: tabs[idx].offsetLeft - row.offsetLeft, behavior: 'smooth' });
+  }
+
+  tabs.forEach((t, n) => {
+    t.addEventListener('click', () => go(n));
+    t.querySelector('.fx-prog')?.addEventListener('animationend', () => { if (n === idx) go(idx + 1); });
+    t.addEventListener('keydown', e => {
+      const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (d) { e.preventDefault(); go(idx + d); tabs[idx].focus(); }
+    });
+  });
+
+  fx.addEventListener('mouseenter', () => { hovering = true;  setPaused(); });
+  fx.addEventListener('mouseleave', () => { hovering = false; setPaused(); });
+  document.addEventListener('visibilitychange', setPaused);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; setPaused(); }, { threshold: 0.35 }).observe(fx);
+  } else { onScreen = true; }
+
+  setPaused();
+  go(0);
+});
+
+// ── Scroll reveal: each top-level block fades up once as it scrolls in ──
+(function () {
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const blocks = document.querySelectorAll('.page .wrap > *, .home-rows > *');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });   // any part in view: works for blocks of any height
+  blocks.forEach(el => {
+    if (el.matches('script, .camp-section-anchor') || !el.getBoundingClientRect().height) return;
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+})();
+
+// ── Count-up numbers (DSF stats): 0 → value once, keeping the original format ──
+(function () {
+  const nums = document.querySelectorAll('.dsf-stat-num');
+  if (!nums.length || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const run = el => {
+    const node = [...el.childNodes].find(n => n.nodeType === 3 && /\d/.test(n.textContent));
+    if (!node) return;
+    const original = node.textContent;                       // e.g. "1,300" or "92.6"
+    const target = parseFloat(original.replace(/,/g, ''));
+    const decimals = (original.split('.')[1] || '').length;
+    const commas = original.includes(',');
+    const fmt = v => {
+      const s = v.toFixed(decimals);
+      return commas ? Number(s).toLocaleString('en-US', { minimumFractionDigits: decimals }) : s;
+    };
+    const dur = 1400, t0 = performance.now();
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - p, 3);
+      node.textContent = p < 1 ? fmt(target * eased) : original;   // always land on the exact original text
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    node.textContent = fmt(0);
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  nums.forEach(n => io.observe(n));
+})();
