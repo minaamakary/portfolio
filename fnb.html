@@ -69,7 +69,7 @@
     <div class="featured">
       <div class="feat-visual" style="cursor:default;overflow:hidden">
         <div class="feat-scale" id="fnb-feat-scale">
-          <img id="fnb-feat-img" loading="lazy" src="fnb_chai1.webp" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:opacity .3s ease"/>
+          <img id="fnb-feat-img" loading="lazy" src="fnb_chai7.webp" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:opacity .3s ease"/>
         </div>
         <div class="feat-grad"></div>
         <div class="feat-body">
@@ -78,15 +78,15 @@
         </div>
       </div>
       <div class="feat-list">
-        <div class="feat-item active" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai1.webp','Dessert · Project Chaiwala','Matcha Soft Serve - Project Chaiwala')">
+        <div class="feat-item active" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai7.webp','Dessert · Project Chaiwala','Matcha Soft Serve - Project Chaiwala')">
           <div class="feat-item-eye">Dessert</div>
           <div class="feat-item-title">Matcha Soft Serve - Project Chaiwala</div>
         </div>
-        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai6.webp','Drink · Project Chaiwala','Homebrewed Lemon Iced Tea')">
+        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai2.webp','Drink · Project Chaiwala','Homebrewed Lemon Iced Tea')">
           <div class="feat-item-eye">Drink</div>
           <div class="feat-item-title">Homebrewed Lemon Iced Tea</div>
         </div>
-        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai7.webp','Drink · Project Chaiwala','Iced Karak - the signature in a cup')">
+        <div class="feat-item" role="button" tabindex="0" onclick="fnbSwitch(this,'fnb_chai1.webp','Drink · Project Chaiwala','Iced Karak - the signature in a cup')">
           <div class="feat-item-eye">Drink</div>
           <div class="feat-item-title">Iced Karak - the signature in a cup</div>
         </div>
@@ -114,41 +114,9 @@
       </div>
     </div>
 
-    <!-- Chaiwala - portrait carousel + caption side by side -->
-    <div class="chai-post mt-2 no-lb">
-
-      <!-- Left: portrait carousel -->
-      <div class="chai-visual">
-        <div class="carousel" id="chai-carousel">
-          <div class="carousel-track" id="chai-track">
-            <div class="chai-slide"><img loading="lazy" src="fnb_chai1.webp" alt="Matcha Soft Serve" style="width:100%;height:100%;object-fit:contain;display:block;background:#c8d8b0"/></div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_chai2.webp" alt="Grilled Cheese" style="width:100%;height:100%;object-fit:contain;display:block;background:#e8e0d8"/></div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_chai3.webp" alt="Tikki Burger" style="width:100%;height:100%;object-fit:contain;display:block;background:#ede8e0"/></div>
-            <div class="chai-slide" style="position:relative">
-              <video src="fnb_chai4.mp4" poster="posters/fnb_chai4.webp" loop muted playsinline preload="none" id="chai-v4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-              <div class="vcard-play" id="chai-v4-btn">▶</div>
-            </div>
-            <div class="chai-slide" style="position:relative">
-              <video src="fnb_chai5.mp4" poster="posters/fnb_chai5.webp" loop muted playsinline preload="none" id="chai-v5" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-              <div class="vcard-play" id="chai-v5-btn">▶</div>
-            </div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_chai6.webp" alt="Lemon Iced Tea" style="width:100%;height:100%;object-fit:contain;display:block;background:#f5e8c0"/></div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_chai7.webp" alt="Iced Karak" style="width:100%;height:100%;object-fit:contain;display:block;background:#ede8e0"/></div>
-          </div>
-          <button class="carousel-btn carousel-prev" aria-label="Previous slide" onclick="carouselPrev('chai')">‹</button>
-          <button class="carousel-btn carousel-next" aria-label="Next slide" onclick="carouselNext('chai')">›</button>
-          <div class="carousel-dots" id="chai-dots">
-            <span class="carousel-dot active"></span><span class="carousel-dot"></span>
-            <span class="carousel-dot"></span><span class="carousel-dot"></span>
-            <span class="carousel-dot"></span><span class="carousel-dot"></span>
-            <span class="carousel-dot"></span>
-          </div>
-          <div id="chai-counter" style="position:absolute;top:10px;right:12px;background:rgba(0,0,0,.5);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;z-index:4;font-family:inherit">1 / 7</div>
-        </div>
-      </div>
-
-      <!-- Right: caption panel -->
-      <div class="chai-body">
+    <!-- Project Chaiwala: post caption + one card per slide -->
+    <div class="post-block mt-2">
+      <div class="post-head">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
           <div style="width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--text);flex-shrink:0">PC</div>
           <span style="font-size:13px;font-weight:600;color:var(--text)">@projectchaiwala</span>
@@ -165,26 +133,68 @@
             <button class="lang-btn" onclick="event.stopPropagation();hlLang('chai-caption',this,'ar')">AR</button>
           </div>
         </div>
-        <!-- Slide thumbnails row -->
-        <div style="display:flex;gap:6px;margin-top:20px;flex-wrap:wrap" id="chai-thumbs">
-          <div class="chai-thumb active" role="button" tabindex="0" aria-label="Show slide 1: Matcha Soft Serve" onclick="chaiJump(0)"><img loading="lazy" src="fnb_chai1.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 2: Grilled Cheese" onclick="chaiJump(1)"><img loading="lazy" src="fnb_chai2.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 3: Tikki Burger" onclick="chaiJump(2)"><img loading="lazy" src="fnb_chai3.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 4: Video 1" onclick="chaiJump(3)" style="background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.6)">▶</div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 5: Video 2" onclick="chaiJump(4)" style="background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.6)">▶</div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 6: Lemon Iced Tea" onclick="chaiJump(5)"><img loading="lazy" src="fnb_chai6.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 7: Iced Karak" onclick="chaiJump(6)"><img loading="lazy" src="fnb_chai7.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+      </div>
+    <div class="hgal hgal--cards" aria-label="Project Chaiwala gallery">
+      <div class="hgal-track">
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_chai1.webp" alt="Iced Karak" style="width:100%;height:100%;object-fit:contain;display:block;background:#e2ded4"/>
+          </div>
+          <p class="hgal-cap"><strong>Iced Karak</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_chai2.webp" alt="Lemon Iced Tea" style="width:100%;height:100%;object-fit:contain;display:block;background:#fcedc9"/>
+          </div>
+          <p class="hgal-cap"><strong>Lemon Iced Tea</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_chai3.webp" alt="Tikki Burger" style="width:100%;height:100%;object-fit:contain;display:block;background:#e5e2de"/>
+          </div>
+          <p class="hgal-cap"><strong>Tikki Burger</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <video src="fnb_chai4.mp4" poster="posters/fnb_chai4.webp" loop muted playsinline preload="none" id="chai-v4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" id="chai-v4-btn">▶</div>
+          </div>
+          <p class="hgal-cap"><strong>Video 1</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <video src="fnb_chai5.mp4" poster="posters/fnb_chai5.webp" loop muted playsinline preload="none" id="chai-v5" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div class="vcard-play" id="chai-v5-btn">▶</div>
+          </div>
+          <p class="hgal-cap"><strong>Video 2</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_chai6.webp" alt="Grilled Cheese" style="width:100%;height:100%;object-fit:contain;display:block;background:#e6e2df"/>
+          </div>
+          <p class="hgal-cap"><strong>Grilled Cheese</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_chai7.webp" alt="Matcha Soft Serve" style="width:100%;height:100%;object-fit:contain;display:block;background:#e4edc3"/>
+          </div>
+          <p class="hgal-cap"><strong>Matcha Soft Serve</strong></p>
         </div>
       </div>
-
+      <div class="hgal-nav">
+        <button class="hgal-btn" data-dir="-1" aria-label="Previous item, Project Chaiwala gallery">‹</button>
+        <button class="hgal-btn" data-dir="1" aria-label="Next item, Project Chaiwala gallery">›</button>
+      </div>
+    </div>
     </div>
 
     <!-- More F&B brands -->
-    <div class="sgrid mt-2">
+    <div class="hgal hgal--cards mt-2" aria-label="More F&amp;B brands gallery">
+      <div class="hgal-track">
 
       <!-- Ladurée -->
-      <div class="scard" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+      <div class="scard hgal-item hgal-item--square" style="cursor:default">
+        <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
           <img loading="lazy" src="fnb_laduree.webp" alt="Ladurée Strawberry Tart" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
@@ -201,8 +211,8 @@
       </div>
 
       <!-- Paul -->
-      <div class="scard" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+      <div class="scard hgal-item hgal-item--square" style="cursor:default">
+        <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
           <img loading="lazy" src="fnb_paul.webp" alt="Paul Macaroons" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
@@ -218,11 +228,9 @@
         </div>
       </div>
 
-    </div>
 
-    <div class="sgrid" style="margin-top:36px">
-      <div class="scard" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+      <div class="scard hgal-item hgal-item--square" style="cursor:default">
+        <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
           <img loading="lazy" src="fnb_zaatar.webp" alt="Zaatar W Zait Mega Breakfast" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
@@ -239,8 +247,8 @@
       </div>
 
       <!-- Shake Shack -->
-      <div class="scard" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+      <div class="scard hgal-item hgal-item--square" style="cursor:default">
+        <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
           <img loading="lazy" src="fnb_shack.webp" alt="Shake Shack BBQ Menu" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
@@ -257,8 +265,8 @@
       </div>
 
       <!-- Pinkberry -->
-      <div class="scard" style="cursor:default">
-        <div class="scard-vis" style="aspect-ratio:1/1;overflow:hidden">
+      <div class="scard hgal-item hgal-item--square" style="cursor:default">
+        <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
           <img loading="lazy" src="fnb_pinkberry.webp" alt="Pinkberry Bundle" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="scard-body">
@@ -270,35 +278,17 @@
       </div>
 
     </div>
+      <div class="hgal-nav">
+        <button class="hgal-btn" data-dir="-1" aria-label="Previous item, More F&amp;B brands gallery">‹</button>
+        <button class="hgal-btn" data-dir="1" aria-label="Next item, More F&amp;B brands gallery">›</button>
+      </div>
+    </div>
 
     <!-- Multi-brand summer carousel -->
     <div class="sec-label mt-48 pb-20">Summer Menus - City Centre Al Zahia</div>
-    <div class="chai-post mt-2" id="multi-post">
-
-      <!-- Left: portrait carousel -->
-      <div class="chai-visual">
-        <div class="carousel" id="multi-carousel">
-          <div class="carousel-track" id="multi-track">
-            <div class="chai-slide"><img loading="lazy" src="fnb_multi1.webp" alt="Kava Cafe" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_multi2.webp" alt="Papa Rotti" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_multi3.webp" alt="Pop City" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_multi4.webp" alt="The Frozen Factory" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_multi5.webp" alt="Filli Select" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-            <div class="chai-slide"><img loading="lazy" src="fnb_multi6.webp" alt="Mara" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-          </div>
-          <button class="carousel-btn carousel-prev" aria-label="Previous slide" onclick="carouselPrev('multi')">‹</button>
-          <button class="carousel-btn carousel-next" aria-label="Next slide" onclick="carouselNext('multi')">›</button>
-          <div class="carousel-dots" id="multi-dots">
-            <span class="carousel-dot active"></span><span class="carousel-dot"></span>
-            <span class="carousel-dot"></span><span class="carousel-dot"></span>
-            <span class="carousel-dot"></span><span class="carousel-dot"></span>
-          </div>
-          <div id="multi-counter" style="position:absolute;top:10px;right:12px;background:rgba(0,0,0,.5);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;z-index:4;font-family:inherit">1 / 6</div>
-        </div>
-      </div>
-
-      <!-- Right: caption panel -->
-      <div class="chai-body">
+    <!-- Summer Menus: post caption + one card per slide -->
+    <div class="post-block mt-2">
+      <div class="post-head">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
           <div style="width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--text);flex-shrink:0">CCZ</div>
           <span style="font-size:13px;font-weight:600;color:var(--text)">@citycentreazahia</span>
@@ -311,16 +301,51 @@
         <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
           <div style="font-size:11px;color:var(--secondary);line-height:1.8">City Centre Al Zahia · UAE</div>
         </div>
-        <!-- Thumbnail strip -->
-        <div style="display:flex;gap:6px;margin-top:20px;flex-wrap:wrap" id="multi-thumbs">
-          <div class="chai-thumb active" role="button" tabindex="0" aria-label="Show slide 1: Kava Cafe" onclick="multiJump(0)"><img loading="lazy" src="fnb_multi1.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 2: Papa Rotti" onclick="multiJump(1)"><img loading="lazy" src="fnb_multi2.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 3: Pop City" onclick="multiJump(2)"><img loading="lazy" src="fnb_multi3.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 4: The Frozen Factory" onclick="multiJump(3)"><img loading="lazy" src="fnb_multi4.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 5: Filli Select" onclick="multiJump(4)"><img loading="lazy" src="fnb_multi5.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
-          <div class="chai-thumb" role="button" tabindex="0" aria-label="Show slide 6: Mara" onclick="multiJump(5)"><img loading="lazy" src="fnb_multi6.webp" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+      </div>
+    <div class="hgal hgal--cards" aria-label="Summer Menus gallery">
+      <div class="hgal-track">
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_multi1.webp" alt="Mara" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          </div>
+          <p class="hgal-cap"><strong>Mara</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_multi2.webp" alt="Filli Select" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          </div>
+          <p class="hgal-cap"><strong>Filli Select</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_multi3.webp" alt="Pop City" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          </div>
+          <p class="hgal-cap"><strong>Pop City</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_multi4.webp" alt="The Frozen Factory" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          </div>
+          <p class="hgal-cap"><strong>The Frozen Factory</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_multi5.webp" alt="Papa Rotti" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          </div>
+          <p class="hgal-cap"><strong>Papa Rotti</strong></p>
+        </div>
+        <div class="hgal-item hgal-item--portrait">
+          <div class="hgal-media" style="aspect-ratio:4/5">
+            <img loading="lazy" src="fnb_multi6.webp" alt="Kava Cafe" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          </div>
+          <p class="hgal-cap"><strong>Kava Cafe</strong></p>
         </div>
       </div>
+      <div class="hgal-nav">
+        <button class="hgal-btn" data-dir="-1" aria-label="Previous item, Summer Menus gallery">‹</button>
+        <button class="hgal-btn" data-dir="1" aria-label="Next item, Summer Menus gallery">›</button>
+      </div>
+    </div>
     </div>
 
   </div>

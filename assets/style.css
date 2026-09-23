@@ -1311,3 +1311,19 @@ body{
   .reveal-words .rw{opacity:1;transform:none;transition:none}
 }
 .hgal-item[data-lb]:focus-visible{outline:2px solid var(--link);outline-offset:4px;border-radius:22px}
+
+/* ── CARD GRIDS AS GALLERIES (all pages) ──
+   Cards keep their .scard markup (lightbox, hover captions, EN/AR toggles);
+   these rules restyle them as Apple-style gallery cards. */
+.hgal-item--square{flex-basis:clamp(240px,72vw,300px)}
+.hgal-item--portrait{flex-basis:clamp(220px,66vw,280px)}
+.hgal-item--tall{flex-basis:clamp(210px,62vw,260px)}
+.hgal-item.scard,.hgal-item.scard:hover{background:transparent;display:block}
+.hgal-media.scard-vis{border-radius:22px;background:var(--surface)}
+.hgal-item .scard-body{padding:14px 8px 0 0}
+.hgal-item .scard-desc{font-size:13px;line-height:1.55}
+.hgal--cards .hgal-track{align-items:flex-start}
+
+/* ── POST BLOCK (F&B: one post's caption above a gallery of its slides) ── */
+.post-head{max-width:640px;margin-bottom:24px}
+.post-head .scard-desc{flex:none}
