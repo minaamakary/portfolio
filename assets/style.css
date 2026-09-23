@@ -1310,3 +1310,4 @@ body{
 @media(prefers-reduced-motion:reduce){
   .reveal-words .rw{opacity:1;transform:none;transition:none}
 }
+.hgal-item[data-lb]:focus-visible{outline:2px solid var(--link);outline-offset:4px;border-radius:22px}

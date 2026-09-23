@@ -581,3 +581,19 @@ document.querySelectorAll('.hgal').forEach(gal => {
   }, { threshold: 0.6 });
   els.forEach(el => io.observe(el));
 })();
+
+// ── Gallery cards that open in the lightbox (Irish Village) ─────────
+document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
+  const media = item.querySelector('.hgal-media img, .hgal-media video');
+  if (!media) return;
+  const eye   = item.querySelector('.hgal-eye')?.textContent || '';
+  const title = item.querySelector('.hgal-cap')?.textContent || '';
+  const type  = media.tagName === 'VIDEO' ? 'video' : 'image';
+
+  item.style.cursor = 'pointer';
+  item.setAttribute('role', 'button');
+  item.setAttribute('tabindex', '0');
+  item.setAttribute('aria-label', `Open ${title}`);
+  // On touch screens the video wrapper handles taps itself (play/pause) and stops the click here
+  item.addEventListener('click', () => lbOpen(eye, title, '', '', media.getAttribute('src'), type));
+});
