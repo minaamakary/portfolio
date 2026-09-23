@@ -503,73 +503,6 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
   item.addEventListener('click', () => lbOpen(eye, title, '', '', media.getAttribute('src'), type));
 });
 
-// ── Feature switcher (.fx): Retail, F&B and Cosmotel banners ─────────
-// The active tab's progress bar is a CSS animation; when it ends we advance.
-// Pausing the animation (hover, off-screen, hidden browser tab) pauses everything.
-document.querySelectorAll('.fx').forEach(fx => {
-  const slides = [...fx.querySelectorAll('.fx-slide')];
-  const tabs   = [...fx.querySelectorAll('.fx-tab')];
-  const row    = fx.querySelector('.fx-tabs');
-  if (!slides.length || slides.length !== tabs.length) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) fx.classList.add('is-static');
-
-  let idx = 0, hovering = false, onScreen = false;
-
-  const setPaused = () => {
-    const paused = hovering || !onScreen || document.hidden;
-    fx.classList.toggle('is-paused', paused);
-    // an off-screen or background-tab switcher shouldn't keep a video running
-    const v = slides[idx] && slides[idx].querySelector('video');
-    if (v && !fx.classList.contains('is-static')) {
-      if (!onScreen || document.hidden) v.pause(); else v.play().catch(() => {});
-    }
-  };
-
-  function go(i) {
-    idx = (i + slides.length) % slides.length;
-    slides.forEach((s, n) => {
-      const on = n === idx;
-      s.classList.toggle('active', on);
-      const v = s.querySelector('video');
-      if (v) {
-        if (on && onScreen && !document.hidden && !fx.classList.contains('is-static')) v.play().catch(() => {});
-        else if (!on) v.pause();
-      }
-    });
-    tabs.forEach((t, n) => {
-      const on = n === idx;
-      t.classList.toggle('active', on);
-      t.setAttribute('aria-selected', on);
-      t.tabIndex = on ? 0 : -1;
-    });
-    // restart the active bar and zoom from zero
-    const bar = tabs[idx].querySelector('.fx-prog');
-    const media = slides[idx].querySelector('.fx-media');
-    [bar, media].forEach(el => { if (el) { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; } });
-    // keep the active tab visible in the phone's swipe row (horizontal only)
-    if (row.scrollWidth > row.clientWidth) row.scrollTo({ left: tabs[idx].offsetLeft - row.offsetLeft, behavior: 'smooth' });
-  }
-
-  tabs.forEach((t, n) => {
-    t.addEventListener('click', () => go(n));
-    t.querySelector('.fx-prog')?.addEventListener('animationend', () => { if (n === idx) go(idx + 1); });
-    t.addEventListener('keydown', e => {
-      const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
-      if (d) { e.preventDefault(); go(idx + d); tabs[idx].focus(); }
-    });
-  });
-
-  fx.addEventListener('mouseenter', () => { hovering = true;  setPaused(); });
-  fx.addEventListener('mouseleave', () => { hovering = false; setPaused(); });
-  document.addEventListener('visibilitychange', setPaused);
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; setPaused(); }, { threshold: 0.35 }).observe(fx);
-  } else { onScreen = true; }
-
-  setPaused();
-  go(0);
-});
-
 // ── Scroll reveal: each top-level block fades up once as it scrolls in ──
 (function () {
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -614,4 +547,147 @@ document.querySelectorAll('.fx').forEach(fx => {
     entries.forEach(e => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
   }, { threshold: 0.6 });
   nums.forEach(n => io.observe(n));
+})();
+
+// ═══════════ Apple-style scroll animations ═══════════
+(function () {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+  // Pinned sections manage their own motion: take them out of the generic fade-up
+  document.querySelectorAll('.ps, .lights, .scrub').forEach(el => { el.classList.remove('reveal'); el.classList.add('in'); });
+
+  // Everything scroll-driven runs from one rAF-throttled handler
+  const jobs = [];
+  let queued = false;
+  const tick = () => { queued = false; jobs.forEach(fn => fn()); };
+  const request = () => { if (!queued) { queued = true; requestAnimationFrame(tick); } };
+  addEventListener('scroll', request, { passive: true });
+  addEventListener('resize', request);
+
+  // ── 1. Retail: pinned post + scrolling copy lines ──────────────────
+  document.querySelectorAll('.ps').forEach(ps => {
+    const lines = [...ps.querySelectorAll('.ps-line')];
+    const frames = [...ps.querySelectorAll('.ps-frame')];
+    let current = -1;
+    const set = i => {
+      if (i === current) return;
+      current = i;
+      lines.forEach((l, n) => l.classList.toggle('active', n === i));
+      frames.forEach((f, n) => {
+        f.classList.toggle('active', n === i);
+        const v = f.querySelector('video');
+        if (v) { if (n === i) v.play().catch(() => {}); else v.pause(); }
+      });
+    };
+    jobs.push(() => {
+      const anchor = innerHeight * (innerWidth <= 760 ? 0.68 : 0.5);
+      let best = 0, bestD = Infinity;
+      lines.forEach((l, n) => {
+        const r = l.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - anchor);
+        if (d < bestD) { bestD = d; best = n; }
+      });
+      set(best);
+    });
+    set(0);
+  });
+
+  // ── 2. Cosmotel: headlines light up in turn while the panel is pinned ──
+  document.querySelectorAll('.lights').forEach(sec => {
+    const lines = [...sec.querySelectorAll('.lights-line')];
+    const bg = sec.querySelector('.lights-bg');
+    jobs.push(() => {
+      const r = sec.getBoundingClientRect();
+      const p = clamp(-r.top / (r.height - innerHeight * 0.8), 0, 1);
+      const lit = reduce ? lines.length : Math.min(lines.length, Math.floor(p * (lines.length + 0.6)) + 1);
+      lines.forEach((l, n) => l.classList.toggle('lit', n < lit));
+      if (bg && !reduce) bg.style.setProperty('--z', (1.05 + p * 0.14).toFixed(3));
+    });
+  });
+
+  // ── 3. F&B gradient headline: sweep once when it enters ──────────
+  const gio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); gio.unobserve(e.target); }
+  }), { threshold: 0.6 });
+  document.querySelectorAll('.grad-title').forEach(t => reduce ? t.classList.add('in-view') : gio.observe(t));
+
+  // ── 4. Staggered galleries: the generic reveal adds .in; cards follow in sequence ──
+  document.querySelectorAll('.hgal').forEach(g => {
+    if (reduce) return;
+    g.classList.remove('reveal');
+    g.classList.add('stagger');
+    g.querySelectorAll('.hgal-item').forEach((it, i) => it.style.setProperty('--i', Math.min(i, 6)));
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { g.classList.add('in'); io.disconnect(); }
+    }), { rootMargin: '0px 0px -10% 0px' });
+    io.observe(g);
+  });
+
+  // ── 5. Drones: scroll position picks the frame (Apple's image-sequence scrub) ──
+  document.querySelectorAll('.scrub').forEach(sec => {
+    const canvas = sec.querySelector('canvas'), ctx = canvas.getContext('2d');
+    const clips = JSON.parse(sec.dataset.clips);       // [{dir, count, share, ...}]
+    const steps = [...sec.querySelectorAll('.scrub-step')];
+    const cap = sec.querySelector('.scrub-cap'), bar = sec.querySelector('.scrub-bar span');
+    const play = sec.querySelector('.scrub-play');
+    const imgs = clips.map(c => Array.from({ length: c.count }, () => null));
+    let loaded = false, lastKey = '', active = 0;
+
+    const load = () => {
+      if (loaded) return; loaded = true;
+      clips.forEach((c, ci) => { for (let i = 0; i < c.count; i++) {
+        const im = new Image(); im.decoding = 'async';
+        im.src = `${c.dir}/f${String(i + 1).padStart(3, '0')}.webp`;
+        im.onload = () => { if (lastKey === '') request(); };
+        imgs[ci][i] = im;
+      } });
+    };
+    // keep a reference so the observer can't be garbage-collected before it fires
+    sec._preload = new IntersectionObserver(es => { if (es[0].isIntersecting) { load(); request(); } }, { rootMargin: '1200px 0px' });
+    sec._preload.observe(sec);
+
+    const draw = im => {
+      const w = canvas.clientWidth * devicePixelRatio, h = canvas.clientHeight * devicePixelRatio;
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+      const s = Math.max(w / im.naturalWidth, h / im.naturalHeight);
+      const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+      ctx.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh);
+    };
+
+    jobs.push(() => {
+      const r = sec.getBoundingClientRect();
+      if (r.bottom < -innerHeight || r.top > innerHeight * 2) return;   // far off-screen: nothing to do
+      load();                                                           // near: make sure frames are coming (no-op once started)
+      const p = clamp(-r.top / (r.height - innerHeight), 0, 1);
+      // split the scroll between the clips by their share
+      let acc = 0, ci = 0, local = 0;
+      for (let i = 0; i < clips.length; i++) {
+        if (p <= acc + clips[i].share || i === clips.length - 1) { ci = i; local = clamp((p - acc) / clips[i].share, 0, 1); break; }
+        acc += clips[i].share;
+      }
+      // caption, steps, bar and the "watch" target follow the scroll even before frames arrive
+      if (active !== ci) {
+        active = ci;
+        steps.forEach((s, n) => s.classList.toggle('active', n === ci));
+        cap.textContent = clips[ci].caption;
+      }
+      bar.style.width = (p * 100).toFixed(1) + '%';
+      const fi = Math.round(local * (clips[ci].count - 1));
+      let im = imgs[ci][fi];
+      if (!im || !im.complete || !im.naturalWidth) {            // nearest frame that has arrived
+        im = imgs[ci].find(x => x && x.complete && x.naturalWidth);
+        if (!im) return;
+      }
+      const key = ci + ':' + fi;
+      if (key !== lastKey) { draw(im); lastKey = key; }
+    });
+
+    play.addEventListener('click', () => {
+      const c = clips[active];
+      lbOpen(c.eye, c.title, '', c.meta, c.video, 'video');
+    });
+  });
+
+  request();
 })();
