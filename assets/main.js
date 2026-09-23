@@ -766,3 +766,79 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
   };
   run();
 })();
+
+// ═══ About page animations: play scrolling down, reverse scrolling back up, loop ═══
+(function () {
+  if (!document.querySelector('.about-bio')) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;   // page stays exactly as written
+  document.body.classList.add('a-ease');
+
+  // Scroll-linked loop: forward when a section passes the trigger line going down,
+  // reverses (visibly) when it drops back below the line going up, and so on.
+  const loops = [];   // [element, test(rect, viewportHeight) → should it be "on"?]
+  const repeat = (el) => loops.push([el, (r, vh) => r.top < vh * 0.85]);
+  const repeatFromTop = (el) => loops.push([el, (r, vh) => r.bottom > vh * 0.3]);   // for the first section
+  const stagger = (els, cls) => els.forEach((el, i) => { el.style.setProperty('--i', i); if (cls) el.classList.add(cls); });
+  const byLabel = t => [...document.querySelectorAll('.sec-label')].find(l => l.textContent.trim() === t);
+
+  // Bio
+  const bio = document.querySelector('.about-bio');
+  const name = bio.querySelector('.about-name');
+  if (name) {
+    let i = 0;
+    name.setAttribute('aria-label', name.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim());
+    name.innerHTML = name.innerHTML.split(/(<br\s*\/?>)/i).map(part =>
+      /^<br/i.test(part) ? part : [...part].map(ch => `<span class="ltr" aria-hidden="true" style="--i:${i++}">${ch}</span>`).join('')).join('');
+  }
+  stagger([...bio.querySelectorAll('.about-eye, .about-role, .about-avail, .about-desc, .about-contact')], 'a-step');
+  bio.classList.add('a-bio');
+  document.body.classList.add('a-pulse');
+  repeatFromTop(bio);
+
+  // Skills
+  const skills = document.querySelector('.skills-grid');
+  if (skills) { stagger([...skills.querySelectorAll('.skill-card')]); skills.querySelectorAll('.skill-icon').forEach((ic, i) => ic.style.setProperty('--i', i)); skills.classList.add('a-skills'); repeat(skills); }
+
+  // Timeline: Experience + Education (scroll-linked, so it naturally reverses and replays)
+  const lists = [...document.querySelectorAll('.exp-list')];
+  lists.forEach(l => {
+    l.classList.add('a-timeline');
+    l.querySelectorAll('.exp-role').forEach(r => {
+      if (r.textContent.includes('First Class (Distinction)'))
+        r.innerHTML = r.innerHTML.replace('First Class (Distinction)', '<span class="distinction">First Class (Distinction)</span>');
+    });
+  });
+  let queued = false;
+  const tick = () => {
+    queued = false;
+    loops.forEach(([el, test]) => el.classList.toggle('on', test(el.getBoundingClientRect(), innerHeight)));
+    const tip = innerHeight * 0.62;                       // the line is drawn down to 62% of the screen height
+    lists.forEach(l => {
+      const r = l.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, (tip - r.top - 22) / Math.max(1, r.height - 44)));
+      l.style.setProperty('--tl', p.toFixed(4));
+      l.querySelectorAll('.exp-item').forEach(it => it.classList.toggle('lit', it.getBoundingClientRect().top + 28 <= tip));
+    });
+  };
+  const req = () => { if (!queued) { queued = true; requestAnimationFrame(tick); } };
+  addEventListener('scroll', req, { passive: true }); addEventListener('resize', req);
+
+  // Brands
+  const brands = document.querySelector('.brands-grid');
+  if (brands) { brands.querySelectorAll('.brand-logo-card img').forEach((im, i) => im.style.setProperty('--i', i)); brands.classList.add('a-brands'); repeat(brands); }
+
+  // Music
+  const musicLabel = byLabel('Also an Artist');
+  const music = musicLabel && musicLabel.nextElementSibling;
+  if (music) { stagger([...music.querySelectorAll('a[target="_blank"]')], 'a-pill'); music.classList.add('a-music'); repeat(music); }
+
+  // Closing call to action
+  const ctaTitle = [...document.querySelectorAll('.page div')].find(d => d.children.length === 0 && d.textContent.trim() === "Got a brief? Let's talk.");
+  const cta = ctaTitle && ctaTitle.parentElement;
+  if (cta) {
+    ctaTitle.classList.add('a-grad');
+    stagger([...cta.children], 'a-step');
+    cta.classList.add('a-cta'); repeat(cta);
+  }
+  req();
+})();

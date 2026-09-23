@@ -1267,3 +1267,69 @@ body{
   .hero-rise + p{opacity:1;transform:none;animation:none}
   .sec-label.reveal::after,.iv-pillar-label.reveal::after{transform:none;animation:none}
 }
+
+/* ═══ ABOUT PAGE ANIMATIONS: play scrolling down, reverse scrolling back up, loop ═══
+   Hidden start states only apply under classes that about.js adds, so without JS the page is unchanged. */
+.a-ease{--ease:cubic-bezier(.22,.61,.36,1)}
+
+/* ── Bio: name letters, then the lines in reading order, photo zooms in with a ring ── */
+.a-bio .ltr{display:inline-block;opacity:0;transform:translateY(.35em);transition:opacity .5s ease,transform .6s var(--ease);transition-delay:calc(var(--i) * 40ms)}
+.a-bio.on .ltr{opacity:1;transform:none}
+.a-bio .a-step{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .7s var(--ease);transition-delay:calc(.35s + var(--i) * 110ms)}
+.a-bio.on .a-step{opacity:1;transform:none}
+.a-bio .about-avatar{position:relative;overflow:visible;opacity:0;transform:scale(.9);transition:opacity .8s ease .2s,transform 1s var(--ease) .2s}
+.a-bio .about-avatar img{border-radius:50%}
+.a-bio .about-avatar::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);
+  opacity:0;transform:scale(1.12);transition:opacity .9s ease .6s,transform 1.1s var(--ease) .6s;pointer-events:none}
+.a-bio.on .about-avatar{opacity:1;transform:none}
+.a-bio.on .about-avatar::after{opacity:1;transform:none}
+/* "open to work" light: gentle, continuous pulse */
+.a-pulse .about-avail::before{animation:availPulse 2.4s ease-out infinite}
+@keyframes availPulse{0%{box-shadow:0 0 0 0 rgba(48,209,88,.55)}70%{box-shadow:0 0 0 9px rgba(48,209,88,0)}100%{box-shadow:0 0 0 0 rgba(48,209,88,0)}}
+
+/* ── Skills: tiles arrive one by one, icons pop ── */
+.a-skills .skill-card{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .7s var(--ease),background .2s;transition-delay:calc(var(--i) * 90ms),calc(var(--i) * 90ms),0s}
+.a-skills.on .skill-card{opacity:1;transform:none}
+.a-skills .skill-icon{display:inline-block;transform:scale(.3);opacity:0;transition:transform .55s cubic-bezier(.34,1.56,.64,1),opacity .3s ease;transition-delay:calc(.2s + var(--i) * 90ms)}
+.a-skills.on .skill-icon{transform:none;opacity:1}
+@media (hover:hover){
+  .a-skills.on .skill-card{transition-delay:0s}
+  .a-skills.on .skill-card:hover{transform:translateY(-6px);background:var(--surface2)}
+}
+
+/* ── Timeline (Experience + Education): line draws with your scroll, roles light up as it reaches them ── */
+.a-timeline{position:relative}
+.a-timeline .exp-item{position:relative;padding-left:52px}
+.a-timeline::before,.a-timeline::after{content:"";position:absolute;left:26px;top:22px;bottom:22px;width:2px;border-radius:2px}
+.a-timeline::before{background:rgba(255,255,255,.08)}
+.a-timeline::after{background:linear-gradient(to bottom,#fff,rgba(255,255,255,.55));transform-origin:top;transform:scaleY(var(--tl,0))}
+.a-timeline .exp-item::before{content:"";position:absolute;left:21px;top:22px;width:12px;height:12px;border-radius:50%;
+  background:var(--surface);border:2px solid rgba(255,255,255,.18);z-index:1;transition:background .4s,border-color .4s,box-shadow .4s}
+.a-timeline .exp-item > *{opacity:.3;transition:opacity .5s ease}
+.a-timeline .exp-item.lit > *{opacity:1}
+.a-timeline .exp-item.lit::before{background:#fff;border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.12)}
+.a-timeline .distinction{transition:color .8s ease}
+.a-timeline .exp-item.lit .distinction{color:#e2b86f}
+
+/* ── Brands: logos come into colour one after another ── */
+.a-brands .brand-logo-card img{filter:grayscale(1) brightness(.75);opacity:.45;transform:scale(.94);
+  transition:filter .8s ease,opacity .8s ease,transform .8s var(--ease);transition-delay:calc(var(--i) * 140ms)}
+.a-brands.on .brand-logo-card img{filter:none;opacity:1;transform:none}
+@media (hover:hover){
+  .a-brands .brand-logo-card{transition:transform .3s var(--ease),background .2s}
+  .a-brands .brand-logo-card:hover{transform:translateY(-5px)}
+  .a-brands.on .brand-logo-card:hover img{transform:scale(1.06);transition-delay:0s}
+}
+
+/* ── Music: player slides up, platform buttons pop in ── */
+.a-music iframe{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .8s var(--ease)}
+.a-music.on iframe{opacity:1;transform:none}
+.a-music .a-pill{opacity:0;transform:translateY(10px) scale(.94);transition:opacity .45s ease,transform .5s var(--ease);transition-delay:calc(.35s + var(--i) * 90ms)}
+.a-music.on .a-pill{opacity:1;transform:none}
+
+/* ── Closing: headline gets a cool gradient sweep, the rest rises in ── */
+.a-cta .a-step{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .7s var(--ease);transition-delay:calc(var(--i) * 120ms)}
+.a-cta.on .a-step{opacity:1;transform:none}
+.a-cta .a-grad{background:linear-gradient(90deg,#9ecbff 0%,#b9a6ff 18%,#f0b6d8 32%,#b9a6ff 42%,#9ecbff 49%,#f5f5f7 57%,#f5f5f7 100%);background-size:200% 100%;background-position:100% 0;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;transition:background-position 2s var(--ease) .3s,opacity .6s ease,transform .7s var(--ease)}
+.a-cta.on .a-grad{background-position:0 0}
