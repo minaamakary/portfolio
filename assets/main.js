@@ -201,14 +201,6 @@ function toggleMenu() {
   menu.classList.toggle('open');
 }
 
-function mobileShow(id) {
-  show(id);  // kept for compatibility; the mobile menu now uses plain links
-  // Close menu after navigation
-  document.getElementById('gnav-burger').classList.remove('open');
-  document.getElementById('gnav-mobile-menu').classList.remove('open');
-  return false;
-}
-
 // ── Carousel (Undiz + Chaiwala mixed media) ────────────────
 const carousels = {};
 
@@ -236,13 +228,6 @@ function carouselGo(id, dir) {
   const counter = document.getElementById(id + '-counter');
   if (counter) counter.textContent = `${c.idx + 1} / ${c.total}`;
 
-  // Sync thumbnails if chai or multi
-  if (id === 'chai') {
-    document.querySelectorAll('.chai-thumb').forEach((t, i) => t.classList.toggle('active', i === c.idx));
-  }
-  if (id === 'multi') {
-    document.querySelectorAll('#multi-thumbs .chai-thumb').forEach((t, i) => t.classList.toggle('active', i === c.idx));
-  }
   // Update vox counter
   if (id === 'vox') {
     const vc = document.getElementById('vox-counter');
@@ -272,51 +257,9 @@ function playCarouselVideo(id, idx) {
 function carouselPrev(id) { carouselGo(id, -1); }
 function carouselNext(id) { carouselGo(id,  1); }
 
-// Jump directly to a slide (used by Chaiwala thumbs)
-function chaiJump(idx) {
-  const c = carousels['chai'];
-  if (!c) return;
-  pauseCarouselVideo('chai', c.idx);
-  c.idx = idx;
-  const track = document.getElementById('chai-track');
-  if (track) track.style.transform = `translateX(-${idx * 100}%)`;
-  const dots = document.querySelectorAll('#chai-dots .carousel-dot');
-  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  const counter = document.getElementById('chai-counter');
-  if (counter) counter.textContent = `${idx + 1} / ${c.total}`;
-  // Update thumb active state
-  document.querySelectorAll('.chai-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
-  playCarouselVideo('chai', idx);
-}
-
 carouselInit('undiz', 2);
-carouselInit('chai', 7);
-carouselInit('multi', 6);
 carouselInit('vox', 6);
 
-// Jump for multi-brand carousel
-function multiJump(idx) {
-  const c = carousels['multi'];
-  if (!c) return;
-  c.idx = idx;
-  const track = document.getElementById('multi-track');
-  if (track) track.style.transform = `translateX(-${idx * 100}%)`;
-  const dots = document.querySelectorAll('#multi-dots .carousel-dot');
-  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  const counter = document.getElementById('multi-counter');
-  if (counter) counter.textContent = `${idx + 1} / ${c.total}`;
-  document.querySelectorAll('#multi-thumbs .chai-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
-}
-
-// preload carousel videos so thumbnails show
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('#chai-track video').forEach(v => {
-    v.load();
-    v.addEventListener('loadedmetadata', () => {
-      if (v.duration && isFinite(v.duration)) v.currentTime = v.duration * 0.4;
-    });
-  });
-});
 // ── Lightbox ─────────────────────────────────────────
 function lbOpen(eye, title, caption, tags, mediaSrc, mediaType) {
   const overlay = document.getElementById('lb-overlay');
@@ -347,27 +290,6 @@ function lbClose(e) {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') lbClose();
 });
-
-function makeStars(id, n) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  for (let i = 0; i < n; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    s.style.left = Math.random() * 100 + '%';
-    s.style.top  = Math.random() * 100 + '%';
-    s.style.setProperty('--d',  (2 + Math.random() * 3) + 's');
-    s.style.setProperty('--dl', (Math.random() * 4) + 's');
-    s.style.setProperty('--op', (0.3 + Math.random() * 0.7).toFixed(2));
-    el.appendChild(s);
-  }
-}
-makeStars('h-stars', 70);
-makeStars('h-s1', 20);
-makeStars('e-hero', 60);
-makeStars('e1', 20);
-makeStars('e3', 20);
-makeStars('e5', 20);
 
 // ── Auto-wire hover captions + lightbox to all scards ──
 document.addEventListener('DOMContentLoaded', () => {
