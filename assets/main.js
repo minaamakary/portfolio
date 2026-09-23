@@ -734,14 +734,19 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
 (function () {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 1 ── IV wordplay: play once when each pillar title is well in view
+  // 1 ── IV wordplay: plays every time a pillar title scrolls into view
   const titles = document.querySelectorAll('.iv-pillar-title');
   if (titles.length && !reduce && 'IntersectionObserver' in window) {
     document.body.classList.add('iv-anim');
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('play'); io.unobserve(e.target); }
+    // play when the title is fully in view (above the bottom 15% of the screen)…
+    const playIO = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('play');
     }), { threshold: 1, rootMargin: '0px 0px -15% 0px' });
-    titles.forEach(t => io.observe(t));
+    // …and reset only once it has left the screen entirely, so it never snaps back while visible
+    const resetIO = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) e.target.classList.remove('play');
+    }), { threshold: 0 });
+    titles.forEach(t => { playIO.observe(t); resetIO.observe(t); });
   }
 
   // 2 ── Page titles (Home already animates its own headline)
