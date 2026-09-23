@@ -1287,3 +1287,26 @@ body{
 .hgal-eye{margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--secondary)}
 .hgal-eye + .hgal-cap{margin-top:6px}
 .hgal-meta{margin-top:8px;font-size:12px;line-height:1.5;color:var(--secondary);opacity:.8}
+
+/* ── GALLERY + SIDE TEXT (Drone Shows) ── */
+.hgal-split{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
+.hgal-split .hgal{min-width:0}
+.reveal-words{
+  font-size:34px;font-weight:600;line-height:1.18;letter-spacing:-.5px;
+  color:var(--text);max-width:340px;margin:0 0 56px;
+}
+@media(max-width:860px){
+  .hgal-split{grid-template-columns:1fr;gap:28px}
+  .reveal-words{font-size:26px;max-width:none;margin:0}
+}
+
+/* Word-by-word fade-up when the text scrolls into view (words are wrapped by main.js) */
+.reveal-words .rw{
+  display:inline-block;opacity:0;transform:translateY(12px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.25,.46,.45,.94);
+  transition-delay:calc(var(--i) * 70ms);
+}
+.reveal-words.in-view .rw{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal-words .rw{opacity:1;transform:none;transition:none}
+}

@@ -558,3 +558,26 @@ document.querySelectorAll('.hgal').forEach(gal => {
   window.addEventListener('resize', update);
   update();
 });
+
+// ── Word-by-word reveal (e.g. Drone Shows text) ─────────────────────
+// Text stays readable without JS; words are only wrapped when we can animate them.
+(function () {
+  const els = document.querySelectorAll('.reveal-words');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  els.forEach(el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map((w, i) => `<span class="rw" style="--i:${i}">${w}</span>`).join(' ');
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);   // animate once
+      }
+    });
+  }, { threshold: 0.6 });
+  els.forEach(el => io.observe(el));
+})();
