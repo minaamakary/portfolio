@@ -464,27 +464,62 @@ document.querySelectorAll('.hgal').forEach(gal => {
   update();
 });
 
+// ── Scroll loop: one shared engine for every entrance animation ─────────
+// An element is "on" once its top passes the trigger line going down (85% of the
+// screen height) and turns "off" again when it drops back below it going up, so
+// every animation plays forward scrolling down and reverses scrolling back up.
+const ScrollLoop = (() => {
+  const LINE = 0.85;
+  const items = [];
+  let queued = false;
+  const tick = () => {
+    queued = false;
+    const vh = innerHeight;
+    items.forEach(it => {
+      const on = it.test(it.el.getBoundingClientRect(), vh);
+      if (on !== it.state) { it.state = on; it.cb(on); }
+    });
+  };
+  const request = () => { if (!queued) { queued = true; requestAnimationFrame(tick); } };
+  addEventListener('scroll', request, { passive: true });
+  addEventListener('resize', request);
+  addEventListener('load', request);
+  // Things already on screen when the page opens can't be scrolled back below the line,
+  // so they loop the other way: out as you scroll away from them, in again when you return.
+  // The "away" point sits at 30% of the screen, or higher for things near the very top,
+  // so nothing that is visible when the page opens can start out hidden.
+  const aboveFold = (el) => {
+    const bottom = el.getBoundingClientRect().bottom + scrollY;          // position on the page
+    const limit = Math.min(innerHeight * 0.3, Math.max(60, bottom - innerHeight * 0.15));
+    return (r) => r.bottom > limit;
+  };
+  return {
+    add(el, cb, test) {
+      if (!test) {
+        const top = el.getBoundingClientRect().top + scrollY;
+        test = top < innerHeight * LINE ? aboveFold(el) : (r, vh) => r.top < vh * LINE;
+      }
+      items.push({ el, cb, test, state: null }); request();
+    },
+    // for things at the very top of a page: on while still visible below the nav bar
+    fromTop: (r) => r.bottom > 60,
+    request,
+  };
+})();
+
 // ── Word-by-word reveal (Drone Shows text, pull quotes) ─────────────
 // Text stays readable without JS; words are only wrapped when we can animate them.
 (function () {
   const els = document.querySelectorAll('.reveal-words, .pq-q');
   if (!els.length) return;
-  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   els.forEach(el => {
     const words = el.textContent.trim().split(/\s+/);
     el.innerHTML = words.map((w, i) => `<span class="rw" style="--i:${i}">${w}</span>`).join(' ');
   });
 
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        io.unobserve(entry.target);   // animate once
-      }
-    });
-  }, { threshold: 0.6 });
-  els.forEach(el => io.observe(el));
+  els.forEach(el => ScrollLoop.add(el, on => el.classList.toggle('in-view', on)));
 })();
 
 // ── Gallery cards that open in the lightbox (Irish Village) ─────────
@@ -503,27 +538,23 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
   item.addEventListener('click', () => lbOpen(eye, title, '', '', media.getAttribute('src'), type));
 });
 
-// ── Scroll reveal: each top-level block fades up once as it scrolls in ──
+// ── Scroll reveal: each top-level block fades up scrolling down, back down scrolling up ──
 (function () {
-  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const blocks = document.querySelectorAll('.page .wrap > *, .home-rows > *');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });   // any part in view: works for blocks of any height
   blocks.forEach(el => {
-    if (el.matches('script, .camp-section-anchor') || !el.getBoundingClientRect().height) return;
+    // .home-rows is only a wrapper: each row inside it animates on its own
+    if (el.matches('script, .camp-section-anchor, .ps, .lights, .scrub, .home-rows') || !el.getBoundingClientRect().height) return;
     el.classList.add('reveal');
-    io.observe(el);
+    ScrollLoop.add(el, on => el.classList.toggle('in', on));
   });
 })();
 
-// ── Count-up numbers (DSF stats): 0 → value once, keeping the original format ──
+// ── Count-up numbers (DSF stats): count up scrolling down, back to 0 scrolling up ──
 (function () {
   const nums = document.querySelectorAll('.dsf-stat-num');
-  if (!nums.length || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const run = el => {
+  if (!nums.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  nums.forEach(el => {
     const node = [...el.childNodes].find(n => n.nodeType === 3 && /\d/.test(n.textContent));
     if (!node) return;
     const original = node.textContent;                       // e.g. "1,300" or "92.6"
@@ -534,19 +565,21 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
       const s = v.toFixed(decimals);
       return commas ? Number(s).toLocaleString('en-US', { minimumFractionDigits: decimals }) : s;
     };
-    const dur = 1400, t0 = performance.now();
-    const tick = now => {
-      const p = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - p, 3);
-      node.textContent = p < 1 ? fmt(target * eased) : original;   // always land on the exact original text
-      if (p < 1) requestAnimationFrame(tick);
+    let value = 0, token = 0;
+    const animate = (to, dur) => {
+      const from = value, t0 = performance.now(), me = ++token;
+      const tick = now => {
+        if (me !== token) return;                               // a newer run took over
+        const p = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - p, 3);
+        value = from + (to - from) * eased;
+        node.textContent = (p === 1 && to === target) ? original : fmt(value);   // land on the exact original text
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
     };
     node.textContent = fmt(0);
-    requestAnimationFrame(tick);
-  };
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
-  }, { threshold: 0.6 });
-  nums.forEach(n => io.observe(n));
+    ScrollLoop.add(el, on => animate(on ? target : 0, on ? 1400 : 700));
+  });
 })();
 
 // ═══════════ Apple-style scroll animations ═══════════
@@ -606,11 +639,9 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
     });
   });
 
-  // ── 3. F&B gradient headline: sweep once when it enters ──────────
-  const gio = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in-view'); gio.unobserve(e.target); }
-  }), { threshold: 0.6 });
-  document.querySelectorAll('.grad-title').forEach(t => reduce ? t.classList.add('in-view') : gio.observe(t));
+  // ── 3. F&B gradient headline: colours sweep in scrolling down, back out scrolling up ──
+  document.querySelectorAll('.grad-title').forEach(t => reduce ? t.classList.add('in-view')
+    : ScrollLoop.add(t, on => t.classList.toggle('in-view', on)));
 
   // ── 4. Staggered galleries: the generic reveal adds .in; cards follow in sequence ──
   document.querySelectorAll('.hgal').forEach(g => {
@@ -618,10 +649,7 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
     g.classList.remove('reveal');
     g.classList.add('stagger');
     g.querySelectorAll('.hgal-item').forEach((it, i) => it.style.setProperty('--i', Math.min(i, 6)));
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { g.classList.add('in'); io.disconnect(); }
-    }), { rootMargin: '0px 0px -10% 0px' });
-    io.observe(g);
+    ScrollLoop.add(g, on => g.classList.toggle('in', on));
   });
 
   // ── 5. Drones: scroll position picks the frame (Apple's image-sequence scrub) ──
@@ -713,14 +741,17 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
     seq.forEach(el => { if (!el.matches('.dsf-fenty-desc')) el.classList.add('panel-rise'); });
     if (pills) pills.querySelectorAll('.dsf-fenty-hl').forEach((p, i) => p.style.setProperty('--i', i));
 
+    const startsOnScreen = panel.getBoundingClientRect().top + scrollY < innerHeight * 0.8;
     let queued = false;
     const update = () => {
       queued = false;
       const vh = innerHeight, r = panel.getBoundingClientRect();
-      if (r.top < vh * 0.8) panel.classList.add('go');                 // tag + title, once
-      seq.forEach(el => el.classList.toggle('lit', el.getBoundingClientRect().top < vh * 0.6));
+      // tag + title: in going down, out going up (or, if on screen from the start, out as you scroll away)
+      const away = startsOnScreen && r.bottom <= vh * 0.3;           // scrolled down away from a panel that started on screen
+      panel.classList.toggle('go', startsOnScreen ? !away : r.top < vh * 0.8);
+      seq.forEach(el => el.classList.toggle('lit', !away && el.getBoundingClientRect().top < vh * 0.6));
       const last = seq[seq.length - 1];
-      if (pills && (!last || last.classList.contains('lit')) && pills.getBoundingClientRect().top < vh * 0.92) pills.classList.add('in');
+      if (pills) pills.classList.toggle('in', !away && (!last || last.classList.contains('lit')) && pills.getBoundingClientRect().top < vh * 0.92);
       if (img) img.style.setProperty('--fz', (1.12 - 0.12 * Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)))).toFixed(4));
     };
     const req = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
@@ -734,22 +765,30 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
 (function () {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 1 ── IV wordplay: plays every time a pillar title scrolls into view
+  // 1 ── IV wordplay: letters lift into gold scrolling down, lift back out to white scrolling up
   const titles = document.querySelectorAll('.iv-pillar-title');
-  if (titles.length && !reduce && 'IntersectionObserver' in window) {
+  if (titles.length && !reduce) {
     document.body.classList.add('iv-anim');
-    // play when the title is fully in view (above the bottom 15% of the screen)…
-    const playIO = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('play');
-    }), { threshold: 1, rootMargin: '0px 0px -15% 0px' });
-    // …and reset only once it has left the screen entirely, so it never snaps back while visible
-    const resetIO = new IntersectionObserver(es => es.forEach(e => {
-      if (!e.isIntersecting) e.target.classList.remove('play');
-    }), { threshold: 0 });
-    titles.forEach(t => { playIO.observe(t); resetIO.observe(t); });
+    titles.forEach(t => {
+      let played = false;
+      ScrollLoop.add(t, on => {
+        if (!on && !played) return;                    // nothing to reverse yet (e.g. below the fold on load)
+        t.classList.remove('play', 'rev'); void t.offsetWidth;   // restart the keyframes
+        t.classList.add(on ? 'play' : 'rev');
+        played = true;
+      });
+    });
   }
 
-  // 2 ── Page titles (Home already animates its own headline)
+  // 2 ── Page titles: rise in at the top, sink back out as you scroll away, rise again on return
+  const home = document.getElementById('hero-h1');
+  if (home && !reduce) {
+    home.querySelectorAll('.hero-word').forEach((w, i) => w.style.setProperty('--d', (0.05 + i * 0.13).toFixed(2) + 's'));
+    home.classList.add('hero-rise');
+    const sub = home.nextElementSibling;
+    if (sub && sub.tagName === 'P') sub.style.setProperty('--pd', '.7s');
+    ScrollLoop.add(home, on => home.classList.toggle('on', on), ScrollLoop.fromTop);
+  }
   const h1 = document.querySelector('.page-hero h1:not(#hero-h1)');
   const run = () => {
     if (!h1 || reduce || h1.querySelector('.hero-word')) return;
@@ -763,6 +802,7 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
     h1.classList.add('hero-rise');
     const sub = h1.nextElementSibling;
     if (sub) sub.style.setProperty('--pd', (0.25 + parts.length * step).toFixed(2) + 's');
+    ScrollLoop.add(h1, on => h1.classList.toggle('on', on), ScrollLoop.fromTop);
   };
   run();
 })();
