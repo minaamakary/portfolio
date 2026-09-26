@@ -1411,3 +1411,8 @@ body{
 .bc-grid{align-items:start}
 /* tall posters (e.g. Project Chaiwala) use a 4:5 frame so their text isn't cut off */
 .bc-grid--portrait .bc-post-media{aspect-ratio:4/5}
+/* Section title with a logo (e.g. Majid Al Futtaim) */
+.bc-ind-title{display:flex;align-items:center;gap:14px}
+.bc-ind-title .bc-brand-logo{width:56px;height:56px}
+@media(max-width:760px){.bc-ind-title .bc-brand-logo{width:44px;height:44px;border-radius:12px}}
+.bc-brand[id]{scroll-margin-top:84px}
