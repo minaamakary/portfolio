@@ -70,9 +70,7 @@
     <ul class="gnav-links">
       <li><a href="index.html"          id="gn-home" class="active">Home</a></li>
       <li><a href="campaigns.html"     id="gn-campaigns">Campaigns</a></li>
-      <li><a href="entertainment.html" id="gn-entertainment">Entertainment</a></li>
-      <li><a href="fnb.html"           id="gn-fnb">F&amp;B</a></li>
-      <li><a href="retail.html"        id="gn-retail">Retail &amp; Lifestyle</a></li>
+      <li><a href="brand-content.html" id="gn-brand">Brand Content</a></li>
       <li><a href="about.html"         id="gn-about">About</a></li>
     </ul>
     <!-- Mobile hamburger -->
@@ -85,9 +83,7 @@
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="campaigns.html">Campaigns</a></li>
-      <li><a href="entertainment.html">Entertainment</a></li>
-      <li><a href="fnb.html">F&amp;B</a></li>
-      <li><a href="retail.html">Retail &amp; Lifestyle</a></li>
+      <li><a href="brand-content.html">Brand Content</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </div>
@@ -111,7 +107,7 @@
       <div class="nr-carousel" id="nr-carousel">
 
         <!-- Slide 1: DSF - Campaigns -->
-        <div class="nr-slide active" id="nr-slide-0" role="link" tabindex="0" onclick="show('campaigns')" style="cursor:pointer">
+        <div class="nr-slide active" id="nr-slide-0" role="link" tabindex="0" onclick="goTo('dsf.html')" style="cursor:pointer">
           <img src="DSF landing banner_hero_bag.webp" class="nr-img" alt="Dubai Shopping Festival"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
@@ -121,7 +117,7 @@
         </div>
 
         <!-- Slide 2: Cosmotel - Campaigns -->
-        <div class="nr-slide" id="nr-slide-1" role="link" tabindex="0" onclick="show('campaigns')" style="cursor:pointer">
+        <div class="nr-slide" id="nr-slide-1" role="link" tabindex="0" onclick="goTo('cosmotel.html')" style="cursor:pointer">
           <img src="cosmotel2021.webp" class="nr-img" alt="Cosmotel 2021"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
@@ -131,7 +127,7 @@
         </div>
 
         <!-- Slide 3: Irish Village - Campaigns -->
-        <div class="nr-slide" id="nr-slide-2" role="link" tabindex="0" onclick="show('campaigns')" style="cursor:pointer">
+        <div class="nr-slide" id="nr-slide-2" role="link" tabindex="0" onclick="goTo('irish-village.html')" style="cursor:pointer">
           <img loading="lazy" src="iv_01.webp" class="nr-img" alt="The Irish Village"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
@@ -141,7 +137,7 @@
         </div>
 
         <!-- Slide 4: VOX Competition - Entertainment -->
-        <div class="nr-slide" id="nr-slide-3" role="link" tabindex="0" onclick="show('entertainment')" style="cursor:pointer">
+        <div class="nr-slide" id="nr-slide-3" role="link" tabindex="0" onclick="goTo('entertainment.html')" style="cursor:pointer">
           <img loading="lazy" src="vox_competition_banner.webp" class="nr-img" alt="VOX Cinemas"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
@@ -151,7 +147,7 @@
         </div>
 
         <!-- Slide 5: Ladurée - F&B -->
-        <div class="nr-slide" id="nr-slide-4" role="link" tabindex="0" onclick="show('fnb')" style="cursor:pointer">
+        <div class="nr-slide" id="nr-slide-4" role="link" tabindex="0" onclick="goTo('fnb-brands.html')" style="cursor:pointer">
           <img loading="lazy" src="fnb_laduree.webp" class="nr-img" alt="Ladurée"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
@@ -161,7 +157,7 @@
         </div>
 
         <!-- Slide 6: Shake Shack - F&B -->
-        <div class="nr-slide" id="nr-slide-5" role="link" tabindex="0" onclick="show('fnb')" style="cursor:pointer">
+        <div class="nr-slide" id="nr-slide-5" role="link" tabindex="0" onclick="goTo('fnb-brands.html')" style="cursor:pointer">
           <img loading="lazy" src="fnb_shack.webp" class="nr-img" alt="Shake Shack"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
@@ -171,7 +167,7 @@
         </div>
 
         <!-- Slide 7: 2XL - Retail -->
-        <div class="nr-slide" id="nr-slide-6" role="link" tabindex="0" onclick="show('retail')" style="cursor:pointer">
+        <div class="nr-slide" id="nr-slide-6" role="link" tabindex="0" onclick="goTo('retail-posts.html')" style="cursor:pointer">
           <img loading="lazy" src="ret_2xl.webp" class="nr-img" alt="2XL Furniture"/>
           <div class="nr-grad"></div>
           <div class="nr-body">
@@ -309,11 +305,11 @@
             <div class="home-row-eye">Food &amp; Beverage</div>
             <div class="home-row-title">Food content that makes you hungry before you're done scrolling.</div>
           </div>
-          <a href="fnb.html" class="home-row-link">View all →</a>
+          <a href="brand-content.html#fnb" class="home-row-link">View all →</a>
         </div>
         <div class="hgal hgal--cards" aria-label="Food &amp; Beverage gallery">
       <div class="hgal-track">
-          <a class="scard no-lb hgal-item hgal-item--square" href="fnb.html">
+          <a class="scard no-lb hgal-item hgal-item--square" href="chaiwala.html">
             <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
               <img loading="lazy" src="fnb_chai6.webp" alt="Project Chaiwala" style="width:100%;height:100%;object-fit:cover;display:block"/>
             </div>
@@ -323,7 +319,7 @@
               <div class="scard-desc">Iced chais, matcha soft serves, and comfort bites across UAE &amp; Oman.</div>
             </div>
           </a>
-          <a class="scard no-lb hgal-item hgal-item--square" href="fnb.html">
+          <a class="scard no-lb hgal-item hgal-item--square" href="fnb-brands.html">
             <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
               <img loading="lazy" src="fnb_laduree.webp" alt="Ladurée" style="width:100%;height:100%;object-fit:cover;display:block"/>
             </div>
@@ -333,7 +329,7 @@
               <div class="scard-desc">Ladurée's legendary macarons - a weekend well spent.</div>
             </div>
           </a>
-          <a class="scard no-lb hgal-item hgal-item--square" href="fnb.html">
+          <a class="scard no-lb hgal-item hgal-item--square" href="fnb-brands.html">
             <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
               <img loading="lazy" src="fnb_shack.webp" alt="Shake Shack" style="width:100%;height:100%;object-fit:cover;display:block"/>
             </div>
@@ -358,11 +354,11 @@
             <div class="home-row-eye">Retail &amp; Lifestyle</div>
             <div class="home-row-title">Content built to turn browsers to buyers.</div>
           </div>
-          <a href="retail.html" class="home-row-link">View all →</a>
+          <a href="brand-content.html#retail" class="home-row-link">View all →</a>
         </div>
         <div class="hgal hgal--cards" aria-label="Retail &amp; Lifestyle gallery">
       <div class="hgal-track">
-          <a class="scard no-lb hgal-item hgal-item--square" href="retail.html">
+          <a class="scard no-lb hgal-item hgal-item--square" href="hisense-winter.html">
             <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
               <img loading="lazy" src="Hisense_WinterisGone.webp" alt="Hisense Winter Has Gone" style="width:100%;height:100%;object-fit:cover;display:block"/>
             </div>
@@ -372,7 +368,7 @@
               <div class="scard-desc">Game of Thrones meets UAE summer - reactive content that made a product post feel like a cultural moment.</div>
             </div>
           </a>
-          <a class="scard no-lb hgal-item hgal-item--square" href="retail.html">
+          <a class="scard no-lb hgal-item hgal-item--square" href="retail-posts.html">
             <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
               <img loading="lazy" src="ret_flormar.webp" alt="Flormar" style="width:100%;height:100%;object-fit:cover;display:block"/>
             </div>
@@ -382,7 +378,7 @@
               <div class="scard-desc">Soft, lightweight texture with trendy colours - a tempting choice.</div>
             </div>
           </a>
-          <a class="scard no-lb hgal-item hgal-item--square" href="retail.html">
+          <a class="scard no-lb hgal-item hgal-item--square" href="retail-posts.html">
             <div class="scard-vis hgal-media" style="aspect-ratio:1/1;overflow:hidden">
               <img loading="lazy" src="ret_undiz1.webp" alt="Undiz" style="width:100%;height:100%;object-fit:cover;display:block"/>
             </div>
@@ -425,9 +421,7 @@
     <div class="footer-links">
       <a href="index.html"          data-page="home" class="active">Home</a>
       <a href="campaigns.html"     data-page="campaigns">Campaigns</a>
-      <a href="entertainment.html" data-page="entertainment">Entertainment</a>
-      <a href="fnb.html"           data-page="fnb">F&amp;B</a>
-      <a href="retail.html"        data-page="retail">Retail &amp; Lifestyle</a>
+      <a href="brand-content.html" data-page="brand">Brand Content</a>
       <a href="about.html"         data-page="about">About</a>
     </div>
   </div>

@@ -122,7 +122,7 @@ function campScrollTo(id) {
 // page out (same .leaving animation as before), then load the next one.
 const PAGE_FILES = {
   home: 'index.html', campaigns: 'campaigns.html', entertainment: 'entertainment.html',
-  fnb: 'fnb.html', retail: 'retail.html', about: 'about.html'
+  fnb: 'brand-content.html#fnb', retail: 'brand-content.html#retail', about: 'about.html'
 };
 
 function goTo(url) {
@@ -881,4 +881,23 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
     cta.classList.add('a-cta'); repeat(cta);
   }
   req();
+})();
+
+// ── Brand Content: filter tiles by industry (All · Entertainment · F&B · Retail) ──
+(function () {
+  const chips = [...document.querySelectorAll('.chips .chip')];
+  const tiles = [...document.querySelectorAll('.tiles--filter .tile')];
+  if (!chips.length || !tiles.length) return;
+  const apply = (cat, push) => {
+    if (!chips.some(c => c.dataset.filter === cat)) cat = 'all';
+    chips.forEach(c => { const on = c.dataset.filter === cat; c.classList.toggle('active', on); c.setAttribute('aria-pressed', on); });
+    const shown = tiles.filter(t => cat === 'all' || t.dataset.cat === cat);
+    tiles.forEach(t => { t.hidden = !shown.includes(t); t.classList.remove('tile--wide'); });
+    if (shown.length % 2) shown[0].classList.add('tile--wide');        // odd count: the first tile spans the row
+    shown.forEach((t, i) => { t.classList.remove('tile-in'); void t.offsetWidth; t.style.setProperty('--i', i); t.classList.add('tile-in'); });
+    if (push) history.replaceState(null, '', cat === 'all' ? location.pathname : '#' + cat);
+  };
+  chips.forEach(c => c.addEventListener('click', () => apply(c.dataset.filter, true)));
+  apply(location.hash.slice(1) || 'all', false);                        // e.g. brand-content.html#fnb
+  addEventListener('hashchange', () => apply(location.hash.slice(1) || 'all', false));
 })();

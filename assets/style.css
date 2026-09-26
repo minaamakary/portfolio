@@ -1370,3 +1370,14 @@ body{
 .case .camp-intro .camp-eye,.case .camp-intro .camp-h2{display:none}
 .case-next-label{margin-top:72px}
 @media(max-width:760px){.case-hero p{font-size:18px}.case-cover{aspect-ratio:4/3}}
+
+/* ── BRAND CONTENT: industry filter ── */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 22px}
+.chip{font:inherit;font-size:14px;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border);
+  border-radius:980px;padding:9px 18px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip:hover{background:var(--surface2)}
+.chip.active{background:var(--text);color:#000;border-color:var(--text)}
+.chip:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.tile-in{animation:tileIn .5s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 60ms)}
+@keyframes tileIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.tile-in{animation:none}}
