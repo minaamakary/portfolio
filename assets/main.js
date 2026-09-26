@@ -883,21 +883,14 @@ document.querySelectorAll('.hgal-item[data-lb]').forEach(item => {
   req();
 })();
 
-// ── Brand Content: filter tiles by industry (All · Entertainment · F&B · Retail) ──
-(function () {
-  const chips = [...document.querySelectorAll('.chips .chip')];
-  const tiles = [...document.querySelectorAll('.tiles--filter .tile')];
-  if (!chips.length || !tiles.length) return;
-  const apply = (cat, push) => {
-    if (!chips.some(c => c.dataset.filter === cat)) cat = 'all';
-    chips.forEach(c => { const on = c.dataset.filter === cat; c.classList.toggle('active', on); c.setAttribute('aria-pressed', on); });
-    const shown = tiles.filter(t => cat === 'all' || t.dataset.cat === cat);
-    tiles.forEach(t => { t.hidden = !shown.includes(t); t.classList.remove('tile--wide'); });
-    if (shown.length % 2) shown[0].classList.add('tile--wide');        // odd count: the first tile spans the row
-    shown.forEach((t, i) => { t.classList.remove('tile-in'); void t.offsetWidth; t.style.setProperty('--i', i); t.classList.add('tile-in'); });
-    if (push) history.replaceState(null, '', cat === 'all' ? location.pathname : '#' + cat);
-  };
-  chips.forEach(c => c.addEventListener('click', () => apply(c.dataset.filter, true)));
-  apply(location.hash.slice(1) || 'all', false);                        // e.g. brand-content.html#fnb
-  addEventListener('hashchange', () => apply(location.hash.slice(1) || 'all', false));
-})();
+// ── Brand Content: tap a post → pop-up with its description (English, then Arabic) ──
+document.querySelectorAll('.bc-post').forEach(b => b.addEventListener('click', () => {
+  lbOpen(b.dataset.eye, b.dataset.title, b.dataset.en, b.dataset.tags, b.dataset.src, b.dataset.type);
+  const body = document.querySelector('#lb-overlay .lb-body');
+  body.querySelector('.lb-ar')?.remove();
+  if (b.dataset.ar) {
+    const p = document.createElement('p');
+    p.className = 'lb-ar'; p.dir = 'rtl'; p.lang = 'ar'; p.textContent = b.dataset.ar;
+    body.querySelector('.lb-caption').after(p);
+  }
+}));
